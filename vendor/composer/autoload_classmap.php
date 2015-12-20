@@ -11,11 +11,12 @@ return array(
     'Mariana\\Framework\\Config' => $vendorDir . '/mariana-framework/framework/config.php',
     'Mariana\\Framework\\Controller' => $vendorDir . '/mariana-framework/framework/controller.php',
     'Mariana\\Framework\\Cookies' => $vendorDir . '/mariana-framework/framework/cookie.php',
+    'Mariana\\Framework\\Database' => $vendorDir . '/mariana-framework/framework/database.php',
     'Mariana\\Framework\\Resource' => $vendorDir . '/mariana-framework/framework/resource.php',
     'Mariana\\Framework\\Router' => $vendorDir . '/mariana-framework/framework/router.php',
+    'Mariana\\Framework\\Session' => $vendorDir . '/mariana-framework/framework/session.php',
     'Mariana\\Framework\\View' => $vendorDir . '/mariana-framework/framework/view.php',
     'Mariana\\Framework\\cache' => $vendorDir . '/mariana-framework/framework/cache.php',
-    'Mariana\\Framework\\session' => $vendorDir . '/mariana-framework/framework/session.php',
     'Pihh\\Classes\\Security' => $vendorDir . '/mariana-framework/framework/security.php',
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
 );

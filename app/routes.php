@@ -28,7 +28,10 @@ Router::get("/home/{userid}/",array(
 Router::get("/home/user/{userid}/",array(
     "controller"    =>  "TestController",
     "method"        =>  "index_5",
-    "middleware"    =>  array("method")
+    "middleware"    =>  array(
+        "before"    =>  array("method 1"),
+        "after"     =>  array("methods")
+    )
 ));
 
 # VALID POST REQUESTS

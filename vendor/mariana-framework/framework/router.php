@@ -114,6 +114,9 @@ class Router{
             $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
             $object_controller->$mvc["method"]();
             // Middleware after
+        }else{
+            $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
+            $object_controller->$mvc["method"]();
         }
 
     }
