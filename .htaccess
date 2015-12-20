@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !/unit_tests
+RewriteCond %{REQUEST_URI} !/www
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]

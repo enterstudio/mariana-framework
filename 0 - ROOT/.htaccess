@@ -1,0 +1,19 @@
+RewriteEngine on
+
+#RewriteCond %{REQUEST_URI} framework
+#RewriteRule .* framework/index.php
+#RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+#RewriteCond %{QUERY_STRING} framework [OR]
+#RewriteCond %{REQUEST_URI} framework
+#RewriteRule ^(.*)$ framework/index.php?q=$1 [L,QSA]
+#RewriteRule ^ http://83answers.com/? [L,R=301]
+
+#RewriteRule ^(.*)framework(.*)$ http://your.website.com [R=301,L]
+
+#RewriteRule forum http://localhost:8000 [R,L]
+
+#RewriteCond %{QUERY_STRING} forum
+#RewriteRule .? http://83answers.com [R,L]
+
+RewriteCond %{REQUEST_URI} ^/framework/(.*)$
+RewriteRule ^/framework/index.php
