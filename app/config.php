@@ -20,3 +20,14 @@ Config::set("session",array(
 ));
 
 # Database connection
+
+Config::set("database",array(
+    "driver"    =>  "mysql",
+    "host"      =>  "localhost",
+    "database"  =>  "citypost",
+    "username"  =>  "pihh",
+    "password"  =>  "",
+    "charset"   =>  "utf8",
+    "collation" =>  "utf8_unicode_ci",
+    "prefix"    =>  ""
+));
