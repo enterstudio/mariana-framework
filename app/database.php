@@ -1,16 +1,21 @@
 <?php
+
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Mariana\Framework\Config as Config;
 
 $capsule = new Capsule();
+$config = Config::get("database");
+
+
 $capsule->addConnection([
-    'driver' => Config::get("driver"),
-    'host' => Config::get("host"),
-    'database' => Config::get("database"),
-    'username' => Config::get("username"),
-    'password' => Config::get("password"),
-    'charset'   => Config::get("charset"),
-    'collation' => Config::get("collation"),
-    'prefix'    => Config::get("prefix"),
+    'driver' => $config["driver"],
+    'host' => $config["host"],
+    'database' => $config["database"],
+    'username' => $config["username"],
+    'password' => $config["password"],
+    'charset'   => $config["charset"],
+    'collation' => $config["collation"],
+    'prefix'    => $config["prefix"],
 ]);
 
 $capsule->setAsGlobal();    //activate static methods

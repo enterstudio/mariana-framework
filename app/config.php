@@ -2,9 +2,6 @@
 
 use Mariana\Framework\Config;
 
-require_once(ROOT . DS . "app" . DS . "routes.php");
-require_once(ROOT . DS . "app" . DS . "database.php");
-
 # Base route -> cleans everything before this on our routing system
 Config::set("base-route","/framework/");
 
@@ -20,7 +17,6 @@ Config::set("session",array(
 ));
 
 # Database connection
-
 Config::set("database",array(
     "driver"    =>  "mysql",
     "host"      =>  "localhost",

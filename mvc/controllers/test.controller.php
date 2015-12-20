@@ -6,6 +6,10 @@ class TestController extends Controller{
 
     public function index(){
         echo "First Level (/)";
+        $result["tests"] = Tests::all()->toArray();
+        $result["sessions"] = Sessions::all()->toArray();
+        echo "<pre>";
+        print_r($result);
     }
 
     public function index_2(){
