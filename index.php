@@ -28,6 +28,9 @@ use Mariana\Framework\View;
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
 <body>
+
+    <input type="" >
+
     <div id="div1" class="{{class}}">
         <h1>
             Nome: <small> {{name}} </small>
@@ -57,8 +60,8 @@ use Mariana\Framework\View;
 
     customBind = function(value,scopeAttr){
         scope[scopeAttr] = value;
-        angular = TemplateEngine(documentMapObject[0].template, scope);
-        $("#div1").replaceWith(angular);
+        //angular = TemplateEngine(documentMapObject[0].template, scope);
+        //$("#div1").replaceWith(angular);
     }
 
     var TemplateEngine = function(tpl, data) {
@@ -79,8 +82,7 @@ use Mariana\Framework\View;
         divHtml = c[i].outerHTML ;
         if(tagName !== "SCRIPT"){
             if(divHtml.contains("{{")) {
-               // do stuff
-
+                // do stuff
                 angular = TemplateEngine(divHtml, scope);
 
                 newNode = {
@@ -90,14 +92,23 @@ use Mariana\Framework\View;
                     "angular": angular
                 }
                 documentMapObject[i] = newNode;
-                console.log(newNode);
+
             }
         }
 
     }
 
-    $("#div1").replaceWith(documentMapObject[0].angular);
-    //console.log(documentMapObject[0].html);
+    $.each(documentMapObject, function(index, value) {
+        console.log(value);
+
+        i = value.id;
+        t = value.template;
+        a = TemplateEngine(t,scope);
+        xx = document.body.children[i];
+        $(xx).replaceWith(a);
+
+    });
+
 
 
 // TEMPLATE ENGINE - MEDIUM VERSION
