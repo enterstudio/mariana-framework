@@ -1,31 +1,6 @@
-<?php
 
-
-# Defines
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', realpath(dirname(__FILE__)));
-define('VIEW_PATH', ROOT.DS."mvc".DS."views");
-
-# Getting the urls for the MVC
-//$url = $_SERVER["REQUEST_URI"];
-
-# including the required filesystem
-
-require_once(ROOT.DS."vendor".DS."autoload.php");
-require_once(ROOT.DS."app/app.php");
-
-# BOOT THE APP
-use Mariana\Framework\App;
-use Mariana\Framework\View;
-
-#App::run();
-#View::render('pages'.DS.'home');
-
-
-
-?>
 <head>
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
 <body>
     <div id="div1" class="{{class}}">
@@ -42,8 +17,8 @@ use Mariana\Framework\View;
 
     <input type="text" onkeyup="customBind(this.value,'name')" placeholder="clicar aqui para manipular a view">
     <input type="text" onkeyup="customBind(this.value,'message')" placeholder="clicar aqui para manipular a view">
-</body>
-<script>
+    </body>
+    <script>
     var c = document.body.children;
     var documentMapObject = {};
     var i;
@@ -79,7 +54,7 @@ use Mariana\Framework\View;
         divHtml = c[i].outerHTML ;
         if(tagName !== "SCRIPT"){
             if(divHtml.contains("{{")) {
-               // do stuff
+                // do stuff
 
                 angular = TemplateEngine(divHtml, scope);
 
@@ -97,30 +72,30 @@ use Mariana\Framework\View;
     }
 
     $("#div1").replaceWith(documentMapObject[0].angular);
-    //console.log(documentMapObject[0].html);
+//console.log(documentMapObject[0].html);
 
 
 // TEMPLATE ENGINE - MEDIUM VERSION
 
 
 /*
-// TEMPLATE ENGINE - BASIC VERSION
-var TemplateEngine = function(tpl, data) {
-    // magic here ...
-    var re = /{{([^}}]+)?}}/g, match;
-    while(match = re.exec(tpl)) {
-        tpl = tpl.replace(match[0], data[match[1]])
-    }
-    return tpl;
+ // TEMPLATE ENGINE - BASIC VERSION
+ var TemplateEngine = function(tpl, data) {
+ // magic here ...
+ var re = /{{([^}}]+)?}}/g, match;
+ while(match = re.exec(tpl)) {
+ tpl = tpl.replace(match[0], data[match[1]])
+ }
+ return tpl;
 
-}
+ }
 
-console.log("templating");
-var template = '<p>Hello, my name is {{name}}. I\'m {{age}} years old.</p>';
-console.log(TemplateEngine(template, {
-    name: "Krasimir",
-    age: 29
-}));
-*/
+ console.log("templating");
+ var template = '<p>Hello, my name is {{name}}. I\'m {{age}} years old.</p>';
+ console.log(TemplateEngine(template, {
+ name: "Krasimir",
+ age: 29
+ }));
+ */
 </script>
 
