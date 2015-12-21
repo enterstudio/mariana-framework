@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<input id="link">
+<input type="number" data-bind-123="name" />
+<script>
+
+    function tryIt(evtguy) {
+        function foo(evt) {
+            console.log(evt.message);
+        }
+
+        evtguy.subscribe("test/foo", foo);
+        evtguy.publish("test/foo", {message: "Custom event"});
+        evtguy.unsubscribe("test/foo", {message: "Na devia ver isto"});
+    }
+
+    tryIt;
+    //  PUBSUB
+    define(function(){
+
+        var subscribers = {};
+        function subscribe(type,fn){
+            if(!subscribers[type]){
+                subscribers[types] = [];
+            }
+
+            if(subscribers[type].indexOf(fb) == -1){
+                subscribers[types].push(fn);
+            }
+        }
+
+        function unsubscribe(type,fn){
+            var listeners = subscribers[type];
+            if(!listeners){
+                return;
+            }
+
+            var index = listeners.indexOf(fn);
+
+            if (index > -1){
+                listeners.splice(index,1);
+            }
+        }
+
+        function publish(type, evObj){
+            if(!subscribers[type]){
+                return;
+            }
+
+            if(!evObj.type){
+                evObj.type = type;
+            }
+
+            var listeners = subscribers[type];
+
+            for (ii = 0 , ll = listeners.lenght; ii< ll; ii++){
+                listeners[ii](evObj);
+            }
+        }
+
+        return {
+            subscribe: subscribe,
+            unsubscribe: unsubscribe,
+            publish: publish
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -12,6 +12,7 @@ return array(
     'Mariana\\Framework\\Controller' => $vendorDir . '/mariana-framework/framework/controller.php',
     'Mariana\\Framework\\Cookies' => $vendorDir . '/mariana-framework/framework/cookie.php',
     'Mariana\\Framework\\Database' => $vendorDir . '/mariana-framework/framework/database.php',
+    'Mariana\\Framework\\Design\\Singleton' => $vendorDir . '/mariana-framework/framework/Design/singleton.php',
     'Mariana\\Framework\\Middleware' => $vendorDir . '/mariana-framework/framework/middleware.php',
     'Mariana\\Framework\\Resource' => $vendorDir . '/mariana-framework/framework/resource.php',
     'Mariana\\Framework\\Router' => $vendorDir . '/mariana-framework/framework/router.php',

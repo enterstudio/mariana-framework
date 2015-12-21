@@ -1,4 +1,6 @@
 <?php namespace Mariana\Framework;
+
+use Mariana\Framework\Design\Singleton;
 /**
  * Created by PhpStorm.
  * User: filipe_2
@@ -6,7 +8,7 @@
  * Time: 10:23 PM
  */
 
-class Config{
+class Config extends Singleton{
 
     protected static $settings = array();
 

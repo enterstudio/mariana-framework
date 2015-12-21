@@ -1,7 +1,129 @@
 <?php namespace Mariana\Framework;
 
-class Session{
+use Mariana\Framework\Config;
+use Mariana\Framework\Database;
+use PDOStatement;
 
+class Session
+{
+
+    private $db;
+
+    public function __construct()
+    {
+        // Instantiate new Database object
+        $this->db = Database::getConnection();
+
+        session_set_save_handler(
+            array($this, "_open"),
+            array($this, "_close"),
+            array($this, "_read"),
+            array($this, "_write"),
+            array($this, "_destroy"),
+            array($this, "_gc")
+        );
+
+        // Start the session
+        session_start();
+    }
+
+    public function _open()
+    {
+        // If successful
+        if ($this->db) {
+            // Return True
+            return true;
+        }
+        // Return False
+        return false;
+    }
+
+    public function _close()
+    {
+        // Close the database connection
+        // If successful
+        //if ($stmt->close()) {
+            // Return True
+        //    return true;
+        //}
+        // Return False
+        return false;
+    }
+
+    public function _read($id)
+    {
+        // Set query
+        //$this->db->query('SELECT data FROM sessions WHERE id = :id');
+        $stmt = $this->db->prepare('SELECT * FROM sessions WHERE id = ?');
+        $stmt->bindParam(1, $id);
+        if ($stmt->execute()) {
+            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $row;
+        } else {
+            return "";
+        }
+
+    }
+
+    public function _write($id, $data)
+    {
+        // Create time stamp
+        $access = time();
+        if(null === $data){
+            $data = "";
+        }
+
+        // Set query
+        $stmt = $this->db->prepare('REPLACE INTO sessions VALUES (?, ?, ?)');
+        $stmt->bindParam(1, $id);
+        $stmt->bindParam(2, $access);
+        $stmt->bindParam(3, $data);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function _destroy($id)
+    {
+        // Set query
+        $stmt = $this->db->prepare('DELETE  FROM sessions WHERE id = ?');
+        $stmt->bindParam(1, $id);
+        if ($stmt->execute()) {
+            //session_destroy();
+            return true;
+        }
+        return false;
+    }
+
+    public function _gc($max)
+    {
+        // Calculate what is to be deemed old
+        $old = time() - $max;
+
+        // Set query
+        $stmt = $this->db->prepare('DELETE * FROM sessions WHERE access < :old');
+        $stmt->bindParam(':old', $old);
+        if ($stmt->execute()) {
+            // Return True
+            return true;
+        }
+
+        return false;
+    }
+
+    public function check(){
+        return $this->_read(session_id());
+    }
+
+    public function end(){
+        $this->_destroy(session_id());
+        session_destroy();
+    }
+
+}
+    /*
     // Singleton Class
     private static $_instance;
 
@@ -22,12 +144,15 @@ class Session{
     private $_expiry =  7200;
     private $_session_cookie_ttl    =  0; //[$_session_cookie_ttl Session Cookie Lifetime , default (0:Clear the session cookies on browser close) ]
     private $_refresh_interval      =  600; //[$_refresh_interval Refresh Interval toi regenerate Session Id, default 10 minutes]
-    private $_table_name            = "sessions";
+    private $_table_name;
     private $_session_id;   //$_session_id Holder for session_id
     const SECURE_SESSION            = 'salt';
 
-    public function __construct(array $config)
+    public function __construct($capsule)
     {
+
+        $this->db = $capsule;
+
         session_set_save_handler(
             array($this, 'open'),
             array($this, 'close'),
@@ -37,20 +162,21 @@ class Session{
             array($this, 'gc')
         );
 
-        $this->_setConfig($config);
+        $this->_setConfig();
         session_start();
     }
 
 
-    private function _setConfig($config)
+    private function _setConfig()
     {
-        $this->_db                  = $config['dbconnector'];
-        $this->_expiry              = (isset($config['expiry']))? $config['expiry'] : $this->_expiry ;
-        $this->_session_cookie_ttl  = (isset($config['session_cookie_ttl']))? $config['session_cookie_ttl'] : $this->_session_cookie_ttl ;
-        $this->_https               = (isset($_SERVER['HTTPS'])) ? TRUE: FALSE;
-        $this->_refresh_interval    = (isset($config['refresh_interval'])) ? $config['refresh_interval']: $this->_refresh_interval;
+        $config = Config::get("session");
+        $this->_expiry              = (isset($config["lifetime"]))? $config['lifetime'] : $this->_expiry ;
+        $this->_session_cookie_ttl  = (isset($config['cookie_lifetime']))? $config['cookie_lifetime'] : $this->_session_cookie_ttl ;
+        $this->_https               = (isset($_SERVER['https'])) ? TRUE: FALSE;
+        $this->_refresh_interval    = (isset($config['refresh_session'])) ? $config['refresh_session']: $this->_refresh_interval;
         $this->_user_agent          = isset($config['user_agent']) ? $config['user_agent'] : $_SERVER['HTTP_USER_AGENT'];
         $this->_ip_address          = $this->_getRealIpAddr();
+        $this->_table_name          = $config["table"];
 
         ini_set('session.cookie_lifetime', $this->_session_cookie_ttl);
         ini_set('session.gc_maxlifetime',  $this->_expiry);
@@ -68,12 +194,12 @@ class Session{
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP']))
         {
-            /*check ip from share internet*/
+            /*check ip from share internet*
             $ip     =   $_SERVER['HTTP_CLIENT_IP'];
         }
         elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
         {
-            /*to check ip is pass from proxy*/
+            /*to check ip is pass from proxy*
             $ip     =   $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
         else
@@ -92,7 +218,7 @@ class Session{
 
     public function close()
     {
-        /*calling explicitly method gc(),that will clear all expired sessions*/
+        /*calling explicitly method gc(),that will clear all expired sessions*
         $this->gc();
         return true;
     }
@@ -112,10 +238,10 @@ class Session{
 
         if ($record !== FALSE && count($record) > 0)
         {
-            /*Checks if the session ID has exceeded it's permitted lifespan.*/
+            /*Checks if the session ID has exceeded it's permitted lifespan.*
             if((time() - $this->_refresh_interval) > $record['last_updated'])
             {
-                /*Regenerates a new session ID*/
+                /*Regenerates a new session ID*
                 $this->_refresh();
                 $sql = "UPDATE {$this->_table_name} SET session_id =:session_id, last_updated =:last_updated WHERE session_id = '$id'";
                 $stmt = $this->_db->prepare($sql);
@@ -163,10 +289,10 @@ class Session{
                 }
                 else
                 {
-                    /*Need a renewal ?*/
+                    /*Need a renewal ?*
                     if($this->_needRenewal($id))
                     {
-                        /*recursive call*/
+                        /*recursive call*
                         $this->read($this->_session_id);
                     }
 
@@ -238,7 +364,7 @@ class Session{
 
     public function destroy($id)
     {
-        /**/
+        /**
         $stmt           = $this->_db->prepare("DELETE FROM {$this->_table_name} WHERE  session_id =  ?");
         $session_res    = $stmt->execute(array($id));
 
@@ -261,6 +387,4 @@ class Session{
     {
         register_shutdown_function('session_write_close');
     }
-
-}
-
+*/

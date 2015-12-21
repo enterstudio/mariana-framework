@@ -1,5 +1,6 @@
 <?php
 
+
 # Defines
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', realpath(dirname(__FILE__)));
@@ -19,6 +20,8 @@ use Mariana\Framework\View;
 
 App::run();
 View::render('pages'.DS.'home');
+
+
 
 ?>
 

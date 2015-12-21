@@ -8,7 +8,6 @@
 
 class Security{
 
-
     protected function hash($var){
         return password_hash($var, PASSWORD_BCRYPT);
     }

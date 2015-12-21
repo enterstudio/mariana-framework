@@ -2,4 +2,7 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_URI} !/unit_tests
 RewriteCond %{REQUEST_URI} !/www
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
