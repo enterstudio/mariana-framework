@@ -6,11 +6,10 @@ class MarianaORM extends Database{
 
     public static $connection;
     protected static $table;
-    protected $data;
-    protected $db;
+    public $db;
 
     public function __construct(){
-
+        echo "construct";
     }
 
     public static function getTable(){
@@ -44,6 +43,7 @@ class MarianaORM extends Database{
             }
             $params = trim($params, ",");
             $query = "UPDATE ".$this->getTable()." SET $params WHERE id = ".$this->id;
+
         }else{
             $params = join(", :",$columns);
             $params =":".$params;
@@ -59,12 +59,69 @@ class MarianaORM extends Database{
             $stmt->bindParam(":".$key,$value);
         }
         if($stmt->execute()){
-            $this->id = self::$connection->lastInsertId();
-            self::$connection = null;
-            return true;
+            // unset db from object
+            unset($this->db);
+
+            // Set the id to the user
+            if(!$this->id){
+                $this->id = self::$connection->lastInsertId();
+            }
+
+            return $this;// return the object
         }else{
             return false;
         }
 
     }
+
+    public static function where($column,$value){
+        // Declarar a array de objectos vazia
+        $obj = [];
+
+        $query = "SELECT * FROM ".static::getTable()." WHERE ".$column." = :".$column;
+        $db = self::getConnection();
+        $stmt = $db->prepare($query);
+        $stmt->bindParam($column,$value);
+        $stmt->execute();
+
+        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
+            // Criar novo objecto
+            $class = get_called_class();
+
+            $class = new $class($row);
+            // Tirar a base de dados
+            unset($class->db);
+
+            foreach ($row as $key => $value){
+                $class->{$key} = $value;
+            }
+            $obj[] = $class;
+
+        }
+
+        return $obj;
+    }
+
+    public static function find($id){
+        return self::where("id" , $id)[0];
+    }
+
+    public function findAndUpdate($id, Array $update){
+
+        $class = get_called_class();
+
+        $obj = $class::find($id);
+
+        $data = $obj->data;
+        $obj = new $class($data);
+        $obj->id = $id; // Sign the id to update
+
+        foreach($update as $key => $value){
+            $obj->$key = $value;
+        }
+        $obj = $obj->save();
+
+        return $obj;
+    }
+    // To Do list : find and update
 }

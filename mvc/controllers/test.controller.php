@@ -5,14 +5,32 @@ use Mariana\Framework\Controller;
 class TestController extends Controller{
 
     public function index(){
-        echo "First Level (/)";
+
+        echo "<pre>";
+
         $s = new Sessions();
         $u = new Users;
-        $u->name = "XXXYYY";
-        $u->id = "8";
+        $u->id = "15";
+        $u->name = "PIHH xxx";
         $u->save();
-        echo "<pre>";
-        //print_r($result);
+
+        print_r($u);
+
+        $u = Users::where("name","pihh");
+        echo "<br>";
+        print_r($u);
+
+        echo $u[4]->id;
+        echo "<br>";
+        print_r(Users::find(4));
+        echo "<br>";
+
+        $u = new Users();
+        $u->findAndUpdate("15", array("name"=>"20 - 14"));
+        print_r(Users::find(15));
+        //print_r(Users::find(15));
+
+        echo "</pre>";
     }
 
     public function index_2(){
