@@ -55,7 +55,7 @@ require_once(ROOT.DS."app/app.php");
     customBind = function(value,scopeAttr){
         scope[scopeAttr] = value;
         angular = TemplateEngine(documentMapObject[0].template, scope);
-        $("#div1").replaceWith(angular);
+        //$("#div1").html(angular);
     }
 
     var TemplateEngine = function(tpl, data) {
@@ -107,25 +107,5 @@ require_once(ROOT.DS."app/app.php");
 
 // TEMPLATE ENGINE - MEDIUM VERSION
 
-
-/*
-// TEMPLATE ENGINE - BASIC VERSION
-var TemplateEngine = function(tpl, data) {
-    // magic here ...
-    var re = /{{([^}}]+)?}}/g, match;
-    while(match = re.exec(tpl)) {
-        tpl = tpl.replace(match[0], data[match[1]])
-    }
-    return tpl;
-
-}
-
-console.log("templating");
-var template = '<p>Hello, my name is {{name}}. I\'m {{age}} years old.</p>';
-console.log(TemplateEngine(template, {
-    name: "Krasimir",
-    age: 29
-}));
-*/
 </script>
 

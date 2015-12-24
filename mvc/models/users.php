@@ -4,6 +4,11 @@ use \Mariana\Framework\Model;
 
 class Users extends Model{
 
-    //protected static $table;
+    //protected static $table = "XXX";
     //protected static $primary;
+
+    public function __construct(){
+
+    }
+
 }

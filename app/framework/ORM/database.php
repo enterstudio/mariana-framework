@@ -4,12 +4,6 @@ use PDO;
 use Mariana\Framework\Config as Config;
 use Mariana\Framework\Design\Singleton as Singleton;
 
-/**
- * Created by PhpStorm.
- * User: filipe_2
- * Date: 12/20/2015
- * Time: 5:18 PM
- */
 class Database extends Singleton {
 
     /*

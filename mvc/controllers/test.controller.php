@@ -6,11 +6,9 @@ class TestController extends Controller{
 
     public function index(){
         echo "First Level (/)";
-        //$result["tests"] = Tests::all()->toArray();
         $s = new Sessions();
         $u = new Users;
-        //$u->getTable();
-
+        $u->getTable();
         echo "<pre>";
         //print_r($result);
     }
