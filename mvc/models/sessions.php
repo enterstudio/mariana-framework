@@ -1,6 +1,11 @@
 <?php
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Mariana\Framework\Model;
 
-class Sessions extends Eloquent{
+class Sessions extends Model{
+
+    public function __construct(){
+        // static echo get_called_class()
+        //echo get_class($this);
+    }
 
 }

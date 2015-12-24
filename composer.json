@@ -1,9 +1,6 @@
 {
     "autoload": {
         "classmap":
-        ["vendor/mariana-framework/framework","mvc"]
-    },
-    "require": {
-        "illuminate/database": "^5.1"
+        ["app/framework","mvc"]
     }
 }

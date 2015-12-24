@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Mariana\Framework\Model;
 
-class Tests extends Eloquent{
+class Tests extends Model{
     protected $fillable= ['name'];
+
+    public function table_name(){
+        return $this->table;
+    }
 }

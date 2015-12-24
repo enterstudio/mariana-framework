@@ -15,10 +15,6 @@ require_once(ROOT.DS."vendor".DS."autoload.php");
 require_once(ROOT.DS."app/app.php");
 
 # BOOT THE APP
-use Mariana\Framework\App;
-use Mariana\Framework\View;
-
-#App::run();
 #View::render('pages'.DS.'home');
 
 
@@ -28,8 +24,6 @@ use Mariana\Framework\View;
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
 <body>
-
-    <input type="" >
 
     <div id="div1" class="{{class}}">
         <h1>
@@ -60,8 +54,8 @@ use Mariana\Framework\View;
 
     customBind = function(value,scopeAttr){
         scope[scopeAttr] = value;
-        //angular = TemplateEngine(documentMapObject[0].template, scope);
-        //$("#div1").replaceWith(angular);
+        angular = TemplateEngine(documentMapObject[0].template, scope);
+        $("#div1").replaceWith(angular);
     }
 
     var TemplateEngine = function(tpl, data) {
@@ -92,7 +86,7 @@ use Mariana\Framework\View;
                     "angular": angular
                 }
                 documentMapObject[i] = newNode;
-
+                console.log(i);
             }
         }
 
