@@ -8,7 +8,9 @@ class TestController extends Controller{
         echo "First Level (/)";
         $s = new Sessions();
         $u = new Users;
-        $u->getTable();
+        $u->name = "Pihh";
+        print_r($u->getColumns());
+        print_r($u->save());
         echo "<pre>";
         //print_r($result);
     }

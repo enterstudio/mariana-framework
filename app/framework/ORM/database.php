@@ -10,25 +10,25 @@ class Database extends Singleton {
     Get an instance of the Database
     @return Instance
     */
-    public static $connection = false;
+    public static $connection;
 
 	// Constructor
 	public function __construct() {
-        "constructed";
+
     }
 	// Get mysqli connection
 	public static function getConnection() {
 
             $config = Config::get("database");
             try{
-                self::$connection = new \PDO("mysql:host=".$config["host"].";dbname=".$config["database"],$config["username"],$config["password"]);
-                self::$connection->setAttribute( \PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                static::$connection = new \PDO("mysql:host=".$config["host"].";dbname=".$config["database"],$config["username"],$config["password"]);
+                static::$connection->setAttribute( \PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             }
             catch (PDOException $e){
                 echo $e->getMessage();
                 exit;
             }
 
-        return self::$connection;
+        return static::$connection;
     }
 }
