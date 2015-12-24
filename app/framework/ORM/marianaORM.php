@@ -26,8 +26,8 @@ class MarianaORM extends Database{
         $filtered = null;   // Armazena as colunas
 
         foreach($values as $key => $value){
-
-            if($value !== null && !is_integer($key) && $value !== '' && strpos($key, 'obj_') === false /* falta 1 key */){
+            // Verifica se é id
+            if($value !== null && !is_integer($key) && $value !== '' && strpos($key, 'obj_') === false && $key !== "id"){
                 if($value === false){
                     $value = 0;
                 }
@@ -43,7 +43,7 @@ class MarianaORM extends Database{
                 $params .= $column." = :".$column.",";
             }
             $params = trim($params, ",");
-            $query = "UPDATE ".static::$table." SET $params WHERE id = ".$this->id;
+            $query = "UPDATE ".$this->getTable()." SET $params WHERE id = ".$this->id;
         }else{
             $params = join(", :",$columns);
             $params =":".$params;
