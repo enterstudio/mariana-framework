@@ -29,7 +29,6 @@ require_once(ROOT.DS."app/app.php");
         <div class="pihh-include" data-include="/mvc/views/partials/importedPartial.html"></div>
     -->
 <div mariana>
-
     <div  class="{{class}}">
         <h1>
             Nome: <small> {{name}} </small>
@@ -42,9 +41,11 @@ require_once(ROOT.DS."app/app.php");
     <p>Paragrafo sem id para manipular data através do map de nodulos - {{name}}</p>
     <span id="span2"> span2 - {{message}}</span>
     </div>
-    <div mariana-include data-include="include"></div>
+    <div mariana-include data-include="partials/include.html"></div>
     <input type="text"  placeholder="clicar aqui para manipular os nomes" value="{{name}}" mariana-listen="name">
     <input type="text"  placeholder="clicar aqui para manipular a mensagem" value="{{message}}" mariana-listen="message">
+    <br>
+    <button onclick="$$mariana_includes()">Add include file to mariana includes</button>
 </body>
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
