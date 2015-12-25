@@ -36,7 +36,8 @@ Router::get("/home/user/{userid}/",array(
 
 # VALID POST REQUESTS
 Router::post("/",array(
-    "controller"    =>  "controller"
+    "controller"    =>  "TestController",
+    "method"        =>  "post_test"
 ));
 
 # DEFAULT REQUEST - 1 ALLOWED EACH

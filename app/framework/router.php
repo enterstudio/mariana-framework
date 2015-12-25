@@ -22,9 +22,6 @@ class Router{
 
     public static function checkForDynamic(){
         self::$uri = explode("/",trim(self::$uri,"/"));
-        # unicos válidos como dinamicos são
-        # /controller/{}/
-        # /controller/method/{}/
         # estamos a receber já sem a base portanto queremos
         # Levels:
         $level1 = "/".self::$uri[0]."/{}/";
@@ -74,7 +71,7 @@ class Router{
         if(self::$request =="GET"){
             $check = self::$getList;
             self::$default = self::$defaultGet;
-        }elseif(self::$request =="GET"){
+        }elseif(self::$request =="POST"){
             $check = self::$postList;
             self::$default = self::$defaultPost;
         }
@@ -105,6 +102,7 @@ class Router{
         self::remakeUri();
         self::$request = $_SERVER["REQUEST_METHOD"];
 
+        $mvc = self::compareRequest();
 
         # Choose Controller, Action and Method
         $mvc = self::compareRequest();
@@ -118,6 +116,5 @@ class Router{
             $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
             $object_controller->$mvc["method"]();
         }
-
     }
 }

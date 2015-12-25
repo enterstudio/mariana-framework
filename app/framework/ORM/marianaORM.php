@@ -84,18 +84,19 @@ class MarianaORM extends Database{
         $stmt->bindParam($column,$value);
         $stmt->execute();
 
+        $class = get_called_class();
+
         while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
             // Criar novo objecto
-            $class = get_called_class();
 
-            $class = new $class($row);
+            $object = new $class($row);
             // Tirar a base de dados
-            unset($class->db);
+            unset($object->db);
 
             foreach ($row as $key => $value){
-                $class->{$key} = $value;
+                $object->{$key} = $value;
             }
-            $obj[] = $class;
+            $obj[] = $object;
 
         }
 
@@ -123,5 +124,44 @@ class MarianaORM extends Database{
 
         return $obj;
     }
-    // To Do list : find and update
+
+    public static function all(Array $params = array()){
+
+
+        $query_attach ="";
+        if(sizeof($params) > 0){
+            $query_attach = " WHERE ".$params[0] ." ".$params[1]." :".$params[0];
+        }
+
+        $query = " SELECT * FROM ".self::getTable()." ".$query_attach;
+
+        echo $query;
+
+        $db = self::getConnection();
+        $stmt = $db->prepare($query);
+
+        //foreach($params as $param) {
+          //  print_r($param);
+            $stmt->bindParam($params[0], $params[2]);
+        //}
+
+        $stmt->execute();
+
+        $class = get_called_class();
+        $obj = [];
+
+        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
+            // Criar novo objecto
+            $object = new $class($row);
+            // Tirar a base de dados
+            unset($object->db);
+
+            foreach ($row as $key => $value){
+                $object->{$key} = $value;
+            }
+            $obj[] = $object;
+        }
+
+        return $obj;
+    }
 }

@@ -7,6 +7,15 @@ class TestController extends Controller{
     public function index(){
 
         echo "<pre>";
+/*
+        $s = new Sessions();
+        $u = new Users;
+        $u->id = "15";
+        $u->name = "PIHH xxx";
+        $u->save();
+
+        print_r($u);
+
 
         $s = new Sessions();
         $u = new Users;
@@ -29,7 +38,8 @@ class TestController extends Controller{
         $u->findAndUpdate("15", array("name"=>"20 - 14"));
         print_r(Users::find(15));
         //print_r(Users::find(15));
-
+    */
+        //print_r(Users::all(array("id", "<", "10")));
         echo "</pre>";
     }
 
@@ -51,5 +61,9 @@ class TestController extends Controller{
         echo "Third Level (/home/user/{}) with params: ";
         echo '<pre>';
         print_r($this->params);
+    }
+
+    public function post_test(){
+        print_r(Users::all());
     }
 }
