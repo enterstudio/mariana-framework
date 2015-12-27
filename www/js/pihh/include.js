@@ -4,7 +4,7 @@ var $$mariana_includes = function(){
         var file = 'mvc/views/' + $(this).data('include');
         $(this).load(file);
     }).promise().done( function(){
-        setTimeout($$mariana_template,85);
+        setTimeout($$mariana_template(),1000);
     });
 };
 
