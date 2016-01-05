@@ -11,7 +11,60 @@ var $$mariana = function() {
 
     // TEMPLATE
     // =============================================================
-    this.$template = function(){
+    this.$template = function () {
+
+        var allElems=$('body').find('*');
+        this.$body = allElems;
+        console.log(this.$body);
+
+        for (i = 0; i < this.$body.length; i++) {
+            tagName = this.$body[i].tagName;
+            divHtml = this.$body[i].outerHTML;
+
+            /*
+            if (tagName !== "SCRIPT" && tagName !== "INPUT") {
+                if (divHtml.indexOf("{{") > -1) {
+                    // do stuff
+                    newNode = {
+                        "id": i,
+                        "tagName": tagName,
+                        "original_template": divHtml,
+                        "parsed_template": this.$parsingEngine(divHtml, this.$scope, i)
+                    }
+                    this.$documentMapObject[i] = newNode;
+                }
+            }
+            */
+            //  End parsing:..
+        }// End For Loop:..
+        //this.$replaceEngine(this.$documentMapObject, this.$body); //Replace the node by the parsed one
+    }// End Template Function:..
+
+
+    //this.$template();
+}
+
+var app = new $$mariana();
+var nodes = app.$template();
+//console.log(nodes[1]);
+
+
+/*
+this.$template = function () {
+
+    var n, a=[], walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null,false);
+
+    i = 0;
+    while(n=walk.nextNode()){
+        console.log(i + ': ' + n);
+        i++;
+        a.push(n);
+    }
+//        console.log(a);
+    return a;
+
+}
+        /*
         var allElems=$('body').find('*');
         this.$body = allElems;
         console.log(this.$body);
@@ -160,11 +213,13 @@ $(document).on("keyup","input[mariana-listen]", function(){
     mutationAttr = $(this).attr("mariana-listen");
     value = this.value;
     app.$bindEngine(mutationAttr,value,this_input);
+    $(this).focus();
+    this_input.focus();
 });
 
 $(document).ready(function(){
     app.$template();
 
 });
-
+*/
 // TEMPLATE ENGINE - MEDIUM VERSION

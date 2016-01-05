@@ -24,7 +24,9 @@ require_once(ROOT.DS."app/app.php");
 </head>
 <body>
     <div mariana id="app">
-
+        <pre>
+            
+        </pre>
         <div mariana-include data-include="partials/nav.html"></div>
 
         <div  class="{{class}}">
@@ -40,11 +42,12 @@ require_once(ROOT.DS."app/app.php");
         <span id="span2" mariana-repeat="repeat">
             repeat - {{name}}
         </span>
+        <br>
         <input type="text"  placeholder="clicar aqui para manipular os nomes" value="{{name}}" mariana-listen="name">
         <input type="text"  placeholder="clicar aqui para manipular a mensagem" value="{{message}}" mariana-listen="message">
         <br>
         <button onclick="$$mariana_includes()">Add include file to mariana includes</button>
-        <button onclick="app.$template()">Template Again</button>
+        <button onclick="console.log(app.$body);console.log(app.$documentMapObject)">replace</button>
 
         <div mariana-include data-include="partials/include.html"></div>
     </div>
@@ -54,6 +57,17 @@ require_once(ROOT.DS."app/app.php");
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="www/js/pihh/prototype.js.js"></script>
+<!--
+<script src="www/js/pihh/template-lib/template-lib4.js"></script>
+-->
 <script src="www/js/pihh/include.js"></script>
-<script src="www/js/pihh/template-lib/template-lib2.js"></script>
+<script>
+    console.log("x");
+    var i = 0;
+    while(i <= 18){
+        console.log(i);
+        console.log($("div").eq(i).text);
+        i++;
+    }
+</script>
 
