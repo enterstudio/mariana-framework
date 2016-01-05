@@ -10,6 +10,7 @@ class MarianaORM extends Database{
     protected $db;
     protected $table;
     protected $obj;
+    protected $offsetValue = "";
 
     protected $columnList = array(); // All Columns of the table that can be used in a query;
     private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
@@ -27,6 +28,12 @@ class MarianaORM extends Database{
         // Gets by primary
     }
 
+    public function update(){}
+
+    public function delete(){}
+
+    public function all(){}
+
     public static function where($column,$value, $selector = false){
         //PDO ESCAPE;
 
@@ -43,7 +50,7 @@ class MarianaORM extends Database{
         }
 
         $object->query = "SELECT * FROM users WHERE $object->field_table $selector $object->field_value ";
-        $object->data[$column] = $value;
+        $object->data[$object->field_value] = $value;
 
         return $object;
     }
@@ -63,8 +70,9 @@ class MarianaORM extends Database{
             $selector = "=";
         }
 
-        $this->query = $this->query." AND $this->field_table $selector $this->field_value ";
-        $this->data[$column] = $value;
+        $this->query = $this->query." AND ".$this->field_table." ".$selector." ".$this->field_value." ";
+        $this->data[$this->field_value] = $value;
+
         return $this;
     }
 
@@ -77,32 +85,121 @@ class MarianaORM extends Database{
 
     }
 
+    public function asc($column=false){
 
+        if($column !== false){
+            $checkValues = $this->checkColumnList($column);
+            $this->field_table = $checkValues["field_table"];
+        }else{
+            $column = $this->primary;
+        }
+
+        $this->query = $this->query." ORDER BY ".$column." ASC ";
+        return $this;
+    }
+
+    public function desc($column = false){
+
+        if($column !== false){
+            $checkValues = $this->checkColumnList($column);
+            $this->field_table = $checkValues["field_table"];
+        }else{
+            $column = $this->primary;
+        }
+
+        $this->query = $this->query." ORDER BY ".$column." DESC ";
+        return $this;
+    }
+
+    public function offset($many = false){
+        // Offsetvalue tem de ser no fim do query
+        if(is_numeric($many)){
+            $this->offsetValue = " OFFSET ".$many." ";
+        }
+        return $this;
+    }
 
     //  CALLER METHODS
     public function get($limit = false){
-        //LIMIT y OFFSET x
+        //  LIMIT
         if($limit !== false && is_numeric($limit)){
-            $limit = " LIMIT ".$limit;
+            $limit = " LIMIT ".$limit." ";
         }else{
             $limit = "";
         }
+        //  OFFSET
+        $this->query = $this->query.$limit.$this->offsetValue;
 
-        $stmt = $this->db->prepare($this->query = $this->query.$limit);
+        //  RUN THE QUERY
 
-        foreach ($this->data as $key => $value){
-            $stmt->bindParam($key,$value);
+        $stmt = $this->db->prepare($this->query);
+
+        //  For some reason, while looping this, the $pair is getting a copy of the last one.
+        //  Pushing it into an array makes it update
+        $i = 0;
+        $array = array();
+        foreach ($this->data as $key => $pair){
+            $array[$i] = $pair;
+            $stmt->bindParam($key, $array[$i]);
+            $i++;
         }
+
         $stmt->execute();
 
         $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
+
         return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
 
     }
 
-    public function first($limit = false, $offset = false){
+    public function first(){
 
-        //LIMIT y OFFSET x
+        $this->query = $this->query." LIMIT 1 ".$this->offsetValue;
+
+        $stmt = $this->db->prepare($this->query);
+
+        //  For some reason, while looping this, the $pair is getting a copy of the last one.
+        //  Pushing it into an array makes it update
+        $i = 0;
+        $array = array();
+        foreach ($this->data as $key => $pair){
+            $array[$i] = $pair;
+            $stmt->bindParam($key, $array[$i]);
+            $i++;
+        }
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
+
+        return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
+
+    }
+
+    public function last($column = false){
+
+        $this->desc($column);
+
+
+        $this->query = $this->query." LIMIT 1 ".$this->offsetValue;
+
+        $stmt = $this->db->prepare($this->query);
+
+        //  For some reason, while looping this, the $pair is getting a copy of the last one.
+        //  Pushing it into an array makes it update
+        $i = 0;
+        $array = array();
+        foreach ($this->data as $key => $pair){
+            $array[$i] = $pair;
+            $stmt->bindParam($key, $array[$i]);
+            $i++;
+        }
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
+
+        return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
 
     }
 

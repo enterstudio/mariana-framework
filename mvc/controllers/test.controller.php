@@ -8,6 +8,34 @@ class TestController extends Controller{
 
         echo "<pre>";
 
+        print_r(
+            Users::where("id","1",">")
+                ->offset(5)
+                ->first()
+        );
+
+        print_r(
+            Users::where("id","1",">")
+                ->offset(3)
+                ->last()
+        );
+
+        print_r(
+            Users::where("id","1")
+                ->also("email","josemiguel@jose.com")
+                ->get()
+        );
+
+
+/*
+        print_r(
+        Users::where("id","1")
+            ->first()
+        );
+
+
+
+        /*
         echo "User Model - select without specific query<br>";
         print_r(
             Users::where("id","0",">")
@@ -19,43 +47,13 @@ class TestController extends Controller{
         echo "User Model - select without specific query<br>";
         print_r(
             Users::where("id","0",">")
-                ->get()
-                //->toArray()
+                ->offset(2)
+                ->desc()
+                ->get(3)
         );
         echo "<hr>";
-/*
-        $s = new Sessions();
-        $u = new Users;
-        $u->id = "15";
-        $u->name = "PIHH xxx";
-        $u->save();
-
-        print_r($u);
-
-
-        $s = new Sessions();
-        $u = new Users;
-        $u->id = "15";
-        $u->name = "PIHH xxx";
-        $u->save();
-
-        print_r($u);
-
-        $u = Users::where("name","pihh");
-        echo "<br>";
-        print_r($u);
-
-        echo $u[4]->id;
-        echo "<br>";
-        print_r(Users::find(4));
-        echo "<br>";
-
-        $u = new Users();
-        $u->findAndUpdate("15", array("name"=>"20 - 14"));
-        print_r(Users::find(15));
-        //print_r(Users::find(15));
-    */
-        //print_r(Users::all(array("id", "<", "10")));
+        echo "</pre>";
+        */
         echo "</pre>";
     }
 
