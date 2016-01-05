@@ -24,9 +24,6 @@ require_once(ROOT.DS."app/app.php");
 </head>
 <body>
     <div mariana id="app">
-        <pre>
-            
-        </pre>
         <div mariana-include data-include="partials/nav.html"></div>
 
         <div  class="{{class}}">

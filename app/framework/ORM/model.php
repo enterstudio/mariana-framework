@@ -4,11 +4,11 @@ use Mariana\Framework\ORM\MarianaORM;
 
 abstract class Model extends MarianaORM{
 
-    protected $data = array();
-    protected static $table;
+    public $data = array();
 
-    function __construct($data = null){
-        $this->data = $data;
+    function __construct($data = false){
+        $this->db = self::getConnection();
+        $this->table = self::table();
     }
 
     function __get($name){

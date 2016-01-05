@@ -5,6 +5,7 @@ class Db {
     public static $conn;
     public static function conn(){
         self::$conn = new PDO("mysql:host=localhost;dbname=citypost", "pihh", "");
+        return self::$conn;
     }
 }
 
@@ -18,19 +19,34 @@ class  Model extends Db{
     protected $query;
     protected $data;
     protected $primary = "id";
+    protected $db;
+    protected $table;
+
+    public function __construct(){
+        $this->db = DB::conn();
+        $this->table = self::table();
+    }
+
+    public static function table(){
+        return get_called_class();
+    }
 
     public static function find(){
         // Gets by primary
     }
 
     public static function where($column,$value, $selector = false){
-        $class = get_called_class();
-        $class = new $class();
+        $object = self::table();
+        $object = new $object;
 
-        $class->query = "SELECT * FROM users WHERE id = 1 ";
-        $class->data["a"] = "b";
+        if($selector == false){
+            $selector = "=";
+        }
 
-        return $class;
+        $object->query = "SELECT * FROM users WHERE id = 1 ";
+        $object->data[$column] = "b";
+
+        return $object;
     }
 
     public function also($colum, $value, $selector = false){
@@ -57,8 +73,6 @@ class  Model extends Db{
 }
 
 
-$u = Users::where()->also();
-echo "a";
-print_r($u);
+$u = Users::where("a","b")->also("c","d");
 
-echo "b";
+print_r($u);

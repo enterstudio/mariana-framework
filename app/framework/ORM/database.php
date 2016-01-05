@@ -13,12 +13,8 @@ class Database extends Singleton {
     public static $connection;
 
 	// Constructor
-	public function __construct() {
-
-    }
 	// Get mysqli connection
 	public static function getConnection() {
-
             $config = Config::get("database");
             try{
                 static::$connection = new \PDO("mysql:host=".$config["host"].";dbname=".$config["database"],$config["username"],$config["password"]);

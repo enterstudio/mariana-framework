@@ -7,6 +7,22 @@ class TestController extends Controller{
     public function index(){
 
         echo "<pre>";
+
+        echo "User Model - select without specific query<br>";
+        print_r(
+            Users::where("id","0",">")
+                ->also("email","josemiguel@jose.com")
+                ->get()
+        );
+        echo "<hr>";
+
+        echo "User Model - select without specific query<br>";
+        print_r(
+            Users::where("id","0",">")
+                ->get()
+                //->toArray()
+        );
+        echo "<hr>";
 /*
         $s = new Sessions();
         $u = new Users;

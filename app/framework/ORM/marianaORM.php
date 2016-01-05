@@ -4,12 +4,137 @@ use Mariana\Framework\Database;
 
 class MarianaORM extends Database{
 
-    public static $connection;
-    protected static $table;
-    public $db;
+    protected $query;
+    protected $data = array();
+    protected $primary = "id";
+    protected $db;
+    protected $table;
+    protected $obj;
 
+    protected $columnList = array(); // All Columns of the table that can be used in a query;
+    private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
+
+    private $field_table;
+    private $field_value;
+    //  CONSTRUCTOR NO MODEL
+
+    //  STATIC METHODS
+    public static function table(){
+        return get_called_class();
+    }
+
+    public static function find(){
+        // Gets by primary
+    }
+
+    public static function where($column,$value, $selector = false){
+        //PDO ESCAPE;
+
+        $object = self::table();
+        $object = new $object;
+
+        // Check if table is allowed to be injected
+        $checkValues = $object->checkColumnList($column);
+        $object->field_table = $checkValues["field_table"];
+        $object->field_value = $checkValues["field_value"];
+
+        if($selector == false || !in_array($selector, self::$allowed_select_values)){
+            $selector = "=";
+        }
+
+        $object->query = "SELECT * FROM users WHERE $object->field_table $selector $object->field_value ";
+        $object->data[$column] = $value;
+
+        return $object;
+    }
+
+    //  PARAMETERIC METHODS
+    public function also($column, $value, $selector = false){
+        // AND FUNCTION
+
+        // PDO ESCAPE
+        // Check if table is allowed to be injected
+        $checkValues = $this->checkColumnList($column);
+        $this->field_table = $checkValues["field_table"];
+        $this->field_value = $checkValues["field_value"];
+
+        // SELECTOR
+        if($selector == false || !in_array($selector, self::$allowed_select_values)){
+            $selector = "=";
+        }
+
+        $this->query = $this->query." AND $this->field_table $selector $this->field_value ";
+        $this->data[$column] = $value;
+        return $this;
+    }
+
+    public function join(Array $condition = array(), $direction = false ){
+        // Junta logo na foreign USING
+        // Direction inner, outer, left , left outer, natural, right , right outer;
+    }
+
+    public function joinDescription ($column, $value, $selector = false){
+
+    }
+
+
+
+    //  CALLER METHODS
+    public function get($limit = false){
+        //LIMIT y OFFSET x
+        if($limit !== false && is_numeric($limit)){
+            $limit = " LIMIT ".$limit;
+        }else{
+            $limit = "";
+        }
+
+        $stmt = $this->db->prepare($this->query = $this->query.$limit);
+
+        foreach ($this->data as $key => $value){
+            $stmt->bindParam($key,$value);
+        }
+        $stmt->execute();
+
+        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
+        return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
+
+    }
+
+    public function first($limit = false, $offset = false){
+
+        //LIMIT y OFFSET x
+
+    }
+
+    //  PARSING METHODS
+    public function toArray(){
+
+    }
+
+    //  SAFETY METHODS
+    /*
+     * If empty @columnList you can put anything on the query.
+     * Something I don't advice.
+     */
+    public function checkColumnList($column){
+/*
+        if(sizeof($this->columnList > 1)) {
+            if (!in_array($column, $this->columnList)) {
+                echo "Passando no not in array";
+                //throw new Exception ("Undeclared column field on get_called_class() Model");
+                //die;
+            }
+        }
+*/
+        return array(
+            "field_table" => $column,
+            "field_value" => ":".$column
+        );
+    }
+
+    /*
     public function __construct(){
-        echo "construct";
+
     }
 
     public static function getTable(){
@@ -164,4 +289,5 @@ class MarianaORM extends Database{
 
         return $obj;
     }
+    */
 }
