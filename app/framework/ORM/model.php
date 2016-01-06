@@ -9,6 +9,9 @@ abstract class Model extends MarianaORM{
     function __construct($data = false){
         $this->db = self::getConnection();
         $this->table = self::table();
+        if($data !== false){
+            $this->{$this->primary} = $data;
+        }
     }
 
     function __get($name){

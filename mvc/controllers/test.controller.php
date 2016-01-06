@@ -8,6 +8,14 @@ class TestController extends Controller{
 
         echo "<pre>";
 
+        $u = new Users();
+        $u->first_name = "josélio";
+        $u->last_name = "maria";
+        $u->email = "testing_save@hotmale.com";
+        $u->save();
+        print_r($u);
+
+
         print_r(
             Users::where("id","1",">")
                 ->offset(5)

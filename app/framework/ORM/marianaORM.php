@@ -53,7 +53,7 @@ class MarianaORM extends Database{
         $object->data[$object->field_value] = $value;
 
         return $object;
-    }
+    }   // Done and tested
 
     //  PARAMETERIC METHODS
     public function also($column, $value, $selector = false){
@@ -74,7 +74,7 @@ class MarianaORM extends Database{
         $this->data[$this->field_value] = $value;
 
         return $this;
-    }
+    }   // Done and tested
 
     public function join(Array $condition = array(), $direction = false ){
         // Junta logo na foreign USING
@@ -96,7 +96,7 @@ class MarianaORM extends Database{
 
         $this->query = $this->query." ORDER BY ".$column." ASC ";
         return $this;
-    }
+    }   // Done and tested
 
     public function desc($column = false){
 
@@ -109,7 +109,7 @@ class MarianaORM extends Database{
 
         $this->query = $this->query." ORDER BY ".$column." DESC ";
         return $this;
-    }
+    }   // Done and tested
 
     public function offset($many = false){
         // Offsetvalue tem de ser no fim do query
@@ -117,7 +117,7 @@ class MarianaORM extends Database{
             $this->offsetValue = " OFFSET ".$many." ";
         }
         return $this;
-    }
+    }   // Done and tested
 
     //  CALLER METHODS
     public function get($limit = false){
@@ -150,13 +150,70 @@ class MarianaORM extends Database{
 
         return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
 
-    }
+    }   // Done and tested
+
+    public function save(){
+        $values =  $this->data;
+        $filtered = null;   // Armazena as colunas
+        foreach($values as $key => $value){
+            // Verifica se há id
+            if($value !== null && !is_integer($key) && $value !== '' && strpos($key, 'obj_') === false && $key !== "id"){
+                if($value === false){
+                    $value = 0;
+                }
+                $filtered[$key] = $value;
+            }
+        }
+
+        $columns = array_keys($filtered);
+        if($this->id){
+            $params = "";
+            foreach($columns as $column){
+                $params .= $column." = :".$column.",";
+            }
+            $params = trim($params, ",");
+            $query = "UPDATE ".$this->table." SET $params WHERE id = ".$this->id;
+
+        }else{
+            $params = join(", :",$columns);
+            $params =":".$params;
+            $columns= join(", ", $columns);
+            $query = "INSERT INTO ".$this->table." ($columns) VALUES ($params)";
+        }
+        // Connect and do it
+
+        $stmt = $this->db->prepare($query);
+
+        $i = 0;
+        $array = array();
+        foreach($filtered as $key => $pair){
+            $array[$i] = $pair;
+            $stmt->bindParam(":".$key, $array[$i]);
+            $i++;
+        }
+
+        if($stmt->execute()){
+            // unset db from object
+            unset($this->db);
+
+            // Set the id to the user
+            if(!$this->id){
+                $this->id = self::$connection->lastInsertId();
+            }
+            return $this;// return the object
+        }else{
+            return false;
+        }
+
+    }    // Updates or inserts something // Done and tested
+
+    public function saveAndGetId(){}    // Saves and gets the id // Done and tested
 
     public function first(){
 
         $this->get(1);
         return $this;
-    }
+    }   // Done and tested
 
     public function last($column = false){
 
@@ -164,7 +221,7 @@ class MarianaORM extends Database{
         $this->get(1);
         return $this;
 
-    }
+    } // Done and tested
 
     //  PARSING METHODS
     public function toArray(){
@@ -177,20 +234,20 @@ class MarianaORM extends Database{
      * Something I don't advice.
      */
     public function checkColumnList($column){
-/*
-        if(sizeof($this->columnList > 1)) {
+        if(sizeof($this->columnList) > 0) {
             if (!in_array($column, $this->columnList)) {
-                echo "Passando no not in array";
-                //throw new Exception ("Undeclared column field on get_called_class() Model");
+
+                //echo "Passando no not in array";
+                throw new \Exception ("Undeclared column field on get_called_class() Model");
                 //die;
             }
         }
-*/
+
         return array(
             "field_table" => $column,
             "field_value" => ":".$column
         );
-    }
+    }   // Done and tested
 
     /*
     public function __construct(){
