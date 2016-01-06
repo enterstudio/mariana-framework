@@ -4,13 +4,13 @@ use Mariana\Framework\Database;
 
 class MarianaORM extends Database{
 
-    protected $query;
-    protected $data = array();
-    protected $primary = "id";
-    protected $db;
-    protected $table;
-    protected $obj;
-    protected $offsetValue = "";
+    protected $query;           //  QUERY string
+    protected $data = array();  //  QUERY input data -> array["column"] = "value"
+    protected $primary = "id";  //  PRIMARY KEY: needed for several stuff, id is primary by default
+    protected $db;              //  DATABASE CONNECTION
+    protected $table;           //  TABLE NAME -> DEFAULT = get_called_class();
+    protected $obj;             //  NEEDED
+    protected $offsetValue = "";//  OFFSET -> offsets need to be injected on the end of the query, so just leave here a key to it.
 
     protected $columnList = array(); // All Columns of the table that can be used in a query;
     private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];

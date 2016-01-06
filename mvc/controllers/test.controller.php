@@ -15,6 +15,12 @@ class TestController extends Controller{
         $u->save();
         print_r($u);
 
+        $u = new Users(2);
+        $u->first_name = "peter";
+        $u->last_name = "north";
+        $u->email = "xxx_horse_power@hotmale.com";
+        $u->save();
+        print_r($u);
 
         print_r(
             Users::where("id","1",">")
@@ -30,7 +36,7 @@ class TestController extends Controller{
 
         print_r(
             Users::where("id","1")
-                ->also("email","josemiguel@jose.com")
+                ->also("email","testing_save@hotmale.com")
                 ->get()
         );
 
