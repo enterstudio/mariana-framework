@@ -225,7 +225,7 @@ class MarianaORM extends Database{
 
     //  PARSING METHODS
     public function toArray(){
-
+        return (array)$this;
     }
 
     //  SAFETY METHODS

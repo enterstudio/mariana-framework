@@ -14,6 +14,8 @@ Angular: Awesome Templating system.
 # To Do's:
 * Finnish and secure the ORM.
 * Implement some security settings like CSRF
+*** return only public propertys
+*** filter stuff
 * Implement DEV mode ON/OFF.
 * Build Framework Page and repository of snippets ( PHP: login system, location system, etc, JS: modules for the framework )
 
