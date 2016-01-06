@@ -21,7 +21,7 @@ Config::set("database",array(
     "driver"    =>  "mysql",
     "host"      =>  "localhost",
     "database"  =>  "citypost",
-    "username"  =>  "pihh",
+    "username"  =>  "root",
     "password"  =>  "",
     "charset"   =>  "utf8",
     "collation" =>  "utf8_unicode_ci",

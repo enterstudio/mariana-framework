@@ -154,52 +154,15 @@ class MarianaORM extends Database{
 
     public function first(){
 
-        $this->query = $this->query." LIMIT 1 ".$this->offsetValue;
-
-        $stmt = $this->db->prepare($this->query);
-
-        //  For some reason, while looping this, the $pair is getting a copy of the last one.
-        //  Pushing it into an array makes it update
-        $i = 0;
-        $array = array();
-        foreach ($this->data as $key => $pair){
-            $array[$i] = $pair;
-            $stmt->bindParam($key, $array[$i]);
-            $i++;
-        }
-
-        $stmt->execute();
-
-        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
-
-        return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
-
+        $this->get(1);
+        return $this;
     }
 
     public function last($column = false){
 
         $this->desc($column);
-
-
-        $this->query = $this->query." LIMIT 1 ".$this->offsetValue;
-
-        $stmt = $this->db->prepare($this->query);
-
-        //  For some reason, while looping this, the $pair is getting a copy of the last one.
-        //  Pushing it into an array makes it update
-        $i = 0;
-        $array = array();
-        foreach ($this->data as $key => $pair){
-            $array[$i] = $pair;
-            $stmt->bindParam($key, $array[$i]);
-            $i++;
-        }
-
-        $stmt->execute();
-
-        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
-
-        return (object) $stmt->fetchAll(\PDO::FETCH_CLASS);
+        $this->get(1);
+        return $this;
 
     }
 
@@ -247,7 +210,7 @@ class MarianaORM extends Database{
         $filtered = null;   // Armazena as colunas
 
         foreach($values as $key => $value){
-            // Verifica se é id
+            // Verifica se ï¿½ id
             if($value !== null && !is_integer($key) && $value !== '' && strpos($key, 'obj_') === false && $key !== "id"){
                 if($value === false){
                     $value = 0;
