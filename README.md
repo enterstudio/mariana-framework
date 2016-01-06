@@ -18,4 +18,4 @@ Angular: Awesome Templating system.
 * Build Framework Page and repository of snippets ( PHP: login system, location system, etc, JS: modules for the framework )
 
 # Contacs:
-You can allways email me on pihh.rocks@gmail.com 
+You can allways email me on pihh.rocks@gmail.com
