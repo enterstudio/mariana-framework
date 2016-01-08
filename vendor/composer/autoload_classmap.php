@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Contacts' => $baseDir . '/mvc/models/contacts.php',
     'HomeController' => $baseDir . '/mvc/controllers/home.controller.php',
     'Mariana\\Framework\\App' => $baseDir . '/app/framework/app.php',
     'Mariana\\Framework\\Config' => $baseDir . '/app/framework/config.php',

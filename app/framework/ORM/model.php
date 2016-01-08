@@ -14,6 +14,10 @@ abstract class Model extends MarianaORM{
         }
     }
 
+    function __call($method, $args){
+        return call_user_func_array($method, $args);
+    }
+
     function __get($name){
         if(array_key_exists($name,$this->data)){
             return $this->data[$name];

@@ -8,6 +8,18 @@ class TestController extends Controller{
 
         echo "<pre>";
 
+        print_r(Users::find(33)->contactNumbers());
+
+        //print_r(Users::find(33));
+/*
+        echo "<hr>";
+        print_r(
+            Users::where("id","1",">")
+                ->get()
+                ->toArray()
+        );
+        echo "<hr>";
+
         $u = new Users();
         $u->first_name = "josélio";
         $u->last_name = "maria";
