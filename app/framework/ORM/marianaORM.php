@@ -23,7 +23,7 @@ class MarianaORM extends Database{
         return get_called_class();
     }
 
-    public static function find($primary_key_value , $arrayOrObject=false){
+    public static function find($primary_key_value){
         // Gets Database item by primary
         $table = self::table();
         $object = new $table();
@@ -72,18 +72,27 @@ class MarianaORM extends Database{
 
     }   //  UNDONE
 
-    public static function where($column,$value, $selector = false){
+    public static function where($column,$valueOrSelector, $valueIfSelector = false){
         //PDO ESCAPE;
 
         $object = self::table();
         $object = new $object;
+
+        // SELECTOR CHECK
+        if($valueIfSelector !== false){
+            $selector = $valueOrSelector;
+            $value = $valueIfSelector;
+        }else{
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
 
         // Check if table is allowed to be injected
         $checkValues = $object->checkColumnList($column);
         $object->field_table = $checkValues["field_table"];
         $object->field_value = $checkValues["field_value"];
 
-        if($selector == false || !in_array($selector, self::$allowed_select_values)){
+        if($selector == "=" || !in_array($selector, self::$allowed_select_values)){
             $selector = "=";
         }
 
@@ -94,19 +103,28 @@ class MarianaORM extends Database{
     }   // Done and tested
 
     //  PARAMETERIC METHODS
-    public function also($column, $value, $selector = false){
+    public function also($column, $valueOrSelector, $valueIfSelector = false){
         // AND FUNCTION
+
+        // SELECTOR CHECK
+        if($valueIfSelector !== false){
+            $selector = $valueOrSelector;
+            $value = $valueIfSelector;
+        }else{
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
+
+        // SELECTOR
+        if($selector == "=" || !in_array($selector, self::$allowed_select_values)){
+            $selector = "=";
+        }
 
         // PDO ESCAPE
         // Check if table is allowed to be injected
         $checkValues = $this->checkColumnList($column);
         $this->field_table = $checkValues["field_table"];
         $this->field_value = $checkValues["field_value"];
-
-        // SELECTOR
-        if($selector == false || !in_array($selector, self::$allowed_select_values)){
-            $selector = "=";
-        }
 
         $this->query = $this->query." AND ".$this->field_table." ".$selector." ".$this->field_value." ";
         $this->data[$this->field_value] = $value;
@@ -174,11 +192,63 @@ class MarianaORM extends Database{
         return $newProperty;
     }   // Done and tested
 
-    public function hasMany(){}
+    public function hasMany($class, $reference){
 
-    public function manyToOne(){}
+        // One user has one item
+        $obj = new $class();
 
-    public function manyToMany(){}
+        //, NULL as $reference  -> sensitive fields
+        $query = "SELECT * FROM $obj->table WHERE $reference = ? ";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(1 , $this->obj->{$this->primary});
+        $stmt->execute();
+
+        $newProperty = (object) $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+        // dar o nome contactos á propriedade contactos do objecto.
+        $e = new \Exception();
+        $trace = $e->getTrace();
+        $last_call = strtolower($trace[1]["function"]);
+        $newPropertyName = $last_call;
+
+        // Adicionar propriedade ao objecto
+
+        $this->obj->{$newPropertyName} = $newProperty;
+
+        return $newProperty;
+        // Done and tested
+    }   // tested and done
+
+    public function manyHaveOne($class, $reference){
+        $i = 1;
+        foreach($this->obj as $single){
+            //$single->Contact = "xxx".$i;
+            //$i++;
+
+            $obj = new $class();
+
+            $query = "SELECT * FROM $obj->table WHERE $reference = ? ";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(1 , $this->obj->{$this->primary});
+            $stmt->execute();
+
+            $newProperty = $stmt->fetch(\PDO::FETCH_OBJ);
+
+            // dar o nome contactos á propriedade contactos do objecto.
+            $e = new \Exception();
+            $trace = $e->getTrace();
+            $last_call = strtolower($trace[1]["function"]);
+            $newPropertyName = $last_call;
+
+            // Adicionar propriedade ao objecto
+            $single->{$newPropertyName} = $newProperty;
+
+        }
+
+        return $this;
+    }   //   Not working
+
+    public function manyHaveMany($class, $reference){}
 
     public function join(Array $condition = array(), $direction = false ){
         // Junta logo na foreign USING
@@ -210,16 +280,14 @@ class MarianaORM extends Database{
         $array = array();
         foreach ($this->data as $key => $pair){
             $array[$i] = $pair;
-            $stmt->bindParam($key, $array[$i]);
+            $stmt->bindParam($key,$array[$i]);
             $i++;
         }
 
         $stmt->execute();
 
-        $stmt->setFetchMode(\PDO::FETCH_CLASS,self::table());
         $this->obj = (object) $stmt->fetchAll(\PDO::FETCH_OBJ);
-        //$obj = new \stdClass();
-        //return  $obj->{0} = $stmt->fetchAll(\PDO::FETCH_CLASS);
+
         return $this;
     }   // Done and tested
 

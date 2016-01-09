@@ -8,9 +8,39 @@ class TestController extends Controller{
 
         echo "<pre>";
 
+        $u = Users::find(33);
+        $u->contactNumber();
+        print_r($u->toArray());
+
+        print_r($u);
+
+        $u = Users::find(33);
+        $u->contactNumbers();
+        print_r($u->toArray());
+
+        print_r($u);
+
+
+        $u = Users::where("id",">","1")->get();
+        $u->usersContactNumber();
+
+        print_r($u);
+
+
+        $u = Users::where("id",">","1")->get();
+        $u->usersContactNumbers();
+
+        print_r($u);
+        /*
+        $u = Users::find(33);
+        $u->contactNumbers();
+        print_r($u->toArray());
+
+       // print_r(->contactNumber());
         print_r(Users::find(33)->contactNumbers());
 
         //print_r(Users::find(33));
+        */
 /*
         echo "<hr>";
         print_r(

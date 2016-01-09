@@ -15,4 +15,8 @@ class Security{
     protected function check($var ,$hash){
         return password_verify ( $var ,$hash );
     }
+
+    public function csrf(){
+
+    }
 }
