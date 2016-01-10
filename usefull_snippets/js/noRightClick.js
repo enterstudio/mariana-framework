@@ -1,0 +1,36 @@
+/**
+ * Created by pihh on 10/01/2016.
+ *
+ * Prevent right click on the website preventing fetch images for example
+ */
+
+/*
+function f1() {
+    if (document.all) {
+        return false;
+    }
+}
+
+function f2(e) {
+    if (document.layers || (document.getElementById && !document.all)) {
+        if (e.which == 2 || e.which == 3) {
+            return false;
+        }
+    }
+}
+
+if (document.layers) {
+    document.captureEvents(Event.MOUSEDOWN);
+    document.onmousedown = f1;
+}
+else {
+    document.onmouseup = f2;
+    document.oncontextmenu = f1;
+}
+
+document.oncontextmenu = new function (
+"return false"
+)
+;
+
+*/
