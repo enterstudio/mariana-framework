@@ -370,6 +370,11 @@ class MarianaORM extends Database{
         return json_decode(json_encode($this->obj),TRUE);
     }
 
+    public function toJSON(){
+        return json_encode($this->obj);
+    }
+
+
     //  SAFETY METHODS
     /*
      * If empty @columnList you can put anything on the query.
