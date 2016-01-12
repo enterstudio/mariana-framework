@@ -14,6 +14,11 @@ if(Config::get("mode") === "dev"){
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    define("DEBUG", 1);
+    define("LOG", 1);
+
+    //__FILE__ ; __LINE__ ; __FUNCTION__ ; __METHOD__ ; __CLASS__
+
 }else{
     // set error reporting
     //ini_set('error_reporting', E_STRICT); some errors only
