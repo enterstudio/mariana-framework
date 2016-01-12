@@ -39,7 +39,7 @@ Config::set("email", array(
     "port"          =>  "587",
     "timeout"       =>  "30",
     "email-login"   =>  "pihh.rocks@gmail.com",
-    "email-password"=>  "92834C8fe6dd125ed5c64d2b6c",
+    "email-password"=>  "",
     "email-replyTo" =>  "pihh.rocks@gmail.com",
     "website"       =>  Config::get("website"),
     "charset"       =>  "windows-1251"

@@ -232,13 +232,12 @@ class MarianaORM extends Database{
 
             $newProperty = $stmt->fetch(\PDO::FETCH_OBJ);
 
-            echo "New prop: <br>";
-            var_dump($newProperty);
             // dar o nome contactos á propriedade contactos do objecto.
             $e = new \Exception();
             $trace = $e->getTrace();
             $last_call = strtolower($trace[1]["function"]);
             $newPropertyName = $last_call;
+
             // Adicionar propriedade ao objecto
             $single->{$newPropertyName} = $newProperty;
         }
