@@ -6,17 +6,13 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', realpath(dirname(__FILE__)));
 define('VIEW_PATH', ROOT.DS."mvc".DS."views");
 
-# Getting the urls for the MVC
-//$url = $_SERVER["REQUEST_URI"];
-
-# including the required filesystem
-
+# including the required filesystem and booting the framework
 require_once(ROOT.DS."vendor".DS."autoload.php");
 require_once(ROOT.DS."app/app.php");
 
-# BOOT THE APP
-#View::render('pages'.DS.'home');
 ?>
+ 
+<!-- // TESTING STUFF --
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -56,7 +52,7 @@ require_once(ROOT.DS."app/app.php");
 <script src="www/js/pihh/prototype.js.js"></script>
 <!--
 <script src="www/js/pihh/template-lib/template-lib4.js"></script>
--->
+--
 <script src="www/js/pihh/include.js"></script>
 <script>
     console.log("x");
@@ -67,4 +63,4 @@ require_once(ROOT.DS."app/app.php");
         i++;
     }
 </script>
-
+-->
