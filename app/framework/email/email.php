@@ -1,552 +1,258 @@
 <?php
-
 /**
- * Added this to learn how to do it
+ * Created by PhpStorm.
+ * User: fsa
+ * Date: 12/01/2016
+ * Time: 10:03
  */
-class eMail
-{
-    /**
-     * @var int $_wrap
-     */
-    protected $_wrap = 78;
-    /**
-     * @var array $_to
-     */
-    protected $_to = array();
-    /**
-     * @var string $_subject
-     */
-    protected $_subject;
-    /**
-     * @var string $_message
-     */
-    protected $_message;
-    /**
-     * @var array $_headers
-     */
-    protected $_headers = array();
-    /**
-     * @var string $_parameters
-     */
-    protected $_params;
-    /**
-     * @var array $_attachments
-     */
-    protected $_attachments = array();
-    /**
-     * @var string $_uid
-     */
-    protected $_uid;
-    /**
-     * __construct
-     *
-     * Resets the class properties.
-     */
-    public function __construct()
-    {
-        $this->reset();
-    }
-    /**
-     * reset
-     *
-     * Resets all properties to initial state.
-     *
-     *
-     */
-    public function reset()
-    {
-        $this->_to = array();
-        $this->_headers = array();
-        $this->_subject = null;
-        $this->_message = null;
-        $this->_wrap = 78;
-        $this->_params = null;
-        $this->_attachments = array();
-        $this->_uid = $this->getUniqueId();
-        return $this;
-    }
-    /**
-     * setTo
-     *
-     * @param string $email The email address to send to.
-     * @param string $name  The name of the person to send to.
-     *
-     *
-     */
-    public function setTo($email, $name)
-    {
-        $this->_to[] = $this->formatHeader((string) $email, (string) $name);
-        return $this;
-    }
-    /**
-     * getTo
-     *
-     * Return an array of formatted To addresses.
-     *
-     * @return array
-     */
-    public function getTo()
-    {
-        return $this->_to;
-    }
-    /**
-     * setSubject
-     *
-     * @param string $subject The email subject
-     *
-     *
-     */
-    public function setSubject($subject)
-    {
-        $this->_subject = $this->encodeUtf8(
-            $this->filterOther((string) $subject)
-        );
-        return $this;
-    }
-    /**
-     * getSubject function.
-     *
-     * @return string
-     */
-    public function getSubject()
-    {
-        return $this->_subject;
-    }
-    /**
-     * setMessage
-     *
-     * @param string $message The message to send.
-     *
-     *
-     */
-    public function setMessage($message)
-    {
-        $this->_message = str_replace("\n.", "\n..", (string) $message);
-        return $this;
-    }
-    /**
-     * getMessage
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->_message;
-    }
-    /**
-     * addAttachment
-     *
-     * @param string $path     The file path to the attachment.
-     * @param string $filename The filename of the attachment when emailed.
-     *
-     *
-     */
-    public function addAttachment($path, $filename = null)
-    {
-        $filename = empty($filename) ? basename($path) : $filename;
-        $this->_attachments[] = array(
-            'path' => $path,
-            'file' => $filename,
-            'data' => $this->getAttachmentData($path)
-        );
-        return $this;
-    }
-    /**
-     * getAttachmentData
-     *
-     * @param string $path The path to the attachment file.
-     *
-     * @return string
-     */
-    public function getAttachmentData($path)
-    {
-        $filesize = filesize($path);
-        $handle = fopen($path, "r");
-        $attachment = fread($handle, $filesize);
-        fclose($handle);
-        return chunk_split(base64_encode($attachment));
-    }
-    /**
-     * setFrom
-     *
-     * @param string $email The email to send as from.
-     * @param string $name  The name to send as from.
-     *
-     *
-     */
-    public function setFrom($email, $name)
-    {
-        $this->addMailHeader('From', (string) $email, (string) $name);
-        return $this;
-    }
-    /**
-     * addMailHeader
-     *
-     * @param string $header The header to add.
-     * @param string $email  The email to add.
-     * @param string $name   The name to add.
-     *
-     *
-     */
-    public function addMailHeader($header, $email = null, $name = null)
-    {
-        $address = $this->formatHeader((string) $email, (string) $name);
-        $this->_headers[] = sprintf('%s: %s', (string) $header, $address);
-        return $this;
-    }
-    /**
-     * addGenericHeader
-     *
-     * @param string $header The generic header to add.
-     * @param mixed  $value  The value of the header.
-     *
-     *
-     */
-    public function addGenericHeader($header, $value)
-    {
-        $this->_headers[] = sprintf(
-            '%s: %s',
-            (string) $header,
-            (string) $value
-        );
-        return $this;
-    }
-    /**
-     * getHeaders
-     *
-     * Return the headers registered so far as an array.
-     *
-     * @return array
-     */
-    public function getHeaders()
-    {
-        return $this->_headers;
-    }
-    /**
-     * setAdditionalParameters
-     *
-     * Such as "-fyouremail@yourserver.com
-     *
-     * @param string $additionalParameters The addition mail parameter.
-     *
-     *
-     */
-    public function setParameters($additionalParameters)
-    {
-        $this->_params = (string) $additionalParameters;
-        return $this;
-    }
-    /**
-     * getAdditionalParameters
-     *
-     * @return string
-     */
-    public function getParameters()
-    {
-        return $this->_params;
-    }
-    /**
-     * setWrap
-     *
-     * @param int $wrap The number of characters at which the message will wrap.
-     *
-     *
-     */
-    public function setWrap($wrap = 78)
-    {
-        $wrap = (int) $wrap;
-        if ($wrap < 1) {
-            $wrap = 78;
+
+class email{
+
+    private $smtpServer;                                //  The SMTP server you would be connecting to and using to send messages
+    private $port;                                      //  The port that you would be using to connect to the SMTP server
+    private $timeout;                                   //  Length of time (in seconds) that the script would try to connect before deciding it won't connect
+    private $username;                                  //  Gmail Login
+    private $password;                                  //  Gmail Password
+    private $username_email;                            //  Email that recieves the emails ( example you can send by no-reply@mariana-framework.com as recieve in info@mariana-framework.com
+    private $newline = "\r\n";                          //  Prrety self explanatory
+    private $localdomain;                               //  Your website
+    private $charset;                                   //  Encoding
+    private $contentTransferEncoding = false;           //  If set to true, it would put in the header that the content is encoded (I believe... don't think it would actually encode the content
+
+    // Do not change anything below
+    private $smtpConnect = false;                       //  Connection Status
+    private $to = false;                                //  Self Explanatory
+
+
+    function __construct($to, $subject, $message, $to_admin) {
+
+        // Mail configuration using the class
+        $config = Config::get("email"); // app/config.php;
+
+        $this->smtpServer = $config["smtp-server"];
+        $this->port = $config["port"];
+        $this->timeout = $config["timeout"];
+        $this->username = $config["email-login"];
+        $this->password = $config["email-password"];
+        $this->username_email = $config["email-replyTo"];
+        $this->charset = $config["charset"];
+        $this->localdomain = $config["website"];
+
+        $this->to = (($to_admin === true) ? $this->username_email : $to );
+        $this->from = (($to_admin === false) ? $to : $this->username_email );
+
+        $this->subject = &$subject;
+        $this->message = &$message;
+
+        // Connect to server
+        if(!$this->smtpConnection()) {
+            // Sacar erros
+            echo '<pre>'.trim($this->Error).'</pre>'.$this->newline.'<!-- '.$this->newline;
+            print_r($this->logArray);
+            echo $this->newline.'-->'.$this->newline;
+            return false;
         }
-        $this->_wrap = $wrap;
-        return $this;
+
+        return true;
     }
-    /**
-     * getWrap
-     *
-     * @return int
-     */
-    public function getWrap()
-    {
-        return $this->_wrap;
+
+
+    private function smtpConnection(){
+
+            // Connect to server
+            $this->smtpConnect = fsockopen($this->smtpServer,$this->port,$errno,$error,$this->timeout);
+            $this->logArray['CONNECT_RESPONSE'] = $this->readResponse();
+
+            if (!is_resource($this->smtpConnect)) {
+                return false;
+            }
+            $this->logArray['connection'] = "Connection accepted";
+            // Hi, server!
+            $this->sendCommand("HELLO {$this->localdomain}");
+            $this->logArray['HELLO'] = $this->readResponse();
+            // Let's know each other
+            $this->sendCommand('AUTH LOGIN');
+            $this->logArray['AUTH_REQUEST'] = $this->readResponse();
+            // My name...
+            $this->sendCommand(base64_encode($this->username));
+            $this->logArray['REQUEST_USER'] = $this->readResponse();
+            // My password..
+            $this->sendCommand(base64_encode($this->password));
+            $this->logArray['REQUEST_PASSWD'] = $this->readResponse();
+            // If error in response auth...
+            if (substr($this->logArray['REQUEST_PASSWD'],0,3)!='235') {
+                $this->Error .= 'Authorization error! '.$this->logArray['REQUEST_PASSWD'].$this->newline;
+                return false;
+            }
+            // "From" mail...
+            $this->sendCommand("MAIL FROM: {$this->from}");
+            $this->logArray['MAIL_FROM_RESPONSE'] = $this->readResponse();
+            if (substr($this->logArray['MAIL_FROM_RESPONSE'],0,3)!='250') {
+                $this->Error .= 'Mistake in sender\'s address! '.$this->logArray['MAIL_FROM_RESPONSE'].$this->newline;
+                return false;
+            }
+            // "To" address
+            $this->sendCommand("RCPT TO: {$this->to}");
+            $this->logArray['RCPT_TO_RESPONCE'] = $this->readResponse();
+            if(substr($this->logArray['RCPT_TO_RESPONCE'],0,3) != '250')
+            {
+                $this->Error .= 'Mistake in reciepent address! '.$this->logArray['RCPT_TO_RESPONCE'].$this->newline;
+            }
+            // Send data to server
+            $this->sendCommand('DATA');
+            $this->logArray['DATA_RESPONSE'] = $this->readResponse();
+            // Send mail message
+            if (!$this->sendMail()) return false;
+            // Good bye server! =)
+            $this->sendCommand('QUIT');
+            $this->logArray['QUIT_RESPONSE'] = $this->readResponse();
+            // Close smtp connect
+            fclose($this->smtpConnect);
+            return true;
     }
-    /**
-     * hasAttachments
-     *
-     * Checks if the email has any registered attachments.
-     *
-     * @return bool
-     */
-    public function hasAttachments()
-    {
-        return !empty($this->_attachments);
+
+    function sendMail(){
+            $this->sendHeaders();
+            $this->sendCommand($this->message);
+            $this->sendCommand('.');
+            $this->logArray['SEND_DATA_RESPONSE'] = $this->readResponse();
+            if(substr($this->logArray['SEND_DATA_RESPONSE'],0,3)!='250') {
+                $this->Error .= 'Mistake in sending data! '.$this->logArray['SEND_DATA_RESPONSE'].$this->newline;
+                return false;
+            }
+            return true;
     }
-    /**
-     * assembleAttachment
-     *
-     * @return string
-     */
-    public function assembleAttachmentHeaders()
-    {
-        $head = array();
-        $head[] = "MIME-Version: 1.0";
-        $head[] = "Content-Type: multipart/mixed; boundary=\"{$this->_uid}\"";
-        return join(PHP_EOL, $head);
-    }
-    /**
-     * assembleAttachmentBody
-     *
-     * @return string
-     */
-    public function assembleAttachmentBody()
-    {
-        $body = array();
-        $body[] = "This is a multi-part message in MIME format.";
-        $body[] = "--{$this->_uid}";
-        $body[] = "Content-type:text/html; charset=\"utf-8\"";
-        $body[] = "Content-Transfer-Encoding: 7bit";
-        $body[] = "";
-        $body[] = $this->_message;
-        $body[] = "";
-        $body[] = "--{$this->_uid}";
-        foreach ($this->_attachments as $attachment) {
-            $body[] = $this->getAttachmentMimeTemplate($attachment);
+
+    private function readResponse() {
+        $data="";
+        while($str = fgets($this->smtpConnect,4096))
+        {
+            $data .= $str;
+            if(substr($str,3,1) == " ") { break; }
         }
-        return implode(PHP_EOL, $body);
+        return $data;
     }
-    /**
-     * getAttachmentMimeTemplate
-     *
-     * @param array  $attachment An array containing 'file' and 'data' keys.
-     * @param string $uid        A unique identifier for the boundary.
-     *
-     * @return string
-     */
-    public function getAttachmentMimeTemplate($attachment)
-    {
-        $file = $attachment['file'];
-        $data = $attachment['data'];
-        $head = array();
-        $head[] = "Content-Type: application/octet-stream; name=\"{$file}\"";
-        $head[] = "Content-Transfer-Encoding: base64";
-        $head[] = "Content-Disposition: attachment; filename=\"{$file}\"";
-        $head[] = "";
-        $head[] = $data;
-        $head[] = "";
-        $head[] = "--{$this->_uid}";
-        return implode(PHP_EOL, $head);
+
+    // function send command to server
+    private function sendCommand($string) {
+        fputs($this->smtpConnect,$string.$this->newline);
+        return ;
     }
-    /**
-     * send
-     *
-     * @throws \RuntimeException on no 'To: ' address to send to.
-     * @return boolean
-     */
-    public function send()
-    {
-        $to = $this->getToForSend();
-        $headers = $this->getHeadersForSend();
-        if (empty($to)) {
-            throw new \RuntimeException(
-                'Unable to send, no To address has been set.'
-            );
-        }
-        if ($this->hasAttachments()) {
-            $message  = $this->assembleAttachmentBody();
-            $headers .= PHP_EOL . $this->assembleAttachmentHeaders();
-        } else {
-            $message = $this->getWrapMessage();
-        }
-        return mail($to, $this->_subject, $message, $headers, $this->_params);
+
+    private function sendHeaders() {
+        $this->sendCommand("Date: ".date("D, j M Y G:i:s")." +0700");
+        $this->sendCommand("From: <{$this->from}>");
+        $this->sendCommand("Reply-To: <{$this->from}>");
+        $this->sendCommand("To: <{$this->to}>");
+        $this->sendCommand("Subject: {$this->subject}");
+        $this->sendCommand("MIME-Version: 1.0");
+        $this->sendCommand("Content-Type: text/html; charset={$this->charset}");
+        if ($this->contentTransferEncoding) $this->sendCommand("Content-Transfer-Encoding: {$this->contentTransferEncoding}");
+        return ;
     }
-    /**
-     * debug
-     *
-     * @return string
-     */
-    public function debug()
-    {
-        return '<pre>' . print_r($this, true) . '</pre>';
+
+    function __destruct() {
+        if (is_resource($this->smtpConnect)) fclose($this->smtpConnect);
     }
-    /**
-     * magic __toString function
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return print_r($this, true);
-    }
-    /**
-     * formatHeader
-     *
-     * Formats a display address for emails according to RFC2822 e.g.
-     * Name <address@domain.tld>
-     *
-     * @param string $email The email address.
-     * @param string $name  The display name.
-     *
-     * @return string
-     */
-    public function formatHeader($email, $name = null)
-    {
-        $email = $this->filterEmail($email);
-        if (empty($name)) {
-            return $email;
-        }
-        $name = $this->encodeUtf8($this->filterName($name));
-        return sprintf('"%s" <%s>', $name, $email);
-    }
-    /**
-     * encodeUtf8
-     *
-     * @param string $value The value to encode.
-     *
-     * @return string
-     */
-    public function encodeUtf8($value)
-    {
-        $value = trim($value);
-        if (preg_match('/(\s)/', $value)) {
-            return $this->encodeUtf8Words($value);
-        }
-        return $this->encodeUtf8Word($value);
-    }
-    /**
-     * encodeUtf8Word
-     *
-     * @param string $value The word to encode.
-     *
-     * @return string
-     */
-    public function encodeUtf8Word($value)
-    {
-        return sprintf('=?UTF-8?B?%s?=', base64_encode($value));
-    }
-    /**
-     * encodeUtf8Words
-     *
-     * @param string $value The words to encode.
-     *
-     * @return string
-     */
-    public function encodeUtf8Words($value)
-    {
-        $words = explode(' ', $value);
-        $encoded = array();
-        foreach ($words as $word) {
-            $encoded[] = $this->encodeUtf8Word($word);
-        }
-        return join($this->encodeUtf8Word(' '), $encoded);
-    }
-    /**
-     * filterEmail
-     *
-     * Removes any carriage return, line feed, tab, double quote, comma
-     * and angle bracket characters before sanitizing the email address.
-     *
-     * @param string $email The email to filter.
-     *
-     * @return string
-     */
-    public function filterEmail($email)
-    {
-        $rule = array(
-            "\r" => '',
-            "\n" => '',
-            "\t" => '',
-            '"'  => '',
-            ','  => '',
-            '<'  => '',
-            '>'  => ''
-        );
-        $email = strtr($email, $rule);
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-        return $email;
-    }
-    /**
-     * filterName
-     *
-     * Removes any carriage return, line feed or tab characters. Replaces
-     * double quotes with single quotes and angle brackets with square
-     * brackets, before sanitizing the string and stripping out html tags.
-     *
-     * @param string $name The name to filter.
-     *
-     * @return string
-     */
-    public function filterName($name)
-    {
-        $rule = array(
-            "\r" => '',
-            "\n" => '',
-            "\t" => '',
-            '"'  => "'",
-            '<'  => '[',
-            '>'  => ']',
-        );
-        $filtered = filter_var(
-            $name,
-            FILTER_SANITIZE_STRING,
-            FILTER_FLAG_NO_ENCODE_QUOTES
-        );
-        return trim(strtr($filtered, $rule));
-    }
-    /**
-     * filterOther
-     *
-     * Removes ASCII control characters including any carriage return, line
-     * feed or tab characters.
-     *
-     * @param string $data The data to filter.
-     *
-     * @return string
-     */
-    public function filterOther($data)
-    {
-        return filter_var($data, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW);
-    }
-    /**
-     * getHeadersForSend
-     *
-     * @return string
-     */
-    public function getHeadersForSend()
-    {
-        if (empty($this->_headers)) {
-            return '';
-        }
-        return join(PHP_EOL, $this->_headers);
-    }
-    /**
-     * getToForSend
-     *
-     * @return string
-     */
-    public function getToForSend()
-    {
-        if (empty($this->_to)) {
-            return '';
-        }
-        return join(', ', $this->_to);
-    }
-    /**
-     * getUniqueId
-     *
-     * @return string
-     */
-    public function getUniqueId()
-    {
-        return md5(uniqid(time()));
-    }
-    /**
-     * getWrapMessage
-     *
-     * @return string
-     */
-    public function getWrapMessage()
-    {
-        return wordwrap($this->_message, $this->_wrap);
-    }
+
+
 }
-?>
+
+
+/*
+ *
+    if(new smtp_mail($to, $subject, $message, true))
+    {
+        echo 'Your message has being sent successfully.';
+    }
+    else
+    {
+        echo 'There was a problem sending the message';
+        // Possibly log this for your reference
+    }
+
+    <?php
+    // Checking if the form was really submitted
+    if(isset($_POST['submit']))
+    {
+        // We need to initiate the error array
+        $error = array();
+
+        // Here we are checking if their name was filled in.
+        if(empty($_POST['name']))
+        {
+            // The name field was left empty
+            $error[] = "You need to enter a valid name.";
+        }
+
+        // Checking if a valid email address was filled in.
+        if(!preg_match("/(?:[a-zA-Z0-9_\'\^\&\/\+\-])+(?:\.(?:[a-zA-Z0-9_\'\^\&\/\+\-])+)*@(?:(?:\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\]?)|(?:[a-zA-Z0-9-]+\.)+(?:[a-zA-Z]){2,}\.?)/", $_POST['email']))
+        {
+            // An invalid email address was filled in.
+            $error[] = "You need to enter a valid email address.";
+        }
+
+        // We need to determine the recipient of the message
+        if(isset($_POST['to_admin']))
+        {
+            // Even if the to field was given a different email address, this would over-ride that address and be sent to admin.
+            $to_admin = true;
+            $to = false;
+        }
+        elseif(preg_match("/(?:[a-zA-Z0-9_\'\^\&\/\+\-])+(?:\.(?:[a-zA-Z0-9_\'\^\&\/\+\-])+)*@(?:(?:\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\]?)|(?:[a-zA-Z0-9-]+\.)+(?:[a-zA-Z]){2,}\.?)/", $_POST['to']))
+        {
+            // If the process reaches here, then the message would be sent to the address put in the to field
+            $to_admin = false;
+            $to = $_POST['to'];
+        }
+        else
+        {
+            // There was an error... it's not sent to the admin OR to anyone...
+            $error[] = "You need a valid recipient's (to) email address.";
+        }
+
+        // Now we need to validate the subject of the message
+        if(strlen($_POST['subject']) < 5)
+        {
+            // The message is under 5 characters.
+            $error[] = "The subject needs to be greater then 5 characters";
+        }
+
+        // Validating the actuall message
+        if(strlen($_POST['message']) < 5)
+        {
+            $error[] = "The message needs to be greater then 5 characters";
+        }
+
+        // Counting the number of errors there was in the form submittion
+        if(count($error) > 0)
+        {
+            // There were errors... we can't send a message with errors in the form submittion.
+
+            // Looping through each error and providing a good list of errors for the user.
+            $errors = "<ol>";
+            foreach($error as $er)
+            {
+                $errors .= "<li>{$er}</li>\n";
+            }
+            $errors .= "</ol>";
+
+            echo $errors;
+        }
+        else
+        {
+            // There were no errors, lets submit the actual message
+            if(new smtp_mail($to, $_POST['subject'], $_POST['message'], $to_admin))
+            {
+                echo "The mail was sent successfully.";
+            }
+            else
+            {
+                echo "There was a problem sending the message.";
+            }
+        }
+    }
+    ?>
+
+
+ */

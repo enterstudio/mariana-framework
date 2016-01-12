@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Contacts' => $baseDir . '/mvc/models/contacts.php',
+    'Contacts' => $baseDir . '/mvc/models/contacts.model.php',
     'HomeController' => $baseDir . '/mvc/controllers/home.controller.php',
     'Mariana\\Framework\\App' => $baseDir . '/app/framework/app.php',
     'Mariana\\Framework\\Config' => $baseDir . '/app/framework/config.php',
@@ -23,8 +23,9 @@ return array(
     'Mariana\\Framework\\View' => $baseDir . '/app/framework/view.php',
     'Mariana\\Framework\\cache' => $baseDir . '/app/framework/cache.php',
     'Pihh\\Classes\\Security' => $baseDir . '/app/framework/security.php',
-    'Sessions' => $baseDir . '/mvc/models/sessions.php',
+    'Sessions' => $baseDir . '/mvc/models/sessions.model.php',
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
-    'Tests' => $baseDir . '/mvc/models/test.php',
-    'Users' => $baseDir . '/mvc/models/users.php',
+    'Tests' => $baseDir . '/mvc/models/test.model.php',
+    'Users' => $baseDir . '/mvc/models/users.model.php',
+    'email' => $baseDir . '/app/framework/email/email.php',
 );

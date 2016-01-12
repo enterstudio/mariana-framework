@@ -22,7 +22,7 @@ class Router{
 
     public static function checkForDynamic(){
         self::$uri = explode("/",trim(self::$uri,"/"));
-        # estamos a receber já sem a base portanto queremos
+        # estamos a receber jï¿½ sem a base portanto queremos
         # Levels:
         $level1 = "/".self::$uri[0]."/{}/";
         $level2 = "/".self::$uri[0]."/".self::$uri[1]."/{}/";
@@ -33,7 +33,7 @@ class Router{
         array_shift(self::$uri);
         $paramsL2 = self::$uri;
 
-        # Result Array -> de trás para frente porque queremos confirmar primiro o ultimo nivel
+        # Result Array -> de trï¿½s para frente porque queremos confirmar primiro o ultimo nivel
         return array(
             $level2 => $paramsL2,
             $level1 => $paramsL1
@@ -56,7 +56,7 @@ class Router{
         self::$uri = $_SERVER["REQUEST_URI"];
         self::$uri = ltrim($_SERVER['REQUEST_URI'],Config::get("base-route"));
 
-        # Reformulação do uri;
+        # Reformulaï¿½ï¿½o do uri;
         if (stripos(self::$uri, "/") === 0) {}else{self::$uri = "/".self::$uri;}
         self::$uri = strtolower(rtrim(self::$uri, '/') . '/');
         return true;
@@ -83,7 +83,7 @@ class Router{
         if(array_key_exists(self::$uri,$check)){
             return $check[self::$uri];
         }else{
-            # Neste caso temos de fazer a verificação se há parte dinamica
+            # Neste caso temos de fazer a verificaï¿½ï¿½o se hï¿½ parte dinamica
             $dynamic = self::checkForDynamic();
             foreach($dynamic as $key => $value){
                 if(array_key_exists($key,$check)){
@@ -114,7 +114,8 @@ class Router{
             // Middleware after
         }else{
             $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
-            $object_controller->$mvc["method"]();
+            $object_controller->{$mvc["method"]}();
+
         }
     }
 }

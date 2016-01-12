@@ -239,10 +239,8 @@ class MarianaORM extends Database{
             $trace = $e->getTrace();
             $last_call = strtolower($trace[1]["function"]);
             $newPropertyName = $last_call;
-
             // Adicionar propriedade ao objecto
             $single->{$newPropertyName} = $newProperty;
-
         }
 
         return $this;
