@@ -6,6 +6,21 @@ class TestController extends Controller{
 
     public function index(){
 
+        $to = "filipemotasa@hotmail.com";
+        $subject = "teste";
+
+        //ob_start();
+        $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
+        //$content = ob_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
+        //ob_end_clean();
+
+        $e = new Email($to,$subject,$content,false);
+        if($e){
+            echo "boa";
+        }else{
+            echo "log";
+        }
+
         echo "<pre>";
 /*
         $u = Users::find(33);
@@ -20,18 +35,18 @@ class TestController extends Controller{
 
         print_r($u);
 
-*/
-        $u = Users::where("id",">","1")->get();
+*//*
+        $u = Users::where("id",">","33")->get();
         $u->usersContactNumber();
 
         print_r($u);
 
 
-        $u = Users::where("id",">","1")->get();
+        $u = Users::where("id",">","33")->get();
         $u->usersContactNumbers();
 
         print_r($u);
-        /*
+*//*
         $u = Users::find(33);
         $u->contactNumbers();
         print_r($u->toArray());
@@ -40,7 +55,7 @@ class TestController extends Controller{
         print_r(Users::find(33)->contactNumbers());
 
         //print_r(Users::find(33));
-        */
+
 /*
         echo "<hr>";
         print_r(
@@ -49,7 +64,7 @@ class TestController extends Controller{
                 ->toArray()
         );
         echo "<hr>";
-
+*//*
         $u = new Users();
         $u->first_name = "josélio";
         $u->last_name = "maria";

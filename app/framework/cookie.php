@@ -1,5 +1,5 @@
 <?php namespace Mariana\Framework;
 
-class Cookies {
+class Cookie {
 
 }

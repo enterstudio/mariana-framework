@@ -6,6 +6,6 @@
  * Time: 10:24 PM
  */
 
-class cache{
+class Cache{
 
 }

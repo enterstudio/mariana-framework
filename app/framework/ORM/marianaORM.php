@@ -222,8 +222,6 @@ class MarianaORM extends Database{
     public function manyHaveOne($class, $reference){
         $i = 1;
         foreach($this->obj as $single){
-            //$single->Contact = "xxx".$i;
-            //$i++;
 
             $obj = new $class();
 
@@ -234,6 +232,8 @@ class MarianaORM extends Database{
 
             $newProperty = $stmt->fetch(\PDO::FETCH_OBJ);
 
+            echo "New prop: <br>";
+            var_dump($newProperty);
             // dar o nome contactos á propriedade contactos do objecto.
             $e = new \Exception();
             $trace = $e->getTrace();

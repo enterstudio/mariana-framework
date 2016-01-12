@@ -6,7 +6,9 @@
  * Time: 10:03
  */
 
-class email{
+use Mariana\Framework\Config;
+
+class Email{
 
     private $smtpServer;                                //  The SMTP server you would be connecting to and using to send messages
     private $port;                                      //  The port that you would be using to connect to the SMTP server
