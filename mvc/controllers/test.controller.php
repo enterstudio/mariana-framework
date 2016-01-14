@@ -9,19 +9,11 @@ class TestController extends Controller{
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
-        //ob_start();
         $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
-        //$content = ob_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
-        //ob_end_clean();
+        echo $content;
 
-        $e = new Email($to,$subject,$content,false);
-        if($e){
-            echo "boa";
-        }else{
-            echo "log";
-        }
 
-        echo "<pre>";
+        //echo "<pre>";
 /*
         $u = Users::find(33);
         $u->contactNumber();
@@ -35,7 +27,7 @@ class TestController extends Controller{
 
         print_r($u);
 
-*//*
+*
         $u = Users::where("id",">","33")->get();
         $u->usersContactNumber();
 
@@ -46,7 +38,9 @@ class TestController extends Controller{
         $u->usersContactNumbers();
 
         print_r($u);
-*//*
+*/
+
+/*
         $u = Users::find(33);
         $u->contactNumbers();
         print_r($u->toArray());

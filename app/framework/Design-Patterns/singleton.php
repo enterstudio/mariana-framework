@@ -5,9 +5,9 @@ abstract class Singleton
 {
     private static $instances = array();
 
-    protected function __construct() {}
+    private function __construct() {}
 
-    protected function __clone() {}
+    private function __clone() {}
 
     public function __wakeup()
     {
