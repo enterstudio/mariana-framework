@@ -45,32 +45,27 @@ class MarianaORM extends Database{
 
     public function delete(){}  //  UNSTARTED
 
-    public function all(Array $params = array()){
-        // AND FUNCTION
-/*
-        // PDO ESCAPE
-        // Check if table is allowed to be injected
-        $checkValues = $this->checkColumnList($column);
-        $this->field_table = $checkValues["field_table"];
-        $this->field_value = $checkValues["field_value"];
+    public static function all(){
 
-        // SELECTOR
-        if($selector == false || !in_array($selector, self::$allowed_select_values)){
-            $selector = "=";
+        $db = self::getConnection();
+        $query = " SELECT * FROM ".self::getTable();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        $class = get_called_class();
+        $obj = [];
+
+        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
+            // Criar novo objecto
+            $object = new $class($row);
+            $object->unsetFromObject();
+            foreach ($row as $key => $value){
+                $object->{$key} = $value;
+            }
+            $obj[] = $object;
         }
-
-        $this->query = $this->query." AND ".$this->field_table." ".$selector." ".$this->field_value." ";
-        $this->data[$this->field_value] = $value;
-
-        $query_attach = "";
-        if (sizeof($params) > 0) {
-            $query_attach = " WHERE " . $params[0] . " " . $params[1] . " :" . $params[0];
-        }
-
-        $query = " SELECT * FROM " . self::table() . " " . $query_attach;
-*/
-
-    }   //  UNDONE
+        return $obj;
+    }
 
     public static function where($column,$valueOrSelector, $valueIfSelector = false){
         //PDO ESCAPE;
@@ -392,46 +387,5 @@ class MarianaORM extends Database{
         );
     }   // Done and tested - Prevents sql injection
 
-    /*
 
-    public static function all(Array $params = array()){
-
-
-        $query_attach ="";
-        if(sizeof($params) > 0){
-            $query_attach = " WHERE ".$params[0] ." ".$params[1]." :".$params[0];
-        }
-
-        $query = " SELECT * FROM ".self::getTable()." ".$query_attach;
-
-        echo $query;
-
-        $db = self::getConnection();
-        $stmt = $db->prepare($query);
-
-        //foreach($params as $param) {
-          //  print_r($param);
-            $stmt->bindParam($params[0], $params[2]);
-        //}
-
-        $stmt->execute();
-
-        $class = get_called_class();
-        $obj = [];
-
-        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
-            // Criar novo objecto
-            $object = new $class($row);
-            // Tirar a base de dados
-            unset($object->db);
-
-            foreach ($row as $key => $value){
-                $object->{$key} = $value;
-            }
-            $obj[] = $object;
-        }
-
-        return $obj;
-    }
-    */
 }

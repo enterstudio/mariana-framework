@@ -2,6 +2,11 @@
 Personal framework to build web applications.
 Named after my awesome girlfriend.
 
+# Purpose of the project
+In programming there is a Golden Rule that is: "DO NOT REINVENT TEH WHEEL".
+This project is not about reinventing the wheel, is about learning as much as I can about how the wheel works, because sometimes, the wheel crashes and a tipical programmer gets stuck.
+Mariana's Framework might not be the best framework but it's intended to be the one with fastest learning curve and for sure, the most satisfying to build.
+
 # Why other framework?
 For learning purposes of my two favorite systems to develop web applications (Laravel and angularJS),
 I've decided to get my hands drity and try to make my own framework that implements all the awesome characteristics that made me fall in love with them
