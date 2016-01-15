@@ -83,7 +83,7 @@ class Router{
         if(array_key_exists(self::$uri,$check)){
             return $check[self::$uri];
         }else{
-            # Neste caso temos de fazer a verifica��o se h� parte dinamica
+            # Neste caso temos de fazer a verificação se há parte dinamica
             $dynamic = self::checkForDynamic();
             foreach($dynamic as $key => $value){
                 if(array_key_exists($key,$check)){

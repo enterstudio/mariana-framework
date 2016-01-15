@@ -1,6 +1,7 @@
 <?php
 
 use Mariana\Framework\Controller;
+use Mariana\Framework\Security\Criptography;
 
 class TestController extends Controller{
 
@@ -8,6 +9,14 @@ class TestController extends Controller{
 
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
+
+        $string = "abc";
+
+        //$encrypt = Criptography::encript($string);
+
+
+        $u = Users::find(1);
+        print_r($u);
 
         $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
         echo $content;
