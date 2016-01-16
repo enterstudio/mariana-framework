@@ -22,6 +22,9 @@ if(Config::get("mode") == "dev"){
     error_reporting(0);
 }
 
+# Template Engines: PHP, JS, BOTH, NONE
+Config::set("template-engine","both");
+
 # Database connection
 Config::set("database",array(
     "driver"    =>  "mysql",
