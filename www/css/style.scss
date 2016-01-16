@@ -1,0 +1,37 @@
+//Fonts
+$mainFont: 'Quattrocento Sans', sans-serif;
+$headingFont: 'Playfair Display', serif;
+$mainFontSize: small;
+$headingFontSize: large;
+
+
+//Distances
+$defaultBoxPadding: 25px;
+$defaultBoxMargin: 25px;
+
+//Colors
+$redText : #e60000;
+
+//CSS
+body,html{
+  font-size: $mainFontSize;
+  font-family: $mainFont;
+}
+
+h1,h2,h3,h4,h5,h6,.heading{
+  font-size: $headingFontSize;
+  font-family: $headingFont;
+}
+
+.heading{
+  font-size: $mainFontSize;
+}
+
+a, .red-text{
+  color: $redText;
+}
+
+#mariana-body{
+  padding: 0 $defaultBoxPadding;
+  margin: $defaultBoxMargin;
+}

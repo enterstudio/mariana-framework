@@ -13,10 +13,7 @@ class TestController extends Controller{
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
-        $string = "abc";
-        $password = "pihh";
-        $hash = Criptography::hash($password);
-        var_dump(Criptography::compare($password,$hash));
+        include_once(ROOT."/mvc/views/layout.html");
 
         /*
                 $u = Users::find(1);
