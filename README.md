@@ -18,10 +18,16 @@ Angular: Awesome Templating system - Two Way data-binding.
 
 # To Do's:
 * Finnish and secure the ORM.
-* Implement some security settings like CSRF
+* Finnish Logging Class
+* Finnish Debug Class
+* Finnish php view class
+* Finnish php template organizer
+* Nested scope items inside other scope items example scope paragraph cannot have a scope link inside <p>jndsjn<a href="{{}}">link</a></p>
+* Implement CSRF
 *** return only public propertys
 *** filter stuff
 * Build Framework Page and repository of snippets ( PHP: login system, location system, etc, JS: modules for the framework )
+
 
 # Contacs:
 You can allways email me on pihh.rocks@gmail.com
