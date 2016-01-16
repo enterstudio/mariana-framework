@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Contacts' => $baseDir . '/mvc/models/contacts.model.php',
-    'Criptography' => $baseDir . '/app/framework/security/criptography.php',
     'Email' => $baseDir . '/app/framework/email/email.php',
     'HomeController' => $baseDir . '/mvc/controllers/home.controller.php',
     'Mariana\\Framework\\App' => $baseDir . '/app/framework/app.php',
@@ -22,6 +21,7 @@ return array(
     'Mariana\\Framework\\ORM\\MarianaORM' => $baseDir . '/app/framework/orm/marianaORM.php',
     'Mariana\\Framework\\Resource' => $baseDir . '/app/framework/resource.php',
     'Mariana\\Framework\\Router' => $baseDir . '/app/framework/router.php',
+    'Mariana\\Framework\\Security\\Criptography' => $baseDir . '/app/framework/security/criptography.php',
     'Mariana\\Framework\\Security\\Environment' => $baseDir . '/app/framework/security/environment.php',
     'Mariana\\Framework\\Session' => $baseDir . '/app/framework/session.php',
     'Mariana\\Framework\\View' => $baseDir . '/app/framework/view.php',

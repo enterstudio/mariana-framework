@@ -1,7 +1,10 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 use Mariana\Framework\Controller;
 use Mariana\Framework\Security\Criptography;
+
 
 class TestController extends Controller{
 
@@ -11,25 +14,26 @@ class TestController extends Controller{
         $subject = "teste";
 
         $string = "abc";
+        $password = "pihh";
+        $hash = Criptography::hash($password);
+        var_dump(Criptography::compare($password,$hash));
 
-        //$encrypt = Criptography::encript($string);
+        /*
+                $u = Users::find(1);
+                print_r($u);
+
+                $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
+                echo $content;
 
 
-        $u = Users::find(1);
-        print_r($u);
+                //echo "<pre>";
+        /*
+                $u = Users::find(33);
+                $u->contactNumber();
+                print_r($u->toArray());
 
-        $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
-        echo $content;
-
-
-        //echo "<pre>";
-/*
-        $u = Users::find(33);
-        $u->contactNumber();
-        print_r($u->toArray());
-
-        print_r($u);
-*//*
+                print_r($u);
+        *//*
         $u = Users::find(33);
         $u->contactNumbers();
         print_r($u->toArray());

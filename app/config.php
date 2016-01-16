@@ -7,7 +7,7 @@ Config::set("base-route","/framework/");            # Base route -> cleans every
 Config::set("mode",getenv("mode"));                 # Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
 
 # Developer Settings vs Production Settings
-if(Config::get("mode") === "dev"){
+if(Config::get("mode") == "dev"){
     // set error reporting
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

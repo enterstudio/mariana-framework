@@ -20,9 +20,7 @@ class Environment extends Singleton{
             self::$setup = 1;
 
             $env = file(self::$env);
-
             foreach($env as $line){
-
                 //  Remover comentários:
                 $line = strpos($line, "#") ? substr($line, 0, strpos($line, "#")) : $line;
 
@@ -30,14 +28,14 @@ class Environment extends Singleton{
                 if(strlen(trim($line))>0){
 
                     //  Meter em env
-                    putenv ( $line );
+                    putenv (trim($line));
                     $newEnvVar = explode("=",$line);
-
                     //  Meter em $_ENV
-                    $key  = trim($newEnvVar[0]);
-                    $value = trim($newEnvVar[1]);
-                    $_ENV[$key] = $value;
-
+                    if(isset($newEnvVar[1])) {
+                        $key = trim($newEnvVar[0]);
+                        $value = trim($newEnvVar[1]);
+                        $_ENV[$key] = $value;
+                    }
                 }
 
             }
