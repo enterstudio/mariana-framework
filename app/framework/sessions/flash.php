@@ -12,11 +12,11 @@ class Flash extends Session{
 
     static $messageArray = array();
 
-    public static function set(Array $flashMessages){
-        $_SESSION["flash"] = $flashMessages;
+    public static function setMessages(Array $flashMessages){
+        self::set("flash",$flashMessages);
     }
 
-    public static function show(){
+    public static function showMessages(){
         if(isset($_SESSION["flash"])){
             static::$messageArray = $_SESSION["flash"];
             self::delete("flash");

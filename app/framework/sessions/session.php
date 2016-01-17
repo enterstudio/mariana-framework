@@ -43,7 +43,10 @@ class Session extends Singleton{
     }
 
     public static function display(){
-        return $_SESSION;
+        if(isset($_SESSION)) {
+            return $_SESSION;
+        }
+        return false;
     }
 
 

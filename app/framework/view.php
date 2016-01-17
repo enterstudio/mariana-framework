@@ -6,24 +6,43 @@
  * Time: 10:00 PM
  */
 
+
+
 class View {
 
-    private static function withJson($file){
-        $file = str_replace("{{","<?=",$file);
-        $file = str_replace("}}","?>",$file);
+    private $data = array();
+    private $scope = array();
 
-       $file = str_replace("@include(", "ob_get_contents(", $file);
-        return $file;
+    private $render = FALSE;
+
+    public function __construct($template)
+    {
+        //try {
+            $file = VIEW_PATH . strtolower($template) . '.php';
+
+            if (file_exists($file)) {
+                $this->render = $file;
+            } else {
+                //throw new customException('Template ' . $template . ' not found!');
+            }
+        //}
+        //catch (customException $e) {
+            //echo $e->errorMessage();
+        //}
     }
 
-    public static function render($path,$array = array()){
-
-        ob_start();
-            include(VIEW_PATH.DS.$path.DS."index.html");
-            $content = ob_get_contents();
-            $content = self::withJson($content);
-        ob_end_clean();
-
-        echo $content;
+    public function with($variable)
+    {
+        $variable = compact($variable);
+        $this->data = $variable;
+        $this->scope = json_encode($variable);
     }
+
+    public function __destruct()
+    {
+        extract($this->data);
+        include_once($this->render);
+
+    }
+
 }
