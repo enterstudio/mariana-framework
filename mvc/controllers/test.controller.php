@@ -14,7 +14,7 @@ class TestController extends Controller{
         $subject = "teste";
 
         include_once(ROOT."/mvc/views/layout.html");
-        
+
 
         /*
                 $u = Users::find(1);

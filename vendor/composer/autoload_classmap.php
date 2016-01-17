@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Auth' => $baseDir . '/mvc/middleware/auth.php',
     'Contacts' => $baseDir . '/mvc/models/contacts.model.php',
     'Email' => $baseDir . '/app/framework/email/email.php',
     'HomeController' => $baseDir . '/mvc/controllers/home.controller.php',
@@ -32,4 +33,5 @@ return array(
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
     'Tests' => $baseDir . '/mvc/models/test.model.php',
     'Users' => $baseDir . '/mvc/models/users.model.php',
+    'Validation' => $baseDir . '/mvc/middleware/validation.php',
 );
