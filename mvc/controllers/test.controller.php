@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 use Mariana\Framework\Controller;
 use Mariana\Framework\Security\Criptography;
-
+use Mariana\Framework\View;
 
 class TestController extends Controller{
 
@@ -14,8 +14,10 @@ class TestController extends Controller{
         $subject = "teste";
 
         include_once(ROOT."/mvc/views/layout.html");
-
-
+        /*
+        $scope = array($to,$subject);
+        $v = new View("layout.html");
+        $v->with($scope);
         /*
                 $u = Users::find(1);
                 print_r($u);
