@@ -17,6 +17,7 @@ Laravel: Router, MVC System, ORM, Blade, Modular Coding and Autoloading.
 Angular: Awesome Templating system - Two Way data-binding.
 
 # To Do's:
+* Test Session Folder.
 * Finnish and secure the ORM.
 * Finnish Logging Class
 * Finnish Debug Class
@@ -24,8 +25,7 @@ Angular: Awesome Templating system - Two Way data-binding.
 * Finnish php template organizer
 * Nested scope items inside other scope items example scope paragraph cannot have a scope link inside <p>jndsjn<a href="{{}}">link</a></p>
 * Implement CSRF
-*** return only public propertys
-*** filter stuff
+
 * Build Framework Page and repository of snippets ( PHP: login system, location system, etc, JS: modules for the framework )
 
 
