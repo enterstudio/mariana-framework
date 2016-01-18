@@ -12,10 +12,11 @@ use Mariana\Framework\Design\Singleton;
 
 class Environment extends Singleton{
 
-    private static $env = ROOT.'/.env';
+    private static $env;
     private static $setup = 0;
 
     public static function setup(){
+        self::$env = ROOT."/.env";
         if(self::$setup !== 1){
             self::$setup = 1;
 

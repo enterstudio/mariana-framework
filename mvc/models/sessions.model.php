@@ -1,4 +1,7 @@
 <?php
+
+namespace Mariana\Framework\MVC;
+
 use Mariana\Framework\Model;
 
 class Sessions extends Model{
