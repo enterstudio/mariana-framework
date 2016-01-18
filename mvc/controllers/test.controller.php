@@ -13,6 +13,7 @@ class TestController extends Controller{
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
+        var_dump(Users::all());
         include_once(ROOT."/mvc/views/layout.html");
         /*
         $scope = array($to,$subject);

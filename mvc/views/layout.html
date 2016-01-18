@@ -27,6 +27,7 @@
     </template>
     </div>
     <div id="mariana-scripts">
+        <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
         <script src="www/js/mariana-closet-template-engine.js"></script>
         <script>
             //  Start the template engine
@@ -49,6 +50,17 @@
             var template = unescapeHTML(document.getElementById("body").innerHTML);
             console.log($closet(template, scope));
             document.getElementById("mariana-body").innerHTML = $closet(template, scope);
+        </script>
+        <script>
+            $("body").on("click",function(){
+                $.ajax({
+                    url: "http://localhost:8000/",
+                    type:"POST",
+                    success:function(data){
+                        alert(data);
+                    }
+                });
+            });
         </script>
     </div>
 </body>

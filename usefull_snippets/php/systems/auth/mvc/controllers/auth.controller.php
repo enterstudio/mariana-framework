@@ -77,8 +77,9 @@ Class Auth extends Controller{
         //  STEP 1: Check if there is a active session..
         if(!isset($_SESSION["id"]) || empty($_SESSION["id"])){
 
+            $cookieId = Config::get("cookieID");
             //STEP 2: Check for cookie that identifies this session (set at config)...
-            if(isset($_COOKIE(Config::get("cookieID"))) && isset($_COOKIE[Config::get("cookieHash")])){
+            if(isset($_COOKIE[Config::get("cookieID")]) && isset($_COOKIE[Config::get("cookieHash")])){
 
                 // STEP 3: Decrypt the hash
                 $decriptedHash = Criptography::decript($_COOKIE[Config::get("cookieHash")]);

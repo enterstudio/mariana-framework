@@ -47,18 +47,23 @@ class MarianaORM extends Database{
 
     public static function all(){
 
-        $db = self::getConnection();
-        $query = " SELECT * FROM ".self::getTable();
-        $stmt = $db->prepare($query);
+        $table = self::table();
+        $object = new $table();
+        // Override table name if set on model
+        $table = $object->table;
+
+        // Check if table is allowed to be injected
+        $object->query = "SELECT * FROM $table ";
+
+        $stmt = self::getConnection()->prepare($object->query);
         $stmt->execute();
 
         $class = get_called_class();
-        $obj = [];
 
         while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
             // Criar novo objecto
             $object = new $class($row);
-            $object->unsetFromObject();
+            //$object->unsetFromObject();
             foreach ($row as $key => $value){
                 $object->{$key} = $value;
             }
@@ -387,5 +392,10 @@ class MarianaORM extends Database{
         );
     }   // Done and tested - Prevents sql injection
 
+    public function unsetProtected(){
+        /*
+         * TODO : Função que remove os campos privados dos objectos
+         */
+    }
 
 }
