@@ -15,34 +15,32 @@ class Database extends Singleton {
 	// Constructor
 	// Get mysqli connection
 	public static function getConnection() {
-            # Get connectiont type
+
+        // Se a conexão não estiver feita,
+        if(!static::$connection) {
+            // Buscar parametros da driver e da base de dados
             $driver = Config::get("database-driver");
             $config = Config::get("database");
 
-            # Mysql Connection Parameters
-            if($driver == "mysql") {
+            if ($driver == "mysql") {
                 try {
                     static::$connection = new \PDO("mysql:host=" . $config["host"] . ";dbname=" . $config["database"], $config["username"], $config["password"]);
-
-                } catch (\PDOException $e) {
+                    static::$connection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                } catch (PDOException $e) {
                     echo $e->getMessage();
                     exit;
                 }
             }
 
-            #SQLite3 Connection Parameters
-            if($driver == "SQLite3"){
+            if ($driver == "SQLite3") {
                 try {
-                    //static::$connection = new \SQLite3($_SERVER["DOCUMENT_ROOT"]."/app/files/".$config["database"].".sq3");
-                    static::$connection = new \SQLite3($_SERVER["DOCUMENT_ROOT"]."/app/files/".$config["database"].".sq3");
-                } catch (\PDOException $e) {
+                    static::$connection = new \PDO("sqlite:".ROOT.DS."app".DS."files".DS."database.sq3;dbname=".$config["database"]);
+                } catch (PDOException $e) {
                     echo $e->getMessage();
                     exit;
                 }
             }
-
-        # Common Settings :
-        //static::$connection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
 
         return static::$connection;
     }

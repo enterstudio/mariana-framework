@@ -2,9 +2,21 @@
 
 use Mariana\Framework\Database;
 
+/**
+ * Class MarianaORM
+ * @package Mariana\Framework\ORM
+ *
+ * TODO : Remove the query from the object
+ * TODO : Count
+ * TODO : Joins
+ * TODO : Transactions
+ *
+ */
+
+
 class MarianaORM extends Database{
 
-    protected $query;           //  QUERY string
+    private $query;           //  QUERY string
     public $data = array();  //  QUERY input data -> array["column"] = "value"
     protected $primary = "id";  //  PRIMARY KEY: needed for several stuff, id is primary by default
     protected $db;              //  DATABASE CONNECTION
@@ -16,6 +28,10 @@ class MarianaORM extends Database{
     private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
     private $field_table;
     private $field_value;
+
+    private $setTransaction = false;
+    private $setCount = false;
+
     //  CONSTRUCTED AT MODEL
 
     //  STATIC METHODS
@@ -47,23 +63,18 @@ class MarianaORM extends Database{
 
     public static function all(){
 
-        $table = self::table();
-        $object = new $table();
-        // Override table name if set on model
-        $table = $object->table;
-
-        // Check if table is allowed to be injected
-        $object->query = "SELECT * FROM $table ";
-
-        $stmt = self::getConnection()->prepare($object->query);
+        $db = self::getConnection();
+        $query = " SELECT * FROM ".self::getTable();
+        $stmt = $db->prepare($query);
         $stmt->execute();
 
         $class = get_called_class();
+        $obj = [];
 
         while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
             // Criar novo objecto
             $object = new $class($row);
-            //$object->unsetFromObject();
+            $object->unsetFromObject();
             foreach ($row as $key => $value){
                 $object->{$key} = $value;
             }
@@ -71,6 +82,9 @@ class MarianaORM extends Database{
         }
         return $obj;
     }
+
+
+    //  PARAMETERIC METHODS
 
     public static function where($column,$valueOrSelector, $valueIfSelector = false){
         //PDO ESCAPE;
@@ -102,7 +116,6 @@ class MarianaORM extends Database{
         return $object;
     }   // Done and tested
 
-    //  PARAMETERIC METHODS
     public function also($column, $valueOrSelector, $valueIfSelector = false){
         // AND FUNCTION
 
@@ -258,34 +271,57 @@ class MarianaORM extends Database{
 
     //  CALLER METHODS
     public function get($limit = false){
-        //  LIMIT
-        if($limit !== false && is_numeric($limit)){
-            $limit = " LIMIT ".$limit." ";
-        }else{
-            $limit = "";
+
+        try {
+
+            //  LIMIT
+            if ($limit !== false && is_numeric($limit)) {
+                $limit = " LIMIT " . $limit . " ";
+            } else {
+                $limit = "";
+            }
+            //  OFFSET
+            $this->query = $this->query . $limit . $this->offsetValue;
+
+
+            // SET TRANSACTION IF NEEDED
+            if($this->setTransaction){
+                $this->db->beginTransaction();
+            }
+
+            //  RUN THE QUERY
+            $stmt = $this->db->prepare($this->query);
+
+            //  IF QUERY HAS DYNAMIC PARAMS
+            //  For some reason, while looping this, the $pair is getting a copy of the last one.
+            //  Pushing it into an array makes it update
+            //if (sizeof($this->params) > 0) {
+                $i = 0;
+                $array = array();
+                foreach ($this->data as $key => $pair) {
+                    $array[$i] = $pair;
+                    $stmt->bindParam($key, $array[$i]);
+                    $i++;
+                }
+            //}
+            $stmt->execute();
+
+            if($this->setTransaction){
+                $this->db->commit();
+            }
+
+            $this->obj = (object)$stmt->fetchAll(\PDO::FETCH_OBJ);
+            return $this;
+
+        } catch (\Exception $e){
+
+            //if($this->setTransaction){
+            //    $this->db->rollback();
+            //}
+            echo $e;
+            return false;
         }
-        //  OFFSET
-        $this->query = $this->query.$limit.$this->offsetValue;
 
-        //  RUN THE QUERY
-
-        $stmt = $this->db->prepare($this->query);
-
-        //  For some reason, while looping this, the $pair is getting a copy of the last one.
-        //  Pushing it into an array makes it update
-        $i = 0;
-        $array = array();
-        foreach ($this->data as $key => $pair){
-            $array[$i] = $pair;
-            $stmt->bindParam($key,$array[$i]);
-            $i++;
-        }
-
-        $stmt->execute();
-
-        $this->obj = (object) $stmt->fetchAll(\PDO::FETCH_OBJ);
-
-        return $this;
     }   // Done and tested
 
     public function save(){
@@ -371,6 +407,10 @@ class MarianaORM extends Database{
         return json_encode($this->obj);
     }
 
+    //  OTHER METHODS
+    public function count(){
+        $this->setCount = true;
+    }
 
     //  SAFETY METHODS
     /*
@@ -392,10 +432,7 @@ class MarianaORM extends Database{
         );
     }   // Done and tested - Prevents sql injection
 
-    public function unsetProtected(){
-        /*
-         * TODO : Função que remove os campos privados dos objectos
-         */
+    public function transaction(){
+        $this->setTransaction = true;
     }
-
 }
