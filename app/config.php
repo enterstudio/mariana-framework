@@ -13,11 +13,12 @@ if(Config::get("mode") == "dev"){
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    // set debug and log classes
     define("DEBUG", 1);
-    define("LOG", 1);   //__FILE__ ; __LINE__ ; __FUNCTION__ ; __METHOD__ ; __CLASS__
+    define("LOG", 1);
 
 }else{
-    // unset error reporting | ini_set('error_reporting', E_STRICT); some errors only
+
     ini_set('display_errors', 0);
     error_reporting(0);
 }
@@ -25,16 +26,18 @@ if(Config::get("mode") == "dev"){
 # Template Engines: PHP, JS, BOTH, NONE
 Config::set("template-engine","both");
 
-# Database connection
-Config::set("database",array(
-    "driver"    =>  "mysql",
-    "host"      =>  $_ENV["DB_HOST"],
-    "database"  =>  $_ENV["DB_DATABASE"],
-    "username"  =>  $_ENV["DB_USERNAME"],
-    "password"  =>  $_ENV["DB_PASSWORD"],
-    "charset"   =>  "utf8",
-    "collation" =>  "utf8_unicode_ci",
-    "prefix"    =>  ""
+# Database Driver.
+Config::set("database-driver", "SQLite3"); // mysql or SQLite3
+
+# Database Connection Settings.
+Config::set("database", array(
+    "host" => $_ENV["DB_HOST"],
+    "database" => $_ENV["DB_DATABASE"],
+    "username" => $_ENV["DB_USERNAME"],
+    "password" => $_ENV["DB_PASSWORD"],
+    "charset" => "utf8",
+    "collation" => "utf8_unicode_ci",
+    "prefix" => ""
 ));
 
 # Email Configuration

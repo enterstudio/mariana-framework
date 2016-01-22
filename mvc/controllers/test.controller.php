@@ -1,10 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 use Mariana\Framework\Controller;
 use Mariana\Framework\Security\Criptography;
 use Mariana\Framework\View;
+
 
 class TestController extends Controller{
 
@@ -13,7 +12,24 @@ class TestController extends Controller{
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
-        var_dump(Users::all());
+        $db = Mariana\Framework\Database::getConnection();
+
+        $sql = "DROP TABLE users";
+        $db->exec($sql);
+
+        $sql = "Create Table users (
+                  id INTEGER PRIMARY KEY,
+                  username VARCHAR (255),
+                  email VARCHAR (255) UNIQUE,
+                  password VARCHAR (255),
+                  salt VARCHAR (255),
+                  session_hash VARCHAR (255),
+                  session_json BLOB
+                  )";
+
+        $db->exec($sql);
+
+
         include_once(ROOT."/mvc/views/layout.html");
         /*
         $scope = array($to,$subject);

@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Auth' => $baseDir . '/mvc/middleware/auth.php',
     'Contacts' => $baseDir . '/mvc/models/contacts.model.php',
     'Email' => $baseDir . '/app/framework/email/email.php',
     'HomeController' => $baseDir . '/mvc/controllers/home.controller.php',
@@ -16,6 +15,7 @@ return array(
     'Mariana\\Framework\\Controller' => $baseDir . '/app/framework/controller.php',
     'Mariana\\Framework\\Database' => $baseDir . '/app/framework/orm/database.php',
     'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/app/framework/design-patterns/singleton.php',
+    'Mariana\\Framework\\MVC\\Sessions' => $baseDir . '/mvc/models/sessions.model.php',
     'Mariana\\Framework\\Middleware' => $baseDir . '/app/framework/middleware.php',
     'Mariana\\Framework\\Model' => $baseDir . '/app/framework/orm/model.php',
     'Mariana\\Framework\\ORM\\MarianaORM' => $baseDir . '/app/framework/orm/marianaORM.php',
@@ -23,13 +23,12 @@ return array(
     'Mariana\\Framework\\Router' => $baseDir . '/app/framework/router.php',
     'Mariana\\Framework\\Security\\Criptography' => $baseDir . '/app/framework/security/criptography.php',
     'Mariana\\Framework\\Security\\Environment' => $baseDir . '/app/framework/security/environment.php',
-    'Mariana\\Framework\\Session\\Cookie' => $baseDir . '/app/framework/sessions/cookie.php',
-    'Mariana\\Framework\\Session\\Flash' => $baseDir . '/app/framework/sessions/flash.php',
-    'Mariana\\Framework\\Session\\LifeTime' => $baseDir . '/app/framework/sessions/lifetime.php',
-    'Mariana\\Framework\\Session\\Session' => $baseDir . '/app/framework/sessions/session.php',
+    'Mariana\\Framework\\Session\\Cookie' => $baseDir . '/app/framework/session/cookie.php',
+    'Mariana\\Framework\\Session\\Flash' => $baseDir . '/app/framework/session/flash.php',
+    'Mariana\\Framework\\Session\\LifeTime' => $baseDir . '/app/framework/session/lifetime.php',
+    'Mariana\\Framework\\Session\\Session' => $baseDir . '/app/framework/session/session.php',
     'Mariana\\Framework\\View' => $baseDir . '/app/framework/view.php',
     'MyLogPHP' => $baseDir . '/app/framework/log.php',
-    'Sessions' => $baseDir . '/mvc/models/sessions.model.php',
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
     'Tests' => $baseDir . '/mvc/models/test.model.php',
     'Users' => $baseDir . '/mvc/models/users.model.php',

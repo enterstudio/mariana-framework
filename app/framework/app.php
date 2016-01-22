@@ -2,12 +2,16 @@
 
 use Mariana\Framework\Router;
 use Mariana\Framework\Security\Environment;
+use Mariana\Framework\Session\Session;
 
 class App{
 
     private $router;
 
     public static function run(){
+        # Session start
+        Session::start();
+
         # Setup
         Environment::setup();
 
