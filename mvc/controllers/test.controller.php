@@ -12,23 +12,6 @@ class TestController extends Controller{
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
-        $db = Mariana\Framework\Database::getConnection();
-
-        $sql = "DROP TABLE users";
-        $db->exec($sql);
-
-        $sql = "Create Table users (
-                  id INTEGER PRIMARY KEY,
-                  username VARCHAR (255),
-                  email VARCHAR (255) UNIQUE,
-                  password VARCHAR (255),
-                  salt VARCHAR (255),
-                  session_hash VARCHAR (255),
-                  session_json BLOB
-                  )";
-
-        $db->exec($sql);
-
 
         include_once(ROOT."/mvc/views/layout.html");
         /*

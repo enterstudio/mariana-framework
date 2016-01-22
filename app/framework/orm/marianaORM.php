@@ -10,6 +10,7 @@ use Mariana\Framework\Database;
  * TODO : Count
  * TODO : Joins
  * TODO : Transactions
+ * TODO : Delete
  *
  */
 
@@ -29,7 +30,7 @@ class MarianaORM extends Database{
     private $field_table;
     private $field_value;
 
-    private $setTransaction = false;
+    private $dbTransaction = false;
     private $setCount = false;
 
     //  CONSTRUCTED AT MODEL
@@ -284,11 +285,6 @@ class MarianaORM extends Database{
             $this->query = $this->query . $limit . $this->offsetValue;
 
 
-            // SET TRANSACTION IF NEEDED
-            if($this->setTransaction){
-                $this->db->beginTransaction();
-            }
-
             //  RUN THE QUERY
             $stmt = $this->db->prepare($this->query);
 
@@ -306,18 +302,27 @@ class MarianaORM extends Database{
             //}
             $stmt->execute();
 
-            if($this->setTransaction){
+            /*
+            // SET TRANSACTION IF NEEDED
+            if($this->dbTransaction){
+                $this->db->beginTransaction();
+            }
+
+            if($this->dbTransaction){
                 $this->db->commit();
             }
 
+            if($this->setTransaction){
+                $this->db->rollback();
+            }
+
+            */
             $this->obj = (object)$stmt->fetchAll(\PDO::FETCH_OBJ);
             return $this;
 
         } catch (\Exception $e){
 
-            //if($this->setTransaction){
-            //    $this->db->rollback();
-            //}
+
             echo $e;
             return false;
         }
@@ -352,7 +357,6 @@ class MarianaORM extends Database{
             $columns= join(", ", $columns);
             $query = "INSERT INTO ".$this->table." ($columns) VALUES ($params)";
         }
-        // Connect and do it
 
         $stmt = $this->db->prepare($query);
 
@@ -410,6 +414,10 @@ class MarianaORM extends Database{
     //  OTHER METHODS
     public function count(){
         $this->setCount = true;
+    }
+
+    public function setTransaction(){
+        $this->dbTransaction = true;
     }
 
     //  SAFETY METHODS

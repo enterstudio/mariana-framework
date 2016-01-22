@@ -2,12 +2,18 @@
 use Mariana\Framework\Config;
 
 # Base Settings
+# Base route -> cleans everything before this on our routing system
+# Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Config::set("website","http://pihh.rocks");
-Config::set("base-route","/framework/");            # Base route -> cleans everything before this on our routing system
-Config::set("mode",getenv("mode"));                 # Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
+Config::set("base-route","/framework/");
+Config::set("mode",getenv("mode"));
 
 # Developer Settings vs Production Settings
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(Config::get("mode") == "dev"){
+
     // set error reporting
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -24,12 +30,16 @@ if(Config::get("mode") == "dev"){
 }
 
 # Template Engines: PHP, JS, BOTH, NONE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Config::set("template-engine","both");
 
 # Database Driver.
-Config::set("database-driver", "SQLite3"); // mysql or SQLite3
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Config::set("database-driver", "mysql"); // mysql or SQLite3
 
 # Database Connection Settings.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set("database", array(
     "host" => $_ENV["DB_HOST"],
     "database" => $_ENV["DB_DATABASE"],
@@ -41,6 +51,7 @@ Config::set("database", array(
 ));
 
 # Email Configuration
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set("email", array(
     "smtp-server"   =>  $_ENV["MAIL_HOST"],
     "port"          =>  $_ENV["MAIL_PORT"],
@@ -53,9 +64,11 @@ Config::set("email", array(
 ));
 
 # Security Settings
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set("hash", getenv("key"));
 
 # Session configuration
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set("session",array(
     "https" => true,
     "user_agent" =>  true,

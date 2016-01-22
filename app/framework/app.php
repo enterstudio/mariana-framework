@@ -10,7 +10,7 @@ class App{
 
     public static function run(){
         # Session start
-        //Session::start();
+        Session::start();
 
         # Setup
         Environment::setup();

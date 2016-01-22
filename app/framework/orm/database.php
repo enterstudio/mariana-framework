@@ -34,7 +34,7 @@ class Database extends Singleton {
 
             if ($driver == "SQLite3") {
                 try {
-                    static::$connection = new \PDO("sqlite:".ROOT.DS."app".DS."files".DS."database.sq3;dbname=".$config["database"]);
+                    static::$connection = new \PDO("sqlite:".ROOT.DS."app".DS."files".DS."database".DS."databases".DS.$config["database"].".sq3");
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                     exit;
