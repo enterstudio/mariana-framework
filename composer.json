@@ -2,5 +2,8 @@
     "autoload": {
         "classmap":
         ["app/framework","mvc"]
+    },
+    "require": {
+        "phpunit/phpunit": "^5.1"
     }
 }
