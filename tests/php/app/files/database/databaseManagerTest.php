@@ -6,8 +6,7 @@
  * Time: 12:30
  *
  * $expected = true;
-
-$this->assertEquals($expected, $dbm);
+ * $this->assertEquals($expected, $dbm);
  */
 
 use \Mariana\Framework\DatabaseManager;
