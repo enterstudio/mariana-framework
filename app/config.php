@@ -14,7 +14,7 @@ Config::set("mode",getenv("mode"));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(Config::get("mode") == "dev"){
 
-    // set error reporting
+    # SET ERROR REPORTING
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
