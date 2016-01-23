@@ -16,6 +16,7 @@ $options = array();
 $options[] = "help";
 $options[] = "server";
 $options[] = "create";
+$options[] = "update";
 
 # SET COMMANDS
 $commands = $argv;
@@ -47,6 +48,45 @@ function makeFile($path, $contents){
     $data = $contents;
     fwrite($handle, $data);
     fclose($handle);
+}
+
+/**
+ * @param $name
+ * @param bool|false $parsingType
+ * @desc: parses the name as the convention says
+ */
+function parseName($name, $parsingType = false){
+    if(!isset($parsingType))
+        $parsingType = "uppercamelcase";
+
+    if($parsingType == "uppercamelcase"){
+
+        $name = explode(" ", trim($name));
+        $tmpName = "";
+        foreach($name as $n){
+            $tmpName .= ucfirst($n);
+        }
+
+        $name = $tmpName;
+        $name = explode("-", $name);
+        $tmpName = "";
+        foreach($name as $n){
+            $tmpName .= ucfirst($n);
+        }
+
+        $name = $tmpName;
+        $name = explode("-", $name);
+        $tmpName = "";
+        foreach($name as $n){
+            $tmpName .= ucfirst($n);
+        }
+
+        $name = $tmpName;
+    }else{
+        $name = strtolower($name);
+    }
+
+    return $name;
 }
 
 /**
@@ -109,6 +149,10 @@ create: Creates a file with proper setup (replace NAME with it's name).
     - create:controller NAME - (will be named as nameController)
     - create:model NAME - (keep it's name as plural EX: users)
     - create:middleware NAME
+
+update: Updates database tables
+    - seed
+    - drop
 \n
 USAGE;
     echo $usage;
@@ -133,7 +177,14 @@ function server($commands){
 
 }
 
+/**
+ * @param $what
+ * @param $name
+ * @desc creates files. Ex database, model, controllers, tables, and so on.
+ */
 function create($what, $name){
+
+    $name = $name[2];
     $possibleCreations = array(
         "database",
         "table",
@@ -141,86 +192,130 @@ function create($what, $name){
         "controller",
         "middleware"
     );
-}
 
-//TODO: Case none matches, run make:hep
-
-//TODO: Make database , table (creates a model) , model, controller
-
-/*
-// Get Command Line Arguments List
-$sortOptions = "";
-$sortOptions .= "c:";
-$sortOptions .= "f:";
-$sortOptions .= "v::";
-$sortOptions .= "h::";
-
-$options = getopt($sortOptions);
-
-// Override Globals
-foreach( $options as $o => $a ) {
-    while($k=array_search("-". $o. $a, $GLOBALS['argv'])) {
-        if($k) {
-            unset($GLOBALS['argv'][$k]);
-        }
+    if(!in_array(strtolower(trim($what)),$possibleCreations)){
+        return help();
     }
-    while($k=array_search("-" . $o, $GLOBALS['argv'])) {
-        if($k) {
-            unset($GLOBALS['argv'][$k]);
-            unset($GLOBALS['argv'][$k+1]);
-        }
+
+    # CREATE DATABASE
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if($what == "database"){
+        $name = strtolower($name);
+        $path = ROOT."/app/files/database/databases/";
+        return "Created database: $name";
     }
-}
-$GLOBALS['argv'] = array_merge($GLOBALS['argv']);
+
+    # CREATE TABLE
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if($what == "table"){
+        $file_name = strtolower($name);
+        $path = ROOT."/app/files/database/seeds/".$file_name.".php";
+        $contents =
+        "<?php
+        /**
+         * Created with love using Mariana Framework
+         * pihh.rocks@gmail.com
+         */
+
+        # Table Name
+        \$table = ".$name.";
+
+        # Table Fields
+        \$fields = array(
+            'id'            =>  'INTEGER PRIMARY KEY',
+            'timestamp'     =>  'TIMESTAMP'
+        );
 
 
-//  Parameters array
-$param_arr = array();
-$lenght = count((array)$GLOBALS['argv']);
-if ($lenght > 0) {
-    for ($i = 1; $i < $lenght; $i++) {
-        if (isset($GLOBALS['argv'][$i])) {
-            list($paramName, $paramValue) = explode("=", $GLOBALS['argv'][$i], 2);
-            $param_arr[$paramName] = $paramValue;
-        }
+        # Table Seeds
+        \$seeds = array(
+            array('1', 'CURRENT_TIMESTAMP'),
+        );
+
+        return array(
+            'fields' => \$fields,
+            'seeds'  => \$seeds
+        );
+
+        ?>";
+        makeFile($path,$contents);
+        return "Created database seed file: $name at $path";
     }
-}
 
-print_r($param_arr);
+    # THE FUNCTIONS
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if($what == "controller"){
+        $file_name = strtolower($name);
+        $name = parseName($name);
+        $contents =
+"<?php
 
-/*
+use Mariana\\Framework;
+use Mariana\\Framework\\Controller;
+use Mariana\\Framework\\Database;
 
+class $name extends Controller{
 
-//  Parameters array
-$param_arr = array();
-$lenght = count((array)$GLOBALS['argv']);
-if ($lenght > 0) {
-    for ($i = 1; $i < $lenght; $i++) {
-        if (isset($GLOBALS['argv'][$i])) {
-            list($paramName, $paramValue) = explode("=", $GLOBALS['argv'][$i], 2);
-            $param_arr[$paramName] = $paramValue;
-        }
+    /**
+     * Default method;
+     */
+     public function index(){
+
+     }
+
+}";
+
+        $path = ROOT."/mvc/controllers/".$file_name.".controller.php";
+        return "Created controller: $name in $path";
     }
+
+    # CREATE MODEL
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if($what == "model") {
+        $file_name = strtolower($name);
+        $name = parseName($name);
+        $contents =
+"<?php
+
+use \\Mariana\\Framework\\Model;
+
+class $name extends Model{
+
+//protected static \$table = '$file_name';
+//protected static \$primary;
+
+}
+";
+        $path = ROOT."/mvc/models/".$file_name.".model.php";
+        return "Created model: $name in $path";
+    }
+
+    # THE MIDDLEWARE
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if($what == "middleware") {
+        $file_name = strtolower($name);
+        $name = parseName($name);
+        $contents =
+"<?php
+use Mariana\\Framework\\Middleware;
+
+class $name extends Middleware{
+
 }
 
-//  Add ClassName and FunctionsName
-$className    = !array_key_exists('c', $options) ?: $options['c'];
-$functionName = !array_key_exists('f', $options) ?: $options['f'];
+?>
+";
+        $path = ROOT."/mvc/middlewate/".$file_name.".php";
+        return "Created middleware: $name in $path";
+    }
 
-//  Usage Parameter
 
-if (array_key_exists('h', $options)) {
-    $usage = <<<USAGE
-Usage: cli [options] [-c] <class> [-f] <function> [args...]
-
-Options:
--h Print this help
--v verbose mode
-\n
-USAGE;
-    echo $usage;
-    exit;
+    return help();
 }
 
+function update(){
 
-*/
+}
+
+exit();

@@ -1,11 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: filipe_2
- * Date: 1/21/2016
- * Time: 11:59 PM
+ * Created with love using Mariana Framework
+ * pihh.rocks@gmail.com
  */
-
 
 # Table Name
 $table = "users";
