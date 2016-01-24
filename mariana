@@ -499,7 +499,7 @@ return array(
         /**
          * @desc runs composer dump-autoload
          */
-        echo exec("composer.phar dump-autoload");
+        return exec("composer dump-autoload");
     }
 
 }
