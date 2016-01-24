@@ -1,9 +1,12 @@
+html{
+  background: url("http://2.bp.blogspot.com/-ptohpDUBbbE/UJZmRw25rqI/AAAAAAABtnA/SGnPLnj0cQo/s1600/23.jpg");
+}
 body, html {
   font-size: small;
   font-family: "Quattrocento Sans", sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .heading {
-  font-size: large;
+  font-size: xx-large;
   font-family: "Playfair Display", serif; }
 
 .heading {
