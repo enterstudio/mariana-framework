@@ -1,0 +1,7 @@
+.fixedBG {
+    background: url("http://2.bp.blogspot.com/-ptohpDUBbbE/UJZmRw25rqI/AAAAAAABtnA/SGnPLnj0cQo/s1600/23.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}

@@ -1,9 +1,15 @@
 html{
-  background: url("http://2.bp.blogspot.com/-ptohpDUBbbE/UJZmRw25rqI/AAAAAAABtnA/SGnPLnj0cQo/s1600/23.jpg");
+  background: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 body, html {
   font-size: small;
-  font-family: "Quattrocento Sans", sans-serif; }
+  font-family: "Quattrocento Sans", sans-serif;
+  color: #FFF;
+  text-shadow: 0 0 2px #000; }
 
 h1, h2, h3, h4, h5, h6, .heading {
   font-size: xx-large;
@@ -11,6 +17,12 @@ h1, h2, h3, h4, h5, h6, .heading {
 
 .heading {
   font-size: small; }
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);  }
 
 a, .red-text {
   color: #e60000; }

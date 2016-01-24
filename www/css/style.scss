@@ -15,11 +15,16 @@ $redText : #e60000;
 //CSS
 html{
   background: url("http://2.bp.blogspot.com/-ptohpDUBbbE/UJZmRw25rqI/AAAAAAABtnA/SGnPLnj0cQo/s1600/23.jpg");
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center;
 }
 
 body,html{
   font-size: $mainFontSize;
   font-family: $mainFont;
+  color: #FFF;
+  text-shadow: 0 0 2px #000;
 }
 
 h1,h2,h3,h4,h5,h6,.heading{
@@ -29,6 +34,13 @@ h1,h2,h3,h4,h5,h6,.heading{
 
 .heading{
   font-size: $mainFontSize;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 
 a, .red-text{
