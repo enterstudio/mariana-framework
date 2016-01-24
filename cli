@@ -171,10 +171,10 @@ function server($commands){
     (isset($commands[2]))?
         $port = $commands[2] :
         $port = 8000;
-
-    echo ("\n Server running at http://localhost:$port.\n To quit press CTRL + C");
-    return exec("php -S localhost:$port");
-
+    echo ("\n Server running at http://localhost:$port.\n To quit press CTRL + C");	
+    $command_1 = "php -S localhost:$port";
+	$command_2 = "start /max http://localhost:$port";
+	return exec($command_2."&& ".$command_1);
 }
 
 /**
