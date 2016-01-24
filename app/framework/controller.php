@@ -12,5 +12,6 @@ abstract class Controller{
 
     public function __construct(Array $array){
         $this->params = $array;
+
     }
 }

@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Contacts' => $baseDir . '/mvc/models/contacts.model.php',
     'Email' => $baseDir . '/app/framework/email/email.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -17,8 +16,7 @@ return array(
     'Mariana\\Framework\\Controller' => $baseDir . '/app/framework/controller.php',
     'Mariana\\Framework\\Database' => $baseDir . '/app/framework/orm/database.php',
     'Mariana\\Framework\\DatabaseManager\\DatabaseManager' => $baseDir . '/app/files/database/db_manager.php',
-    'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/app/framework/design-patterns/singleton.php',
-    'Mariana\\Framework\\MVC\\Sessions' => $baseDir . '/mvc/models/sessions.model.php',
+    'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/app/framework/Design-Patterns/singleton.php',
     'Mariana\\Framework\\Middleware' => $baseDir . '/app/framework/middleware.php',
     'Mariana\\Framework\\Model' => $baseDir . '/app/framework/orm/model.php',
     'Mariana\\Framework\\ORM\\MarianaORM' => $baseDir . '/app/framework/orm/marianaORM.php',
@@ -434,6 +432,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PihhTheOne' => $baseDir . '/mvc/controllers/pihh_the_one.controller.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',
@@ -472,7 +471,6 @@ return array(
     'SebastianBergmann\\ResourceOperations\\ResourceOperations' => $vendorDir . '/sebastian/resource-operations/src/ResourceOperations.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
-    'Tests' => $baseDir . '/mvc/models/test.model.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'Users' => $baseDir . '/mvc/models/users.model.php',
     'Validation' => $baseDir . '/mvc/middleware/validation.php',
