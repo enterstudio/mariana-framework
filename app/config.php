@@ -20,8 +20,8 @@ if(Config::get("mode") == "dev"){
     error_reporting(E_ALL);
 
     // set debug and log classes
-    define("DEBUG", 1);
-    define("LOG", 1);
+    ini_set("log_errors", 1);
+    ini_set("error_log", ROOT.DS."app".DS."files".DS."logs".DS."error.log");
 
 }else{
 

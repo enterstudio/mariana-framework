@@ -14,6 +14,7 @@ class TestController extends Controller{
 
 
         include_once(ROOT."/mvc/views/layout.html");
+
         /*
         $scope = array($to,$subject);
         $v = new View("layout.html");
