@@ -6,13 +6,19 @@ use Mariana\Framework\Config;
 # Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+ini_set('display_errors', 0);
+error_reporting(0);
+
 Config::set("website","http://pihh.rocks");
-Config::set("base-route","/framework/");
+Config::set("base-route",FRAMEWORK_ROOT);
 Config::set("mode",getenv("mode"));
 
-# Developer Settings vs Production Settings
+# Developer Settings Override production Settings
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(Config::get("mode") == "dev"){
+
+    Config::set("website","http://pihh.rocks");
 
     # SET ERROR REPORTING
     ini_set('display_errors', 1);
@@ -23,18 +29,13 @@ if(Config::get("mode") == "dev"){
     ini_set("log_errors", 1);
     ini_set("error_log", ROOT.DS."app".DS."files".DS."logs".DS."error.log");
 
-}else{
-
-    ini_set('display_errors', 0);
-    error_reporting(0);
 }
 
-# Database Driver.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Config::set("database-driver", "mysql"); // mysql or SQLite3
 
 # Database Connection Settings.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Config::set("database-driver", "mysql"); // mysql or SQLite3
 Config::set("database", array(
     "host" => $_ENV["DB_HOST"],
     "database" => $_ENV["DB_DATABASE"],

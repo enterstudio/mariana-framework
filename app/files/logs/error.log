@@ -1,1 +1,36 @@
 [24-Jan-2016 22:58:43 Europe/Berlin] PHP Notice:  Use of undefined constant force_error - assumed 'force_error' in C:\xampp\htdocs\mariana-mvc-framework\mariana-framework\mvc\controllers\test.controller.php on line 18
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Warning:  array_key_exists(): The first argument should be either a string or an integer in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 83
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Warning:  trim() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 24
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 109
+[25-Jan-2016 11:41:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php:116
+Stack trace:
+#0 C:\xampp\htdocs\mariana\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#1 C:\xampp\htdocs\mariana\mariana-framework\index.php(14): Mariana\Framework\App::run()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 116
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Warning:  array_key_exists(): The first argument should be either a string or an integer in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 83
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Warning:  trim() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 24
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 109
+[25-Jan-2016 11:57:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php:116
+Stack trace:
+#0 C:\xampp\htdocs\mariana\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#1 C:\xampp\htdocs\mariana\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 116
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Warning:  array_key_exists(): The first argument should be either a string or an integer in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 83
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Warning:  trim() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 24
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 28
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 109
+[25-Jan-2016 11:57:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php:116
+Stack trace:
+#0 C:\xampp\htdocs\mariana\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#1 C:\xampp\htdocs\mariana\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 116
+[25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(C:\xampp\htdocs\mariana\mariana-framework\mvc\views\layout.html): failed to open stream: No such file or directory in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16
+[25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'C:\xampp\htdocs\mariana\mariana-framework/mvc/views/layout.html' for inclusion (include_path='.;C:\xampp\php\PEAR') in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16

@@ -13,7 +13,7 @@ class TestController extends Controller{
         $subject = "teste";
 
 
-        include_once(ROOT."/mvc/views/layout.html");
+        include_once(ROOT."/mvc/views/layout.php");
 
         /*
         $scope = array($to,$subject);
