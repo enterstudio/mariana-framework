@@ -10,7 +10,7 @@ use Mariana\Framework\Config;
 ini_set('display_errors', 0);
 error_reporting(0);
 
-Config::set("website","http://pihh.rocks");
+Config::set("website",get_url());
 Config::set("base-route",FRAMEWORK_ROOT);
 Config::set("mode",getenv("mode"));
 

@@ -21,6 +21,7 @@ define('DS', DIRECTORY_SEPARATOR);
 
 # GET AUTOLOAD
 require_once(ROOT.DS."vendor".DS."autoload.php");
+require_once(ROOT.DS."app".DS."functions.php");
 
 # DEFINE USAGES
 use Mariana\Framework\Config;

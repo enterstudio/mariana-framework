@@ -34,3 +34,4 @@ Stack trace:
   thrown in C:\xampp\htdocs\mariana\mariana-framework\app\framework\router.php on line 116
 [25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(C:\xampp\htdocs\mariana\mariana-framework\mvc\views\layout.html): failed to open stream: No such file or directory in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16
 [25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'C:\xampp\htdocs\mariana\mariana-framework/mvc/views/layout.html' for inclusion (include_path='.;C:\xampp\php\PEAR') in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16
+[25-Jan-2016 18:38:54 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\mariana\mariana-framework\mariana on line 308
