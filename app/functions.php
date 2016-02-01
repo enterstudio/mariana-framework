@@ -8,8 +8,15 @@
  * usefull functions that don't quite belong to a specific class
  */
 
-function generate_random_string($length = false, $valid_chars = false){
 
+
+function generate_random_string($length = false, $valid_chars = false){
+    /**
+     * @param bool|false $length
+     * @param bool|false $valid_chars
+     * @return string
+     * @desc Generates a random string
+     */
     ($length) ? $length = $length : $length = 64;
     ($valid_chars) ? $valid_chars = $valid_chars : $valid_chars = "asdfghjklqwertyuiopzxcvbnm1234567890" ;
 
@@ -38,6 +45,12 @@ function generate_random_string($length = false, $valid_chars = false){
 }
 
 function get_url(){
+
+    /**
+     * @return string
+     * @desc gets current url
+     */
+
     $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
     $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
     $url .= $_SERVER["REQUEST_URI"];

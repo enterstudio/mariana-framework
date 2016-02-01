@@ -35,3 +35,134 @@ Stack trace:
 [25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(C:\xampp\htdocs\mariana\mariana-framework\mvc\views\layout.html): failed to open stream: No such file or directory in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16
 [25-Jan-2016 12:03:41 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'C:\xampp\htdocs\mariana\mariana-framework/mvc/views/layout.html' for inclusion (include_path='.;C:\xampp\php\PEAR') in C:\xampp\htdocs\mariana\mariana-framework\mvc\controllers\test.controller.php on line 16
 [25-Jan-2016 18:38:54 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\mariana\mariana-framework\mariana on line 308
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 28
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Warning:  array_key_exists(): The first argument should be either a string or an integer in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 83
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Warning:  trim() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 24
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 28
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 109
+[31-Jan-2016 12:54:59 Europe/Berlin] PHP Fatal error:  Class name must be a valid object or a string in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 116
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 28
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Warning:  array_key_exists(): The first argument should be either a string or an integer in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 83
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Warning:  trim() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 24
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 28
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Warning:  array_key_exists() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 109
+[31-Jan-2016 12:55:08 Europe/Berlin] PHP Fatal error:  Class name must be a valid object or a string in C:\xampp\htdocs\mariana-framework\app\framework\router.php on line 116
+[31-Jan-2016 14:25:16 Europe/Berlin] PHP Warning:  fsockopen() expects parameter 2 to be long, string given in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 34
+[31-Jan-2016 14:25:16 Europe/Berlin] PHP Notice:  Undefined variable: talk in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 66
+[31-Jan-2016 14:26:26 Europe/Berlin] PHP Warning:  fsockopen() expects parameter 2 to be long, string given in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 43
+[31-Jan-2016 14:26:26 Europe/Berlin] PHP Notice:  Undefined variable: talk in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 75
+[31-Jan-2016 20:19:34 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTimeZone::__construct(): Unknown or bad timezone ()' in C:\xampp\htdocs\mariana-framework\app\functions.php:29
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\functions.php(29): DateTimeZone->__construct('')
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): timestamp()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\functions.php on line 29
+[31-Jan-2016 20:20:16 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTimeZone::__construct(): Unknown or bad timezone ()' in C:\xampp\htdocs\mariana-framework\app\functions.php:31
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\functions.php(31): DateTimeZone->__construct('')
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): timestamp()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\functions.php on line 31
+[31-Jan-2016 21:02:36 Europe/Berlin] PHP Fatal error:  Call to undefined function Mariana\Framework\Time\Time() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[31-Jan-2016 21:02:51 Europe/Berlin] PHP Deprecated:  Non-static method Mariana\Framework\Time\Time::here() should not be called statically, assuming $this from incompatible context in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 13
+[31-Jan-2016 21:02:51 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Time\DateTime' not found in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 25
+[31-Jan-2016 21:03:27 Europe/Berlin] PHP Parse error:  syntax error, unexpected '::' (T_PAAMAYIM_NEKUDOTAYIM), expecting ',' or ';' in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[31-Jan-2016 21:04:25 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Time' not found in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 13
+[31-Jan-2016 21:07:56 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Time' not found in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 13
+[31-Jan-2016 21:09:27 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Time\DateTime' not found in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 25
+[31-Jan-2016 21:10:47 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Dating\DateTime' not found in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 26
+[31-Jan-2016 21:10:47 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Dating\DateTime' not found in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 26
+[31-Jan-2016 22:24:29 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Dating\DateTime' not found in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 26
+[31-Jan-2016 22:28:22 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Dating\Dating' not found in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[31-Jan-2016 22:30:23 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:56
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(56): DateTime->__construct(Object(DateTime))
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference('1454275756', 1454275823)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:31:02 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:56
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(56): DateTime->__construct(Object(DateTime))
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference('1454275756', 1454275862)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:31:37 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:56
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(56): DateTime->__construct(Object(DateTime))
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756, 1454275897)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:31:38 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:56
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(56): DateTime->__construct(Object(DateTime))
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756, 1454275898)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:34:21 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct() expects parameter 1 to be string, object given' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:56
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(56): DateTime->__construct(Object(DateTime))
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:35:34 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct(): Failed to parse time string (1454276134) at position 7 (1): Unexpected character' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:48
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(48): DateTime->__construct('1454276134')
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 48
+[31-Jan-2016 22:37:07 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct(): Failed to parse time string (1454276227) at position 7 (2): Unexpected character' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:50
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(50): DateTime->__construct('1454276227')
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 50
+[31-Jan-2016 22:37:08 Europe/Berlin] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTime::__construct(): Failed to parse time string (1454276228) at position 7 (2): Unexpected character' in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php:50
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php(50): DateTime->__construct('1454276228')
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\Time\Time->difference(1454275756)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(26): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(19): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 50
+[31-Jan-2016 22:38:55 Europe/Berlin] PHP Warning:  DateTime::diff() expects parameter 1 to be DateTimeInterface, integer given in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:38:55 Europe/Berlin] PHP Fatal error:  Call to a member function format() on boolean in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 57
+[31-Jan-2016 22:39:09 Europe/Berlin] PHP Warning:  DateTime::diff() expects parameter 1 to be DateTimeInterface, integer given in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 56
+[31-Jan-2016 22:39:09 Europe/Berlin] PHP Fatal error:  Call to a member function format() on boolean in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 57
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Warning:  explode() expects parameter 2 to be string, object given in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 59
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 63
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Undefined offset: 2 in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 64
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Undefined offset: 3 in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 65
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Undefined offset: 4 in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 66
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Undefined offset: 5 in C:\xampp\htdocs\mariana-framework\app\framework\time\Time.php on line 67
+[31-Jan-2016 22:46:35 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[31-Jan-2016 22:47:08 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[31-Jan-2016 22:47:33 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[31-Jan-2016 22:49:27 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16

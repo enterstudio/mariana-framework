@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Email' => $baseDir . '/app/framework/email/email.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -17,6 +16,7 @@ return array(
     'Mariana\\Framework\\Database' => $baseDir . '/app/framework/orm/database.php',
     'Mariana\\Framework\\DatabaseManager\\DatabaseManager' => $baseDir . '/app/files/database/db_manager.php',
     'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/app/framework/Design-Patterns/singleton.php',
+    'Mariana\\Framework\\Email\\Email' => $baseDir . '/app/framework/email/email.php',
     'Mariana\\Framework\\Middleware' => $baseDir . '/app/framework/middleware.php',
     'Mariana\\Framework\\Model' => $baseDir . '/app/framework/orm/model.php',
     'Mariana\\Framework\\ORM\\MarianaORM' => $baseDir . '/app/framework/orm/marianaORM.php',
@@ -28,6 +28,7 @@ return array(
     'Mariana\\Framework\\Session\\Flash' => $baseDir . '/app/framework/session/flash.php',
     'Mariana\\Framework\\Session\\LifeTime' => $baseDir . '/app/framework/session/lifetime.php',
     'Mariana\\Framework\\Session\\Session' => $baseDir . '/app/framework/session/session.php',
+    'Mariana\\Framework\\Time\\Time' => $baseDir . '/app/framework/time/Time.php',
     'Mariana\\Framework\\View' => $baseDir . '/app/framework/view.php',
     'MyLogPHP' => $baseDir . '/app/framework/log.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
@@ -432,7 +433,6 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
-    'Pihh' => $baseDir . '/mvc/controllers/pihh.controller.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',
