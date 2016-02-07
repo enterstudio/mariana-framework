@@ -22,11 +22,11 @@ use Mariana\Framework\Design\Singleton;
 class Criptography extends Singleton{
 
     private static $mode = 'MCRYPT_BLOWFISH';
-    private static $key64 = "";
+    private static $key64 = '';
 
     public static function setKey(){
-        if(static::$key64 == "") {
-            static::$key64 = $_ENV["KEY64"];
+        if(static::$key64 == '') {
+            static::$key64 = $_ENV['KEY64'];
         }
     }
 
@@ -73,7 +73,7 @@ class Criptography extends Singleton{
     public static function hash($string, $method = false){
         if($method == false){
             $options = array(
-                "cost"  =>  10
+                'cost'  =>  10
             );
             return password_hash($string, PASSWORD_BCRYPT, $options);
         }

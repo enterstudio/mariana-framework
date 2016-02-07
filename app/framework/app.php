@@ -5,9 +5,12 @@ use Mariana\Framework\Security\Environment;
 use Mariana\Framework\Session\Session;
 
 class App{
-
-    private $router;
-
+    /**
+     * Class App
+     * @package Mariana\Framework
+     * @desc Bootstrap for the framework
+     */
+    
     public static function run(){
         # Session start
         Session::start();
@@ -16,8 +19,8 @@ class App{
         Environment::setup();
 
         # Load dependencys
-        require_once(ROOT . DS . "app" . DS . "routes.php");
-        require_once(ROOT . DS . "app" . DS . "config.php");
+        require_once(ROOT . DS . 'app' . DS . 'routes.php');
+        require_once(ROOT . DS . 'app' . DS . 'config.php');
 
         # Connect
         Database::$connection;

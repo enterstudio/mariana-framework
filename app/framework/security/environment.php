@@ -16,21 +16,21 @@ class Environment extends Singleton{
     private static $setup = 0;
 
     public static function setup(){
-        self::$env = ROOT."/.env";
+        self::$env = ROOT.'/.env';
         if(self::$setup !== 1){
             self::$setup = 1;
 
             $env = file(self::$env);
             foreach($env as $line){
                 //  Remover comentários:
-                $line = strpos($line, "#") ? substr($line, 0, strpos($line, "#")) : $line;
+                $line = strpos($line, '#') ? substr($line, 0, strpos($line, '#')) : $line;
 
                 //  Caso não esteja vazio: POW
                 if(strlen(trim($line))>0){
 
                     //  Meter em env
                     putenv (trim($line));
-                    $newEnvVar = explode("=",$line);
+                    $newEnvVar = explode('=',$line);
                     //  Meter em $_ENV
                     if(isset($newEnvVar[1])) {
                         $key = trim($newEnvVar[0]);

@@ -8,22 +8,20 @@ use Mariana\Framework\View;
 class TestController extends Controller{
 
     public function index(){
-        $end = time();
-        $t = new Mariana\Framework\Time\Time();
-        $t = $t->humanDifference(2087);
 
 
-
-        echo $t;
 
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
         $e = new Mariana\Framework\Email\Email();
-        $e->SendMail("teste@pihh.rocks",$to,$subject,"lorem ipsum");
-        include_once(ROOT."/mvc/views/layout.php");
+        //$e->SendMail("teste@pihh.rocks",$to,$subject,"lorem ipsum");
+        //include_once(ROOT."/mvc/views/layout.php");
 
+        $v = new View('layout');
+        Log::store('security','teste se isto está a fazer o log como deve de ser',true);
 
+        $m = new Memcache;
         /*
         $scope = array($to,$subject);
         $v = new View("layout.html");

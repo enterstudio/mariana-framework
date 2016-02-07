@@ -1,11 +1,5 @@
 <?php namespace Mariana\Framework\Time;
 
-/**
- * Created by PhpStorm.
- * User: filipe_2
- * Date: 1/31/2016
- * Time: 7:26 PM
- */
 
 class Time{
 

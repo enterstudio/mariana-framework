@@ -166,3 +166,33 @@ Stack trace:
 [31-Jan-2016 22:47:08 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
 [31-Jan-2016 22:47:33 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
 [31-Jan-2016 22:49:27 Europe/Berlin] PHP Catchable fatal error:  Object of class DateInterval could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[03-Feb-2016 21:05:45 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'use' (T_USE), expecting identifier (T_STRING) or \\ (T_NS_SEPARATOR) or '{' in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 9
+[03-Feb-2016 21:06:19 Europe/Berlin] PHP Notice:  Undefined property: Mariana\Framework\Email\Email::$SmtpServer in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 40
+[03-Feb-2016 21:06:19 Europe/Berlin] PHP Notice:  Undefined property: Mariana\Framework\Email\Email::$PortSMTP in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 40
+[03-Feb-2016 21:06:19 Europe/Berlin] PHP Warning:  fsockopen(): unable to connect to :0 (Failed to parse address &quot;&quot;) in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 40
+[03-Feb-2016 21:06:19 Europe/Berlin] PHP Notice:  Undefined variable: talk in C:\xampp\htdocs\mariana-framework\app\framework\email\email.php on line 72
+[03-Feb-2016 21:06:42 Europe/Berlin] PHP Fatal error:  Call to undefined method Mariana\Framework\Email\Email::SendMail() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 23
+[03-Feb-2016 21:07:33 Europe/Berlin] PHP Fatal error:  Call to undefined method Mariana\Framework\Email\Email::SendMail() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 23
+[03-Feb-2016 21:07:59 Europe/Berlin] PHP Notice:  Undefined variable: t in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 14
+[03-Feb-2016 21:22:49 Europe/Berlin] PHP Notice:  Use of undefined constant FRAMEWORK_ROOT - assumed 'FRAMEWORK_ROOT' in C:\xampp\htdocs\mariana-framework\mvc\views\layout.php on line 6
+[03-Feb-2016 21:22:52 Europe/Berlin] PHP Notice:  Use of undefined constant FRAMEWORK_ROOT - assumed 'FRAMEWORK_ROOT' in C:\xampp\htdocs\mariana-framework\mvc\views\layout.php on line 6
+[03-Feb-2016 21:23:13 Europe/Berlin] PHP Notice:  Use of undefined constant FRAMEWORK_ROOT - assumed 'FRAMEWORK_ROOT' in C:\xampp\htdocs\mariana-framework\mvc\views\layout.php on line 6
+[07-Feb-2016 00:42:33 Europe/Berlin] PHP Warning:  include_once(C:\xampp\htdocs\mariana-framework): failed to open stream: Permission denied in C:\xampp\htdocs\mariana-framework\app\framework\view.php on line 42
+[07-Feb-2016 00:42:33 Europe/Berlin] PHP Warning:  include_once(): Failed opening '' for inclusion (include_path='.;C:\xampp\php\PEAR') in C:\xampp\htdocs\mariana-framework\app\framework\view.php on line 42
+[07-Feb-2016 01:02:13 Europe/Berlin] PHP Fatal error:  Constructor Log::log() cannot be static in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 75
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_REAL_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 61
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_CLIENT_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 62
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_FORWARDED_FOR in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 63
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_REAL_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 61
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_CLIENT_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 62
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_FORWARDED_FOR in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 63
+[07-Feb-2016 01:03:06 Europe/Berlin] PHP Notice:  Undefined offset: 3 in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 72
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_REAL_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 58
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_CLIENT_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 59
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_FORWARDED_FOR in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 60
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_REAL_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 58
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_CLIENT_IP in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 59
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined index: HTTP_X_FORWARDED_FOR in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 60
+[07-Feb-2016 01:10:06 Europe/Berlin] PHP Notice:  Undefined offset: 3 in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 69
+[07-Feb-2016 01:18:38 Europe/Berlin] PHP Notice:  Undefined offset: 3 in C:\xampp\htdocs\mariana-framework\app\framework\log.php on line 73
+[07-Feb-2016 02:09:42 Europe/Berlin] PHP Fatal error:  Class 'Memcache' not found in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 24

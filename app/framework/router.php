@@ -53,8 +53,8 @@ class Router{
     }
 
     public static function remakeUri(){
-        self::$uri = $_SERVER["REQUEST_URI"];
-        self::$uri = ltrim($_SERVER['REQUEST_URI'],Config::get("base-route"));
+        self::$uri = htmlspecialchars($_SERVER["REQUEST_URI"]);
+        self::$uri = ltrim(self::$uri,Config::get("base-route"));
 
         # Reformula��o do uri;
         if (stripos(self::$uri, "/") === 0) {}else{self::$uri = "/".self::$uri;}
@@ -100,7 +100,7 @@ class Router{
     public static function route(){
 
         self::remakeUri();
-        self::$request = $_SERVER["REQUEST_METHOD"];
+        self::$request = htmlspecialchars($_SERVER["REQUEST_METHOD"]);
 
         $mvc = self::compareRequest();
 

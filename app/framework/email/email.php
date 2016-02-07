@@ -10,37 +10,34 @@ use Mariana\Framework\Config;
 
 class Email
 {
-
-    private $SmtpServer;
-    private $SmtpUser;
-    private $SmtpPass;
-    private $SmtpPort;
-    private $from;
-    private $to;
-    private $subject;
-    private $body;
-
-    private function config($from, $to, $subject, $body)
+/*
+    function config($SmtpServer, $SmtpPort, $SmtpUser, $SmtpPass, $from, $to, $subject, $body)
     {
 
-        $this->SmtpServer = Config::get("email")["smtp-server"];
-        $this->SmtpUser = base64_encode(Config::get("email")["email-login"]);
-        $this->SmtpPass = base64_encode(Config::get("email")["email-password"]);
-        $this->SmtpPort = Config::get("email")["port"];
+        $this->SmtpServer = $SmtpServer;
+        $this->SmtpUser = base64_encode($SmtpUser);
+        $this->SmtpPass = base64_encode($SmtpPass);
         $this->from = $from;
         $this->to = $to;
 
         $this->subject = $subject;
         $this->body = $body;
 
+
+        if ($SmtpPort == "") {
+            $this->PortSMTP = 25;
+        } else {
+            $this->PortSMTP = $SmtpPort;
+        }
+
+
     }
 
 
-    public function SendMail($from, $to, $subject,$body)
+    function SendMail()
     {
-        $this->config($from,$to,$subject,$body);
 
-        if ($SMTPIN = fsockopen($this->SmtpServer, $this->SmtpPort)) {
+        if ($SMTPIN = fsockopen($this->SmtpServer, $this->PortSMTP)) {
 
             fputs($SMTPIN, "EHLO " . $this->SmtpServer . "\r\n");
             $talk["hello"] = fgets($SMTPIN, 1024);
@@ -76,5 +73,5 @@ class Email
 
 
     }
-
+*/
 }

@@ -11,7 +11,7 @@ abstract class Singleton
 
     public function __wakeup()
     {
-        throw new Exception("Cannot Unserialize Singleton");
+        throw new Exception('Cannot Unserialize Singleton');
     }
 
     public static function getInstance()

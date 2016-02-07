@@ -12,13 +12,20 @@ class Cookie {
     const OneYear = 31536000;
     const Lifetime = -1; // 2030-01-01 00:00:00
 
+    static public function clean($var){
+        return htmlspecialchars($var);
+    }
+
     static public function get($name, $default = '')
     {
+        $name = self::clean($name);
         return (isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default);
     }
 
     static public function set($name, $value, $expiry = self::OneYear, $path = '/', $domain = false)
     {
+        $name = self::clean($name);
+        $value = self::clean($value);
         $retval = false;
         if (!headers_sent())
         {
@@ -37,6 +44,13 @@ class Cookie {
                 $_COOKIE[$name] = $value;
         }
         return $retval;
+    }
+
+    static public function display(){
+        if(isset($_COOKIE)) {
+            return htmlspecialchars(json_encode($_COOKIE));
+        }
+        return false;
     }
 
     static public function delete($name, $path = '/', $domain = false, $remove_from_global = false)

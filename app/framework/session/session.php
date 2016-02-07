@@ -18,18 +18,18 @@ class Session extends Singleton{
     }
 
     public static function set($key, $value){
-        $_SESSION[$key] = $value;
+        $_SESSION[htmlspecialchars($key)] = htmlspecialchars($value);
     }
 
     public function get($key, $arrayKey = false){
 
         if($arrayKey == true){
             if(isset($_SESSION[$key][$arrayKey])){
-                return $_SESSION[$key][$arrayKey];
+                return htmlspecialchars($_SESSION[$key][$arrayKey]);
             }
         }else{
             if(isset($_SESSION[$key])){
-                return $_SESSION[$key];
+                return htmlspecialchars($_SESSION[$key]);
             }
         }
         return false;
@@ -44,7 +44,7 @@ class Session extends Singleton{
 
     public static function display(){
         if(isset($_SESSION)) {
-            return $_SESSION;
+            return htmlspecialchars(json_encode($_SESSION));
         }
         return false;
     }
