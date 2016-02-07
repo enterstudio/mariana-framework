@@ -12,6 +12,12 @@ Config::set('website',get_url());
 Config::set('base-route',FRAMEWORK_ROOT);
 Config::set('mode',getenv('mode'));
 
+# Language Settings
+Config::set('language', array(
+    'default-language'  => 'en',
+    'allowed-languages' => array('en','pt')
+));
+
 # Developer Settings Override production Settings
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if(Config::get('mode') == 'dev'){
@@ -23,16 +29,14 @@ if(Config::get('mode') == 'dev'){
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    // set debug and log classes
+    # set debug and log
     ini_set('log_errors', 1);
     ini_set('error_log', ROOT.DS.'app'.DS.'files'.DS.'logs'.DS.'error.log');
-
 }
 
 
 # Database Connection Settings.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 Config::set('database-driver', 'mysql'); // mysql or SQLite3
 Config::set('database', array(
     'host' => $_ENV['DB_HOST'],
@@ -42,6 +46,18 @@ Config::set('database', array(
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => ''
+));
+
+# Session configuration
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Config::set('session',array(
+    'https' => true,
+    'user_agent' =>  true,
+    'lifetime'  =>  7200, //seconds
+    'cookie_lifetime' => 0, //[(0:Clear the session cookies on browser close)
+    'refresh_session' =>  600, //regenerate Session Id
+    'table'         =>'sessions',
+    'salt'          => 'salt'
 ));
 
 # Email Configuration
@@ -57,19 +73,25 @@ Config::set('email', array(
     'charset'       =>  'windows-1251'
 ));
 
+# File Upload Configuration
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Config::set('file-upload', array(
+    'allowed-file-types'        =>  array(
+        'text/plain',
+    ),
+    'allowed-file-extensions'   =>  array(
+        'txt',
+    ),
+    'max-file-size'             =>  2097152 // 2mb
+));
+
+# Cache Settings
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Config::set('cache-timeout', 60);
+
 # Security Settings
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set('hash', getenv('key'));
 Config::set('security-report-email-address', getenv('SECURITY_REPORT_MAIL'));
 
-# Session configuration
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Config::set('session',array(
-    'https' => true,
-    'user_agent' =>  true,
-    'lifetime'  =>  7200, //seconds
-    'cookie_lifetime' => 0, //[(0:Clear the session cookies on browser close)
-    'refresh_session' =>  600, //regenerate Session Id
-    'table'         =>'sessions',
-    'salt'          => 'salt'
-));
+

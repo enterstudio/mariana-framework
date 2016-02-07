@@ -18,10 +18,13 @@ class Session extends Singleton{
     }
 
     public static function set($key, $value){
-        $_SESSION[htmlspecialchars($key)] = htmlspecialchars($value);
+        if(!is_array($value)){
+            htmlspecialchars($value);
+        }
+        $_SESSION[htmlspecialchars($key)] = $value;
     }
 
-    public function get($key, $arrayKey = false){
+    public static function get($key, $arrayKey = false){
 
         if($arrayKey == true){
             if(isset($_SESSION[$key][$arrayKey])){

@@ -9,8 +9,12 @@ class TestController extends Controller{
 
     public function index(){
 
+        echo '<pre>' , print_r(\Mariana\Framework\Session\Flash::showMessages()), '</pre>';
+        echo '<pre>', print_r($_FILES), '</pre>';
+        $v = new View('upload');
 
 
+        /*
         $to = "filipemotasa@hotmail.com";
         $subject = "teste";
 
@@ -19,9 +23,16 @@ class TestController extends Controller{
         //include_once(ROOT."/mvc/views/layout.php");
 
         $v = new View('layout');
-        Log::store('security','teste se isto está a fazer o log como deve de ser',true);
+        //Log::store('security','teste se isto está a fazer o log como deve de ser',true);
 
-        $m = new Memcache;
+
+        $c = new \Mariana\Framework\Cache\Cache();
+
+        if($c->isCache('feedzz')){
+           $c->write('feedzz' , 'xyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
+        }
+        echo $c->read('feedzz');
+
         /*
         $scope = array($to,$subject);
         $v = new View("layout.html");
@@ -164,6 +175,8 @@ class TestController extends Controller{
     }
 
     public function post_test(){
-        print_r(Users::all());
+        $u = new Mariana\Framework\Upload\Upload();
+        $u->single('file');
+        $this->index();
     }
 }
