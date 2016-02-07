@@ -45,3 +45,28 @@ Stack trace:
 [07-Feb-2016 21:29:02 Europe/Berlin] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana-framework\app\framework\session\session.php on line 21
 [07-Feb-2016 21:29:53 Europe/Berlin] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in C:\xampp\htdocs\mariana-framework\app\framework\session\session.php on line 21
 [07-Feb-2016 21:39:07 Europe/Berlin] PHP Catchable fatal error:  Argument 1 passed to Mariana\Framework\Session\Flash::setMessages() must be of the type array, string given, called in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 100 and defined in C:\xampp\htdocs\mariana-framework\app\framework\session\flash.php on line 15
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 142
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: type in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 143
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 142
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: type in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 143
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 142
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: type in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 143
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 142
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: type in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 143
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 142
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: type in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 143
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
+[07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146

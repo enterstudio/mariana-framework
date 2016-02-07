@@ -176,7 +176,7 @@ class TestController extends Controller{
 
     public function post_test(){
         $u = new Mariana\Framework\Upload\Upload();
-        $u->single('file');
+        $u->multiple('files');
         $this->index();
     }
 }

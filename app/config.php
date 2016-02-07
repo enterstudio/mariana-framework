@@ -74,13 +74,18 @@ Config::set('email', array(
 ));
 
 # File Upload Configuration
+# Good source: http://www.sitepoint.com/web-foundations/mime-types-complete-list/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Config::set('file-upload', array(
     'allowed-file-types'        =>  array(
-        'text/plain',
+        'text/plain', 'image/jpeg', 'image/bmp',
+        'image/x-windows-bmp', 'image/gif', 'image/png',
+        'application/pdf', 'application/x-compressed', 'application/x-zip-compressed',
+        'application/zip', 'multipart/x-zip'
     ),
-    'allowed-file-extensions'   =>  array(
-        'txt',
+    'allowed-file-extensions' =>  array(
+        'txt', 'jpeg', 'jpg', 'bmp', 'gif',
+        'png', 'pdf', 'zip', 'rar'
     ),
     'max-file-size'             =>  2097152 // 2mb
 ));
