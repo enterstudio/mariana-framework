@@ -9,7 +9,6 @@
 namespace Mariana\Framework\Upload;
 
 
-class Image
-{
+class ImageUpload extends Upload {
 
 }

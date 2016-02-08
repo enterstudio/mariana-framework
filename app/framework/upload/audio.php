@@ -9,7 +9,7 @@
 namespace Mariana\Framework\Upload;
 
 
-class audio
+class AudioUpload extends Upload
 {
 
 }

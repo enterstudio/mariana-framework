@@ -9,7 +9,7 @@
 namespace Mariana\Framework\Upload;
 
 
-class video
+class VideoUpload extends Upload
 {
 
 }

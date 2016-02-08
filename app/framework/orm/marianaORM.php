@@ -60,7 +60,24 @@ class MarianaORM extends Database{
         return $object;
     }   //  Get database item by primary key Done and tested
 
-    public function delete(){}  //  UNSTARTED
+    public static function delete($primary_key_value){
+        // Gets Database item by primary
+        $table = self::table();
+        $object = new $table();
+        // Override table name if set on model
+        $table = $object->table;
+
+        // Check if table is allowed to be injected
+        $object->query = "DELETE FROM $table WHERE $object->primary = ? ";
+        $object->data[$object->primary] = $primary_key_value;
+
+        $stmt = self::getConnection()->prepare($object->query);
+        $stmt->bindParam(1,$primary_key_value);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
 
     public static function all(){
 

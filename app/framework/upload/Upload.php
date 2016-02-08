@@ -114,6 +114,7 @@ class Upload
 
             # Move the uploaded file
             if(move_uploaded_file($this->file_tmp, $destination)){
+                $this->reset();
                 return $destination;
             }else{
                 Flash::setMessages(array(Lang::get(4)));
@@ -161,6 +162,15 @@ class Upload
         }
     }
 
+    public function reset(){
+        $this->file_size='';
+        $this->file_name='';
+        $this->file_ext='';
+        $this->file_tmp='';
+        $this->file_type='';
+        $this->error_count = 0;
+        $this->error_messages = array();
+    }
 }
 
 ?>
