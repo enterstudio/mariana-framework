@@ -1,9 +1,14 @@
 {
     "autoload": {
+        "psr-4":{
+            "app\\": "app"
+        },
         "classmap":
         ["app","mvc"]
     },
     "require": {
-        "phpunit/phpunit": "^5.1"
+        "phpunit/phpunit": "^5.1",
+        "Mockery/Mockery": ">=0.7.2",
+        "phpunit/dbunit": ">1.2"
     }
 }

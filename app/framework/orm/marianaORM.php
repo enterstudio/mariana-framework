@@ -17,29 +17,28 @@ use Mariana\Framework\Database;
 
 class MarianaORM extends Database{
 
-    private $query;           //  QUERY string
+    /** VARS  **/
+
     public $data = array();  //  QUERY input data -> array["column"] = "value"
+    public $obj;                //  NEEDED
+
     protected $primary = "id";  //  PRIMARY KEY: needed for several stuff, id is primary by default
     protected $db;              //  DATABASE CONNECTION
     protected $table;           //  TABLE NAME -> DEFAULT = get_called_class();
-    public $obj;                //  NEEDED
     protected $offsetValue = "";//  OFFSET -> offsets need to be injected on the end of the query, so just leave here a key to it.
-
     protected $columnList = array(); // All Columns of the table that can be used in a query;
-    private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
+
     private $field_table;
     private $field_value;
-
     private $dbTransaction = false;
     private $setCount = false;
+    private $query;           //  QUERY string
+    private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
 
-    //  CONSTRUCTED AT MODEL
-
-    //  STATIC METHODS
+    /**  STATIC METHODS  **/
     public static function table(){
         return get_called_class();
     }
-
     public static function find($primary_key_value){
         // Gets Database item by primary
         $table = self::table();
@@ -59,7 +58,6 @@ class MarianaORM extends Database{
 
         return $object;
     }   //  Get database item by primary key Done and tested
-
     public static function delete($primary_key_value){
         // Gets Database item by primary
         $table = self::table();
@@ -78,7 +76,6 @@ class MarianaORM extends Database{
         }
         return false;
     }
-
     public static function all(){
 
         $db = self::getConnection();
@@ -101,9 +98,7 @@ class MarianaORM extends Database{
         return $obj;
     }
 
-
-    //  PARAMETERIC METHODS
-
+    /**  PARAMETERIC METHODS  **/
     public static function where($column,$valueOrSelector, $valueIfSelector = false){
         //PDO ESCAPE;
 
@@ -133,7 +128,6 @@ class MarianaORM extends Database{
 
         return $object;
     }   // Done and tested
-
     public function also($column, $valueOrSelector, $valueIfSelector = false){
         // AND FUNCTION
 
@@ -162,7 +156,6 @@ class MarianaORM extends Database{
 
         return $this;
     }   // Done and tested
-
     public function asc($column=false){
 
         if($column !== false){
@@ -175,7 +168,6 @@ class MarianaORM extends Database{
         $this->query = $this->query." ORDER BY ".$column." ASC ";
         return $this;
     }   // Done and tested
-
     public function desc($column = false){
 
         if($column !== false){
@@ -188,7 +180,6 @@ class MarianaORM extends Database{
         $this->query = $this->query." ORDER BY ".$column." DESC ";
         return $this;
     }   // Done and tested
-
     public function offset($many = false){
         // Offsetvalue tem de ser no fim do query
         if(is_numeric($many)){
@@ -197,7 +188,7 @@ class MarianaORM extends Database{
         return $this;
     }   // Done and tested
 
-    //  RELATIONSHIPS
+    /**  RELATIONSHIPS  **/
     public function hasOne($class, $reference){
 
         // One user has one item
@@ -222,7 +213,6 @@ class MarianaORM extends Database{
 
         return $newProperty;
     }   // Done and tested
-
     public function hasMany($class, $reference){
 
         // One user has one item
@@ -249,48 +239,23 @@ class MarianaORM extends Database{
         return $newProperty;
         // Done and tested
     }   // tested and done
-
-    public function manyHaveOne($class, $reference){
-        $i = 1;
-        foreach($this->obj as $single){
-
-            $obj = new $class();
-
-            $query = "SELECT * FROM $obj->table WHERE $reference = ? ";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(1 , $this->obj->{$this->primary});
-            $stmt->execute();
-
-            $newProperty = $stmt->fetch(\PDO::FETCH_OBJ);
-
-            // dar o nome contactos á propriedade contactos do objecto.
-            $e = new \Exception();
-            $trace = $e->getTrace();
-            $last_call = strtolower($trace[1]["function"]);
-            $newPropertyName = $last_call;
-
-            // Adicionar propriedade ao objecto
-            $single->{$newPropertyName} = $newProperty;
-        }
-
-        return $this;
-    }   //   Not working
-
-    public function manyHaveMany($class, $reference){}
-
     public function join(Array $condition = array(), $direction = false ){
         // Junta logo na foreign USING
         // Direction inner, outer, left , left outer, natural, right , right outer;
     }
-
     public function joinDescription ($column, $value, $selector = false){
 
     }
 
-    //  CALLER METHODS
+    /**  CALLER METHODS  **/
     public function get($limit = false){
 
         try {
+
+            //  COUNT
+            if($this->setCount){
+                $this->query = str_replace('*', 'count(*)', $this->query);
+            }
 
             //  LIMIT
             if ($limit !== false && is_numeric($limit)) {
@@ -298,6 +263,7 @@ class MarianaORM extends Database{
             } else {
                 $limit = "";
             }
+
             //  OFFSET
             $this->query = $this->query . $limit . $this->offsetValue;
 
@@ -319,21 +285,6 @@ class MarianaORM extends Database{
             //}
             $stmt->execute();
 
-            /*
-            // SET TRANSACTION IF NEEDED
-            if($this->dbTransaction){
-                $this->db->beginTransaction();
-            }
-
-            if($this->dbTransaction){
-                $this->db->commit();
-            }
-
-            if($this->setTransaction){
-                $this->db->rollback();
-            }
-
-            */
             $this->obj = (object)$stmt->fetchAll(\PDO::FETCH_OBJ);
             return $this;
 
@@ -345,7 +296,6 @@ class MarianaORM extends Database{
         }
 
     }   // Done and tested
-
     public function save(){
         $values =  $this->data;
         $filtered = null;   // Armazena as colunas
@@ -399,18 +349,15 @@ class MarianaORM extends Database{
         }
 
     }    // Updates or inserts something // Done and tested
-
     public function saveAndGetId(){
         $this->save();
         return $this->id;
     }    // Saves and gets the id // Done and tested
-
     public function first(){
 
         $this->get(1);
         return $this;
     }   // Done and tested
-
     public function last($column = false){
 
         $this->desc($column);
@@ -419,30 +366,28 @@ class MarianaORM extends Database{
 
     } // Done and tested
 
-    //  PARSING METHODS
+    /**  PARSING METHODS  **/
     public function toArray(){
         return json_decode(json_encode($this->obj),TRUE);
     }
-
     public function toJSON(){
         return json_encode($this->obj);
     }
 
-    //  OTHER METHODS
+    /**  OTHER METHODS  **/
     public function count(){
         $this->setCount = true;
     }
-
     public function setTransaction(){
         $this->dbTransaction = true;
     }
 
-    //  SAFETY METHODS
-    /*
-     * If empty @columnList you can put anything on the query.
-     * Something I don't advice.
-     */
+    /**  SAFETY METHODS  **/
     public function checkColumnList($column){
+        /**
+         * If empty @columnList you can put anything on the query.
+         * Something I don't advice.
+         */
         if(sizeof($this->columnList) > 0) {
             if (!in_array($column, $this->columnList)) {
                 //echo "Passando no not in array";
@@ -456,7 +401,6 @@ class MarianaORM extends Database{
             "field_value" => ":".$column
         );
     }   // Done and tested - Prevents sql injection
-
     public function transaction(){
         $this->setTransaction = true;
     }
