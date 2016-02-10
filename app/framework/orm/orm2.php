@@ -10,7 +10,7 @@ use Mariana\Framework\Database;
 
 class Orm {
 
-
+    public $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
 
     private $select;
     private $count;
@@ -19,8 +19,9 @@ class Orm {
     private $limit;
     private $offset;
     private $where;
+    private $asc;
+    private $desc;
     private $transaction;
-    private static $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
 
     protected $data;
     protected $primary;                 //  PRIMARY KEY: needed for several stuff, id is primary by default
@@ -44,6 +45,8 @@ class Orm {
         $this->primary = 'id';
         $this->where = false;
         $this->transaction = false;
+        $this->asc = '';
+        $this->desc = '';
     }
 
     /** SAFETY FUNCTIONS  */
@@ -67,6 +70,24 @@ class Orm {
     }
     public function offset($number){
         $this->offset = intval($number);
+    }
+    public function desc($column = false){
+        if($column == false){
+            $column = $this->primary;
+        }
+        $this->desc = $this->escape($column);
+    }   // Done and tested
+    public function transaction(){
+        $this->transaction = true;
+    }   // Done and tested
+    public function order($column = false){
+        if($column == false){
+            $column = $this->primary;
+        }
+        $this->orderBy = $column;
+    }   // Done and tested
+    public function all(){
+        $this->limit = false;
     }
 
     /**  STATIC METHODS  **/
@@ -135,10 +156,22 @@ class Orm {
         $object = self::table();
         $object = new $object;
 
+        // SELECTOR CHECK
+        if($valueIfSelector !== false){
+            $selector = "=";
+            if(in_array(trim($valueIfSelector),$object->allowed_select_values)){
+                $selector = $valueOrSelector;
+            }
+            $value = $valueIfSelector;
+        }else{
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
+
         $object->where = array();
         $column = $object->db->quote($column);
 
-        array_push($object->where,array($column,$valueIfSelector,$valueIfSelector));
+        array_push($object->where,array($column,$selector,$value));
 
         return $object;
         /*
@@ -172,6 +205,81 @@ class Orm {
         */
     }   // Done and tested
 
+    /** OTHER METHODS */
+    public function also($column,$valueOrSelector, $valueIfSelector = false){
+        // SELECTOR CHECK
+        if($valueIfSelector !== false){
+            $selector = "=";
+            if(in_array(trim($valueIfSelector),$this->allowed_select_values)){
+                $selector = $valueOrSelector;
+            }
+            $value = $valueIfSelector;
+        }else{
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
+
+        $column = $this->db->quote($column);
+        array_push($this->where,array($column,$selector,$value));
+    }
+    public function get($limit = false){
+
+        try {
+
+            //  COUNT
+            if($this->setCount){
+                $this->query = str_replace('*', 'count(*)', $this->query);
+            }
+
+            //  LIMIT
+            if ($limit !== false && is_numeric($limit)) {
+                $limit = " LIMIT " . $limit . " ";
+            } else {
+                $limit = "";
+            }
+
+            //  OFFSET
+            $this->query = $this->query . $limit . $this->offsetValue;
+
+
+            //  RUN THE QUERY
+            $stmt = $this->db->prepare($this->query);
+
+            //  IF QUERY HAS DYNAMIC PARAMS
+            //  For some reason, while looping this, the $pair is getting a copy of the last one.
+            //  Pushing it into an array makes it update
+            //if (sizeof($this->params) > 0) {
+            $i = 0;
+            $array = array();
+            foreach ($this->data as $key => $pair) {
+                $array[$i] = $pair;
+                $stmt->bindParam($key, $array[$i]);
+                $i++;
+            }
+            //}
+            $stmt->execute();
+
+            $this->obj = (object)$stmt->fetchAll(\PDO::FETCH_OBJ);
+            return $this;
+
+        } catch (\Exception $e){
+
+
+            echo $e;
+            return false;
+        }
+
+    }   // Done and tested
+    public function first(){
+        $this->get(1);
+        return $this;
+    }   // Done and tested
+    public function last($column = false){
+        $this->desc($column);
+        $this->get(1);
+        return $this;
+
+    } // Done and tested
 
 }
 
