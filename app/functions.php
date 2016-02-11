@@ -8,6 +8,7 @@
  * usefull functions that don't quite belong to a specific class
  */
 
+
 function get_browser_language(){
     $lang = strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
     return $lang;

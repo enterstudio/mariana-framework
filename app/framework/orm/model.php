@@ -6,8 +6,6 @@ abstract class Model extends MarianaORM{
 
     public $data = array();
 
-    //protected $teste = "teste";
-
     function __construct($data = false){
         $this->db = self::getConnection();
         $this->table = self::table();

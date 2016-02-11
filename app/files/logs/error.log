@@ -70,3 +70,83 @@ Stack trace:
 [07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: tmp_name in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 144
 [07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: error in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 145
 [07-Feb-2016 23:51:39 Europe/Berlin] PHP Notice:  Undefined index: size in C:\xampp\htdocs\mariana-framework\app\framework\upload\Upload.php on line 146
+[11-Feb-2016 14:12:00 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:12:34 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 79
+[11-Feb-2016 14:13:04 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 81
+[11-Feb-2016 14:13:16 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 81
+[11-Feb-2016 14:13:53 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:14:27 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:14:42 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:15:01 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:15:17 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 77
+[11-Feb-2016 14:15:49 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 78
+[11-Feb-2016 14:16:02 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 78
+[11-Feb-2016 14:16:11 Europe/Berlin] PHP Fatal error:  Call to a member function quote() on string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 78
+[11-Feb-2016 14:19:16 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 352
+[11-Feb-2016 14:19:42 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 351
+[11-Feb-2016 14:52:49 Europe/Berlin] PHP Fatal error:  Undefined class constant 'FECTH_OBJ' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 312
+[11-Feb-2016 14:55:09 Europe/Berlin] PHP Fatal error:  Undefined class constant 'FECTH_ASSOC' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 312
+[11-Feb-2016 14:55:18 Europe/Berlin] PHP Fatal error:  Undefined class constant 'FECTH_ASSOC' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 312
+[11-Feb-2016 16:22:29 Europe/Berlin] PHP Fatal error:  Call to a member function get() on integer in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:23:08 Europe/Berlin] PHP Fatal error:  Call to a member function get() on integer in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:23:43 Europe/Berlin] PHP Fatal error:  Call to a member function get() on integer in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:24:21 Europe/Berlin] PHP Fatal error:  Call to a member function get() on integer in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:24:22 Europe/Berlin] PHP Fatal error:  Call to a member function get() on integer in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:24:33 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 340
+[11-Feb-2016 16:25:39 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 341
+[11-Feb-2016 16:26:04 Europe/Berlin] PHP Warning:  Missing argument 1 for Mariana\Framework\Orm::join(), called in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 338 and defined in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 133
+[11-Feb-2016 16:26:04 Europe/Berlin] PHP Warning:  Missing argument 2 for Mariana\Framework\Orm::join(), called in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 338 and defined in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 133
+[11-Feb-2016 16:26:04 Europe/Berlin] PHP Fatal error:  Call to a member function also() on null in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 339
+[11-Feb-2016 16:26:16 Europe/Berlin] PHP Fatal error:  Call to a member function also() on null in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 339
+[11-Feb-2016 16:27:01 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 266
+[11-Feb-2016 16:27:01 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 266
+[11-Feb-2016 16:27:01 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 266
+[11-Feb-2016 16:27:01 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[2] Array[1] ON Array[2]  WHERE `users`.`id` > '0'  AND `users`.`name` = 'pihh' ' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php:315
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(315): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(342): Mariana\Framework\Orm->get()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 315
+[11-Feb-2016 16:28:24 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 268
+[11-Feb-2016 16:28:24 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 268
+[11-Feb-2016 16:28:24 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 268
+[11-Feb-2016 16:28:24 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[2] Array[1] ON Array[2]  WHERE `users`.`id` > '0'  AND `users`.`name` = 'pihh' ' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php:317
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(317): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(344): Mariana\Framework\Orm->get()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 317
+[11-Feb-2016 16:28:46 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:28:46 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:28:46 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:28:46 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[2] Array[1] ON Array[2]  WHERE `users`.`id` > '0'  AND `users`.`name` = 'pihh' ' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php:318
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(318): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(345): Mariana\Framework\Orm->get()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 318
+[11-Feb-2016 16:29:12 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:29:12 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:29:12 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 269
+[11-Feb-2016 16:29:12 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[2] Array[1] ON Array[2]  WHERE `users`.`id` > '0'  AND `users`.`name` = 'pihh' ' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php:318
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(318): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(345): Mariana\Framework\Orm->get()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 318
+[11-Feb-2016 16:29:49 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN  WHERE `users`.`id` > '0'  AND `users`.`name` = 'pihh' AND `users`.`hash` =' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php:318
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(318): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php(345): Mariana\Framework\Orm->get()
+#2 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 318
+[11-Feb-2016 16:38:47 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 280
+[11-Feb-2016 16:38:47 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 280
+[11-Feb-2016 16:38:47 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 280
+[11-Feb-2016 16:38:47 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 280
+[11-Feb-2016 16:38:47 Europe/Berlin] PHP Notice:  Array to string conversion in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 280
+[11-Feb-2016 16:41:20 Europe/Berlin] PHP Catchable fatal error:  Object of class Mariana\Framework\Orm could not be converted to string in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 362
+[11-Feb-2016 16:49:05 Europe/Berlin] PHP Strict Standards:  Non-static method Mariana\Framework\Orm::last() should not be called statically in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 356
+[11-Feb-2016 16:49:05 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 337
+[11-Feb-2016 16:50:10 Europe/Berlin] PHP Strict Standards:  Non-static method Mariana\Framework\Orm::last() should not be called statically in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 355
+[11-Feb-2016 16:50:10 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\mariana-framework\app\framework\orm\orm2.php on line 336

@@ -37,10 +37,11 @@ if(Config::get('mode') == 'dev'){
 
 # Database Connection Settings.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Config::set('database-driver', 'mysql'); // mysql or SQLite3
+//Config::set('database-driver', 'mysql'); // mysql or SQLite3
 Config::set('database', array(
     'host' => $_ENV['DB_HOST'],
     'database' => $_ENV['DB_DATABASE'],
+    'driver'   => 'mysql',
     'username' => $_ENV['DB_USERNAME'],
     'password' => $_ENV['DB_PASSWORD'],
     'charset' => 'utf8',

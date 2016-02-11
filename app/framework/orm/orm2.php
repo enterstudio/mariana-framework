@@ -2,15 +2,36 @@
 
 namespace Mariana\Framework;
 
-include_once('../../../vendor/autoload.php');
 
+# REMOVE ERROR DISPLAY
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+# DEFINE SOME VARIABLES
+define('ROOT', '../../../');
+define('DS', DIRECTORY_SEPARATOR);
+
+# GET AUTOLOAD
+require_once(ROOT.DS."vendor".DS."autoload.php");
+require_once(ROOT.DS."app".DS."functions.php");
+
+# DEFINE USAGES
+
+use Mariana\Framework\Config;
 use \PDO;
 use Mariana\Framework\Database;
+use Mariana\Framework\Security\Environment;
+
+# BOOT AND VALIDATE THE COMMAND LINE INTERFACE
+Environment::setup();
+require_once('../../../app/config.php');
 
 
-class Orm {
+class Orm extends Database
+{
 
-    public $allowed_select_values = ["=",">",">=","<=","LIKE","NOT LIKE", "<>", "IN" , "BEETWEEN" , "IS NOT NULL", "NOT BEETWEEN", "!=", "!", "SOUNDS LIKE"];
+    public $allowed_select_values = ['=','>','>=','<=','LIKE','NOT LIKE', '<>', 'IN' , 'BEETWEEN' , 'IS NOT NULL', 'NOT BEETWEEN', '!=', '!', 'SOUNDS LIKE'];
+    public $allowed_join_values = ['inner','outer','left','right'];
 
     private $select;
     private $count;
@@ -22,6 +43,7 @@ class Orm {
     private $asc;
     private $desc;
     private $transaction;
+    private $join;
 
     protected $data;
     protected $primary;                 //  PRIMARY KEY: needed for several stuff, id is primary by default
@@ -36,22 +58,34 @@ class Orm {
 
     public function setDefault(){
         $this->select = '*';
-        $this->count = '';
-        $this->orderBy = '';
-        $this->groupBy = '';
-        $this->limit = '5';
-        $this->offset = '';
+        $this->count = false;
+        $this->orderBy = false;
+        $this->groupBy = false;
+        $this->limit = false;
+        $this->offset = false;
         $this->data = array();
         $this->primary = 'id';
         $this->where = false;
         $this->transaction = false;
-        $this->asc = '';
-        $this->desc = '';
+        $this->asc = false;
+        $this->desc = false;
+        $this->table = 'users';
+        $this->join = false;
     }
 
     /** SAFETY FUNCTIONS  */
     private function escape($arg){
         return $this->db->quote($arg);
+    }
+
+    private function escapeColumn($arg,$table=false){
+        ($table)?
+            $table = '`'.str_replace('`','',$table).'`':
+            $table = "`$this->table`";
+
+        $arg = '`'.str_replace('`','',$arg).'`';
+
+        return $table.'.'.$arg;
     }
 
     private function int($arg){
@@ -60,10 +94,20 @@ class Orm {
 
     /** MYSQL METHODS */
     public function select($args = '*'){
-        $this->select = $this->escape($args);
+        if(strpos($args,',')){
+            #estamos perante uma array
+            $args = explode(',',$args);
+            foreach($args as $a){
+                $this->select .= $this->escapeColumn($a).',';
+            }
+            $this->select = trim($this->select,',');
+        }else {
+            #estamos perante single arg
+            $this->select = $this->escapeColumn($args);
+        }
     }
     public function count($arg = '*'){
-        $this->select = ' count(' .$this->escape($arg). ') AS count ';
+        $this->select = ' count(' .$this->escape($arg). ') AS `count` ';
     }
     public function limit($number){
         $this->limit = intval($number);
@@ -72,10 +116,8 @@ class Orm {
         $this->offset = intval($number);
     }
     public function desc($column = false){
-        if($column == false){
-            $column = $this->primary;
-        }
-        $this->desc = $this->escape($column);
+        $this->orderBy = $this->order($column);
+        $this->desc = $this->orderBy;
     }   // Done and tested
     public function transaction(){
         $this->transaction = true;
@@ -83,11 +125,67 @@ class Orm {
     public function order($column = false){
         if($column == false){
             $column = $this->primary;
+            echo 'column: '.$column;
         }
-        $this->orderBy = $column;
+        $this->orderBy = $this->escapeColumn($column);
     }   // Done and tested
-    public function all(){
-        $this->limit = false;
+    public function join($otherTable, $otherTableKey, $selector = false, $currentTableKey = false , $innerOuterRightLeftFull = false){
+
+        # Escape the other table
+        $otherTableKey = $this->escapeColumn($otherTableKey, $otherTable);
+        $otherTable = "`$otherTable`";
+
+        # Escape the current table
+        ($currentTableKey)?
+            $currentTableKey = $this->escapeColumn($currentTableKey):
+            $currentTableKey = $this->escapeColumn($this->primary);
+
+        # Define the type of join
+        ($innerOuterRightLeftFull)?
+            (in_array(strtolower($innerOuterRightLeftFull),$this->allowed_join_values))?
+                $innerOuterRightLeftFull = strtoupper($innerOuterRightLeftFull).' JOIN ':
+                $innerOuterRightLeftFull = ' JOIN '
+            :
+            $innerOuterRightLeftFull = " JOIN ";
+
+        # Define the type of selector
+        if($selector!== false){
+            if(!in_array(trim($selector),$this->allowed_select_values)){
+                $selector = '=';
+            }
+        }else{
+            $selector = '=';
+        }
+
+
+        $this->join = array(
+            $innerOuterRightLeftFull,
+            $otherTable,
+            $currentTableKey,
+            $selector,
+            $otherTableKey);
+
+        return $this;
+    }
+    private function pushWhere($column,$valueOrSelector, $valueIfSelector = false){
+        # SELECTOR CHECK
+        if($valueIfSelector !== false){
+            (in_array(trim($valueOrSelector),$this->allowed_select_values))?
+                $selector = $valueOrSelector :
+                $selector = "=";
+            $value = $valueIfSelector;
+        }else{
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
+        # START THE ARRAY
+        if(!is_array($this->where)){
+            $this->where = array();
+        }
+
+        $doubleDotColumn = ":".$column;
+        $column = $this->escapeColumn($column);
+        array_push($this->where,array($column,$selector,$doubleDotColumn,$value));
     }
 
     /**  STATIC METHODS  **/
@@ -101,17 +199,9 @@ class Orm {
         // Override table name if set on model
         $table = $object->table;
 
-        // Check if table is allowed to be injected
-        $object->query = "SELECT $object->select FROM $table WHERE $object->primary = ? ";
-        $object->data[$object->primary] = $primary_key_value;
+        return $object::where($object->primary, $primary_key_value)
+            ->get();
 
-        $stmt = self::getConnection()->prepare($object->query);
-        $stmt->bindParam(1,$primary_key_value);
-        $stmt->execute();
-
-        $object->obj = (object) $stmt->fetch(\PDO::FETCH_OBJ);
-
-        return $object;
     }   //  Get database item by primary key Done and tested
     public static function delete($primary_key_value){
         // Gets Database item by primary
@@ -155,132 +245,128 @@ class Orm {
     public static function where($column,$valueOrSelector, $valueIfSelector = false){
         $object = self::table();
         $object = new $object;
-
-        // SELECTOR CHECK
-        if($valueIfSelector !== false){
-            $selector = "=";
-            if(in_array(trim($valueIfSelector),$object->allowed_select_values)){
-                $selector = $valueOrSelector;
-            }
-            $value = $valueIfSelector;
-        }else{
-            $selector = "=";
-            $value = $valueOrSelector;
-        }
-
-        $object->where = array();
-        $column = $object->db->quote($column);
-
-        array_push($object->where,array($column,$selector,$value));
-
+        $object->pushWhere($column,$valueOrSelector, $valueIfSelector);
         return $object;
-        /*
-        //PDO ESCAPE;
-
-        $object = self::table();
-        $object = new $object;
-
-        // SELECTOR CHECK
-        if($valueIfSelector !== false){
-            $selector = $valueOrSelector;
-            $value = $valueIfSelector;
-        }else{
-            $selector = "=";
-            $value = $valueOrSelector;
-        }
-
-        // Check if table is allowed to be injected
-        $checkValues = $object->checkColumnList($column);
-        $object->field_table = $checkValues["field_table"];
-        $object->field_value = $checkValues["field_value"];
-
-        if($selector == "=" || !in_array($selector, self::$allowed_select_values)){
-            $selector = "=";
-        }
-
-        $object->query = "SELECT * FROM users WHERE $object->field_table $selector $object->field_value ";
-        $object->data[$object->field_value] = $value;
-
-        return $object;
-        */
     }   // Done and tested
+    public static function first(){
+        // Gets Database item by primary
+        $table = self::table();
+        $object = new $table();
+        // Override table name if set on model
+        $table = $object->table;
 
-    /** OTHER METHODS */
-    public function also($column,$valueOrSelector, $valueIfSelector = false){
-        // SELECTOR CHECK
-        if($valueIfSelector !== false){
-            $selector = "=";
-            if(in_array(trim($valueIfSelector),$this->allowed_select_values)){
-                $selector = $valueOrSelector;
-            }
-            $value = $valueIfSelector;
-        }else{
-            $selector = "=";
-            $value = $valueOrSelector;
-        }
-
-        $column = $this->db->quote($column);
-        array_push($this->where,array($column,$selector,$value));
-    }
-    public function get($limit = false){
-
-        try {
-
-            //  COUNT
-            if($this->setCount){
-                $this->query = str_replace('*', 'count(*)', $this->query);
-            }
-
-            //  LIMIT
-            if ($limit !== false && is_numeric($limit)) {
-                $limit = " LIMIT " . $limit . " ";
-            } else {
-                $limit = "";
-            }
-
-            //  OFFSET
-            $this->query = $this->query . $limit . $this->offsetValue;
-
-
-            //  RUN THE QUERY
-            $stmt = $this->db->prepare($this->query);
-
-            //  IF QUERY HAS DYNAMIC PARAMS
-            //  For some reason, while looping this, the $pair is getting a copy of the last one.
-            //  Pushing it into an array makes it update
-            //if (sizeof($this->params) > 0) {
-            $i = 0;
-            $array = array();
-            foreach ($this->data as $key => $pair) {
-                $array[$i] = $pair;
-                $stmt->bindParam($key, $array[$i]);
-                $i++;
-            }
-            //}
-            $stmt->execute();
-
-            $this->obj = (object)$stmt->fetchAll(\PDO::FETCH_OBJ);
-            return $this;
-
-        } catch (\Exception $e){
-
-
-            echo $e;
-            return false;
-        }
-
+        return $object->get(1);
     }   // Done and tested
-    public function first(){
-        $this->get(1);
-        return $this;
-    }   // Done and tested
-    public function last($column = false){
-        $this->desc($column);
-        $this->get(1);
-        return $this;
+    public static function last($column = false){
+
+        // Gets Database item by primary
+        $table = self::table();
+        $object = new $table();
+        // Override table name if set on model
+        $table = $object->table;
+
+        $object->desc($column);
+        return $object->get(1);
 
     } // Done and tested
 
+    /** BBUILDER METHODS **/
+    public function also($column,$valueOrSelector, $valueIfSelector = false){
+        $this->pushWhere($column,$valueOrSelector, $valueIfSelector);
+        return $this;
+    }
+    public function get($limit = false){
+
+        # Function Parameters
+        if($limit){
+            $this->limit = $limit;
+        }
+
+        # Query Builder
+        ($this->count) ?
+            $query = "SELECT $this->count FROM `$this->table` ":
+            $query = "SELECT $this->select FROM `$this->table` ";
+
+        # JOIN Builder
+        if($this->join){
+
+            $query .= $this->join[0].' '.$this->join[1].' ON '.$this->join[2].' '.$this->join[3].' '.$this->join[4];
+        }
+
+        # WHERE Builder
+        if($this->where){
+            $i = 0;
+            foreach($this->where as $w){
+                ($i === 0) ?
+                    $query .= " WHERE $w[0] $w[1] $w[2] " :
+                    $query .= " AND $w[0] $w[1] $w[2]";
+                $i++;
+            }
+        }
+
+
+        # Set Group By
+        if($this->orderBy){
+            $query = " ORDER BY $this->orderBy ";
+        }
+
+
+        # Set Direction
+        if($this->orderBy) {
+            ($this->desc) ?
+                $query .= " DESC " :
+                $query .= "";
+        }
+
+        # Set Limit
+        if($this->limit){
+            $query .= " LIMIT $this->limit ";
+        }
+
+        # Set Offset
+        if($this->offset){
+            $query .= " OFFSET $this->offset ";
+        }
+
+        # Set Group By
+        if($this->groupBy){
+            $query = " GROUP BY $this->groupBy ";
+        }
+
+        return $query;
+        # Run the query
+        $stmt = $this->db->prepare($query);
+        if(is_array($this->where)){
+            foreach($this->where as $w){
+                $stmt->bindParam($w[2],$w[3]);
+            }
+        }
+        $stmt->execute();
+
+        # Reset defaults
+        $this->setDefault();
+
+        # Return
+        return $query;
+        //return $stmt->fetch(PDO::FETCH_OBJ);
+
+    }   // Done and tested
+
 }
 
-$o = new Orm();
+$o = Orm::where('id','>','0')
+    ->also('name','pihh')
+    ->also('hash','laden')
+    ->join('a','b',false,false,'left')
+    ->get();
+
+echo $o , '<hr>';
+
+$o = Orm::find(1);
+echo $o , '<hr>';
+
+$o = Orm::last(1);
+echo $o , '<hr>';
+
+$o = Orm::first(1);
+echo $o , '<hr>';
