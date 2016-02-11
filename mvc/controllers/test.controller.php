@@ -9,8 +9,11 @@ class TestController extends Controller{
 
     public function index(){
 
-        echo '<pre>' , print_r(\Mariana\Framework\Session\Flash::showMessages()), '</pre>';
-        echo '<pre>', print_r($_FILES), '</pre>';
+        echo '<pre>' , var_dump(Users::where('name','=','0')->get(1)), '</pre>';
+        echo '<pre>' ;
+            foreach((array)\Mariana\Framework\Session\Flash::showMessages() as $m){ echo $m; };
+        echo '</pre>';
+        echo '<pre>'; if(isset($_FILES)){print_r($_FILES); }; '</pre>';
         $v = new View('upload');
 
 

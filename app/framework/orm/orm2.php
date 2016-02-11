@@ -45,6 +45,8 @@ class Orm extends Database
     private $transaction;
     private $join;
     private $lastId;
+    private $delete;
+    private $methods = array();
 
     protected $data;
     protected $protected;               //  PROTECTED FIELDS (fields that should not be updated ex: id field or unique fields)
@@ -52,7 +54,9 @@ class Orm extends Database
     protected $db;                      //  DATABASE CONNECTION
     protected $table;                   //  TABLE NAME -> DEFAULT = get_called_class();
     protected $columnList = array();    //  All Columns of the table that can be used in a query;
-
+    protected $hasOne = array();
+    protected $hasMany= array();
+    protected $observe= array();
     /*
     public function __construct(){
         $this->db = Database::getConnection();
@@ -67,7 +71,21 @@ class Orm extends Database
         $this->setDefault();
         if ($data !== false) {
             $this->{$this->primary} = $data;
+        };
+/*
+        $this->hasOne = array(
+            array('comment','comments','user_id'),
+            array('comments','comments','user_id'),
+        );
+        foreach ($this->hasOne as $h ) {
+            $name = $h[0];
+            $h1 = $h[1];
+            $func = function(&$h1){
+                print_r($h1);
+            };
+            $this->{$name} = $func($h);
         }
+*/
     }
 
     function __destruct()
@@ -77,7 +95,11 @@ class Orm extends Database
 
     function __call($method, $args)
     {
-        return call_user_func_array($method, $args);
+        //return call_user_func_array($method, $args);
+        if (isset($this->$method)) {
+            $func = $this->$method;
+            return call_user_func_array($func, $args);
+        }
     }
 
     function __get($name)
@@ -89,6 +111,10 @@ class Orm extends Database
 
     function __set($name, $value)
     {
+        echo '<pre>',  var_dump($value) , '</pre>';
+        if(is_object($value)){
+            return $this->{$name} = $value;
+        }
         return $this->data[$name] = $value;
     }
 
@@ -115,6 +141,19 @@ class Orm extends Database
         $this->join = false;
         $this->protected = array();
         $this->lastId = false;
+        $this->delete = false;
+        $this->hasOne = array();
+        $this->hasMany= array();
+        $this->observe= array();
+    }
+
+    /** METHOD BUILDING PARAMETERS */
+    private function attachMethod($name, $var ,$function){
+
+    }
+
+    private function attachObserver(){
+
     }
 
     /** SAFETY FUNCTIONS  */
@@ -135,6 +174,11 @@ class Orm extends Database
     }
 
     /** MYSQL METHODS */
+    public function delete($primary_key_value){
+        $this->delete = true;
+        $this->find($primary_key_value);
+        return $this;
+    }
     public function select($args = '*')
     {
         if (strpos($args, ',')) {
@@ -150,38 +194,32 @@ class Orm extends Database
         }
         return $this;
     }
-
     public function count($arg = '*')
     {
         $this->select = ' count(' . $this->escape($arg) . ') AS `count` ';
         return $this;
     }
-
     public function limit($number)
     {
         $this->limit = intval($number);
         return $this;
     }
-
     public function offset($number)
     {
         $this->offset = intval($number);
         return $this;
     }
-
     public function desc($column = false)
     {
         $this->order($column);
         $this->desc = $this->orderBy;
         return $this;
     }   // Done and tested
-
     public function transaction()
     {
         $this->transaction = true;
         return $this;
     }   // Done and tested
-
     public function order($column = false)
     {
         if ($column == false) {
@@ -190,7 +228,6 @@ class Orm extends Database
         $this->orderBy = $this->escapeColumn($column);
         return $this;
     }   // Done and tested
-
     public function join($otherTable, $otherTableKey, $selector = false, $currentTableKey = false, $innerOuterRightLeftFull = false)
     {
 
@@ -230,14 +267,41 @@ class Orm extends Database
 
         return $this;
     }
-
-    public function saveGetId(){
+    public function saveGetId()
+    {
         $this->lastId = true;
         $this->save();
     }
+    private function pushWhere($column, $valueOrSelector, $valueIfSelector = false)
+    {
+        # SELECTOR CHECK
+        if ($valueIfSelector !== false) {
+            (in_array(trim($valueOrSelector), $this->allowed_select_values)) ?
+                $selector = $valueOrSelector :
+                $selector = "=";
+            $value = $valueIfSelector;
+        } else {
+            $selector = "=";
+            $value = $valueOrSelector;
+        }
+        # START THE ARRAY
+        if (!is_array($this->where)) {
+            $this->where = array();
+        }
 
+        $doubleDotColumn = ":" . $column;
+        $column = $this->escapeColumn($column);
+        array_push($this->where, array($column, $selector, $doubleDotColumn, $value));
+    }
     public function save()
     {
+        /**
+         * @desc as in this function we are using __get and __set, and for th
+         * observers and hasOne, hasMany we set params as functions,
+         * we exclude objects from the query so they don't
+         * interact with the results
+         */
+
         # Params
         $cols = '';
         $vals = '';
@@ -252,8 +316,10 @@ class Orm extends Database
             if (!isset($this->data[$this->primary])) {
                 # INSERT
                 foreach ($this->data as $key => $value) {
-                    $cols .= "`$key`,";
-                    $vals .= ":$key ,";
+                    if(!is_object($value)){
+                        $cols .= "`$key`,";
+                        $vals .= ":$key ,";
+                    }
                 }
 
                 # Threatment
@@ -265,13 +331,14 @@ class Orm extends Database
 
             } else {
                 # UPDATE
-
                 foreach ($this->data as $key => $value) {
-                    if (!in_array($key, $this->protected)) {
-                        $sets .= " `$key` = :$key ,";
-                    } else {
-                        # Caso seja um field protegido, tira antes de fazer o query
-                        unset($this->data[$key]);
+                    if(!is_object($value)) {
+                        if (!in_array($key, $this->protected)) {
+                            $sets .= " `$key` = :$key ,";
+                        } else {
+                            # Caso seja um field protegido, tira antes de fazer o query
+                            unset($this->data[$key]);
+                        }
                     }
                 }
                 # Threatment
@@ -283,7 +350,9 @@ class Orm extends Database
 
             $stmt = $this->db->prepare($query);
             foreach ($this->data as $key => $pair) {
-                $stmt->bindParam(":$key", $pair);
+                if(!is_object($pair)) {
+                    $stmt->bindParam(":$key", $pair);
+                }
             }
             $stmt->execute();
 
@@ -294,13 +363,13 @@ class Orm extends Database
 
             # Return the result
             # Get the id
-            (!isset($this->data[$this->primary]))?
-                $lastid = $this->db->lastInsertId():
+            (!isset($this->data[$this->primary])) ?
+                $lastid = $this->db->lastInsertId() :
                 $lastid = $this->data[$this->primary];
-            
-            if($this->lastId !== false){
+
+            if ($this->lastId !== false) {
                 return $lastid;
-            }else{
+            } else {
                 return $this->find($lastid);
             }
 
@@ -315,26 +384,7 @@ class Orm extends Database
         }
     }
 
-    private function pushWhere($column,$valueOrSelector, $valueIfSelector = false){
-        # SELECTOR CHECK
-        if($valueIfSelector !== false){
-            (in_array(trim($valueOrSelector),$this->allowed_select_values))?
-                $selector = $valueOrSelector :
-                $selector = "=";
-            $value = $valueIfSelector;
-        }else{
-            $selector = "=";
-            $value = $valueOrSelector;
-        }
-        # START THE ARRAY
-        if(!is_array($this->where)){
-            $this->where = array();
-        }
 
-        $doubleDotColumn = ":".$column;
-        $column = $this->escapeColumn($column);
-        array_push($this->where,array($column,$selector,$doubleDotColumn,$value));
-    }
 
 
     /**  STATIC METHODS  **/
@@ -352,24 +402,6 @@ class Orm extends Database
             ->get();
 
     }   //  Get database item by primary key Done and tested
-    public static function delete($primary_key_value){
-        // Gets Database item by primary
-        $table = self::table();
-        $object = new $table();
-        // Override table name if set on model
-        $table = $object->table;
-
-        // Check if table is allowed to be injected
-        $object->query = "DELETE FROM $table WHERE $object->primary = ? ";
-        $object->data[$object->primary] = $primary_key_value;
-
-        $stmt = self::getConnection()->prepare($object->query);
-        $stmt->bindParam(1,$primary_key_value);
-        if($stmt->execute()){
-            return true;
-        }
-        return false;
-    }
     public static function all(){
 
         $db = self::getConnection();
@@ -436,6 +468,11 @@ class Orm extends Database
             $query = "SELECT $this->count FROM `$this->table` ":
             $query = "SELECT $this->select FROM `$this->table` ";
 
+        # Delete Builder
+        if($this->delete){
+            $query = "DELETE FROM `$this->table` ";
+        }
+
         # JOIN Builder
         if($this->join){
             $query .= $this->join[0].' '.$this->join[1].' ON '.$this->join[2].' '.$this->join[3].' '.$this->join[4];
@@ -495,8 +532,8 @@ class Orm extends Database
         $this->setDefault();
 
         # Return
-        return $query;
-        //return $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
 
     }   // Done and tested
 
@@ -547,3 +584,6 @@ $o->password = 'password';
 $o->hash = 'hash';
 $o->save();
 echo '<hr>';
+
+$o = new Orm();
+$o->comments();
