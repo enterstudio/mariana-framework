@@ -411,3 +411,322 @@ Stack trace:
 [11-Feb-2016 23:54:02 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
 [11-Feb-2016 23:56:41 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
 [11-Feb-2016 23:57:00 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[12-Feb-2016 11:33:30 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(413): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 11:38:03 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(413): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 11:38:09 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:492
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(492): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 492
+[12-Feb-2016 11:39:37 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:492
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(492): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 492
+[12-Feb-2016 11:41:55 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:493
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(493): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 493
+[12-Feb-2016 11:42:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$w' (T_VARIABLE), expecting ',' or ';' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 489
+[12-Feb-2016 11:43:04 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:493
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(493): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 493
+[12-Feb-2016 11:43:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:494
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(494): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 494
+[12-Feb-2016 16:17:57 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(410): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 16:18:32 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(410): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 16:18:37 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(410): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 16:18:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(410): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 16:18:48 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php:30
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(410): Mariana\Framework\Model->__construct()
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::where('name', '=', '0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#7 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\database.php on line 30
+[12-Feb-2016 16:19:05 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:489
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(489): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 489
+[12-Feb-2016 16:21:15 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`  WHERE `Users`.`name` = '0'  LIMIT 1' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:489
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(489): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get(1)
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 489
+[12-Feb-2016 16:33:24 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `Users`' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:493
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(493): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(369): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(13): Mariana\Framework\ORM\MarianaORM::all()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#4 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#5 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#6 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 493
+[12-Feb-2016 17:19:06 Europe/Berlin] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[12-Feb-2016 17:19:26 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:469
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(469): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(354): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(16): Mariana\Framework\ORM\MarianaORM::find('0')
+#3 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#4 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#5 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#6 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 469
+[12-Feb-2016 17:26:25 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 13
+[12-Feb-2016 17:43:11 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Cache' not found in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 462
+[12-Feb-2016 17:45:48 Europe/Berlin] PHP Fatal error:  Class 'Mariana\Framework\Cache' not found in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 462
+[12-Feb-2016 17:47:08 Europe/Berlin] PHP Parse error:  syntax error, unexpected '$c_file_name' (T_VARIABLE) in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 463
+[12-Feb-2016 17:47:26 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:26 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:26 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:26 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[12-Feb-2016 17:47:44 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:44 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:44 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:47:44 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[12-Feb-2016 17:48:33 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:33 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:33 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:33 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[12-Feb-2016 17:48:47 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:47 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:47 Europe/Berlin] PHP Notice:  Undefined variable: result in C:\xampp\htdocs\mariana-framework\app\framework\cache\cache.php on line 69
+[12-Feb-2016 17:48:47 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 16
+[12-Feb-2016 17:50:45 Europe/Berlin] PHP Fatal error:  Cannot use isset() on the result of a function call (you can use "null !== func()" instead) in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 21
+[12-Feb-2016 17:51:09 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 22
+[12-Feb-2016 17:51:29 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 23
+[12-Feb-2016 17:52:00 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 24
+[12-Feb-2016 17:55:36 Europe/Berlin] PHP Warning:  in_array() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 264
+[12-Feb-2016 17:55:36 Europe/Berlin] PHP Warning:  in_array() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 264
+[12-Feb-2016 17:55:36 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:285
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(285): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 285
+[12-Feb-2016 17:58:31 Europe/Berlin] PHP Warning:  in_array() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 264
+[12-Feb-2016 17:58:31 Europe/Berlin] PHP Warning:  in_array() expects parameter 2 to be array, null given in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 264
+[12-Feb-2016 17:58:31 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:285
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(285): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 285
+[12-Feb-2016 17:59:01 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:285
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(285): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 285
+[12-Feb-2016 18:03:20 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:285
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(285): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 285
+[12-Feb-2016 18:04:11 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:287
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(287): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 287
+[12-Feb-2016 18:05:09 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:290
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(290): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 290
+[12-Feb-2016 18:05:36 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(291): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 291
+[12-Feb-2016 18:06:02 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(291): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 291
+[12-Feb-2016 18:06:07 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(291): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 291
+[12-Feb-2016 18:06:18 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:291
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(291): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(19): Mariana\Framework\ORM\MarianaORM->save()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 291
+[12-Feb-2016 18:09:36 Europe/Berlin] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 14
+[12-Feb-2016 18:09:36 Europe/Berlin] PHP Warning:  Missing argument 1 for Mariana\Framework\ORM\MarianaORM::delete(), called in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 14 and defined in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 107
+[12-Feb-2016 18:09:36 Europe/Berlin] PHP Notice:  Undefined variable: primary_key_value in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 109
+[12-Feb-2016 18:09:36 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find(NULL)
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete()
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
+[12-Feb-2016 18:10:05 Europe/Berlin] PHP Warning:  Missing argument 1 for Mariana\Framework\ORM\MarianaORM::delete(), called in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 14 and defined in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 107
+[12-Feb-2016 18:10:05 Europe/Berlin] PHP Notice:  Undefined variable: primary_key_value in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 109
+[12-Feb-2016 18:10:05 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find(NULL)
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete()
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framework in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
+[12-Feb-2016 18:11:21 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find('0')
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete('0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461

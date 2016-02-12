@@ -1,16 +1,14 @@
 <?php namespace Mariana\Framework\ORM;
 
+use Mariana\Framework\Cache\Cache;
 use Mariana\Framework\Database;
-
+use Mariana\Framework\Security;
 /**
  * Class MarianaORM
  * @package Mariana\Framework\ORM
  *
- * TODO : Remove the query from the object
- * TODO : Count
- * TODO : Joins
- * TODO : Transactions
- * TODO : Delete
+ * TODO : hasOne, hasMany, observer, cache -> should be pretty staighforward, Testing
+ *
  *
  */
 
@@ -21,10 +19,10 @@ class MarianaORM extends Database{
     public $allowed_select_values = ['=', '>', '>=', '<=', 'LIKE', 'NOT LIKE', '<>', 'IN', 'BEETWEEN', 'IS NOT NULL', 'NOT BEETWEEN', '!=', '!', 'SOUNDS LIKE'];
     public $allowed_join_values = ['inner', 'outer', 'left', 'right'];
 
-    private $select;
+    private $select = '*';
     private $count;
     private $orderBy;
-    private $groupBy;
+    private $groupBy ;
     private $limit;
     private $offset;
     private $where;
@@ -35,9 +33,12 @@ class MarianaORM extends Database{
     private $lastId;
     private $delete;
     private $methods = array();
+    private $results_as_array;
+    private $results_as_json;
+    private $results_as_class;
 
     protected $data;
-    protected $protected;               //  PROTECTED FIELDS (fields that should not be updated ex: id field or unique fields)
+    protected $protected = array();               //  PROTECTED FIELDS (fields that should not be updated ex: id field or unique fields)
     protected $primary;                 //  PRIMARY KEY: needed for several stuff, id is primary by default
     protected $db;                      //  DATABASE CONNECTION
     protected $table;                   //  TABLE NAME -> DEFAULT = get_called_class();
@@ -45,72 +46,23 @@ class MarianaORM extends Database{
     protected $hasOne = array();
     protected $hasMany= array();
     protected $observe= array();
-    /*
-    public function __construct(){
-        $this->db = Database::getConnection();
-        $this->setDefault();
-    }
-    */
 
-    function __construct($data = false)
-    {
+
+    function __construct($data = false){
         $this->db = self::getConnection();
         $this->table = self::table();
         $this->setDefault();
         if ($data !== false) {
             $this->{$this->primary} = $data;
         };
-        /*
-                $this->hasOne = array(
-                    array('comment','comments','user_id'),
-                    array('comments','comments','user_id'),
-                );
-                foreach ($this->hasOne as $h ) {
-                    $name = $h[0];
-                    $h1 = $h[1];
-                    $func = function(&$h1){
-                        print_r($h1);
-                    };
-                    $this->{$name} = $func($h);
-                }
-        */
     }
-
-    function __destruct()
-    {
+    function __destruct(){
         $this->setDefault();
     }
 
-    function __call($method, $args)
-    {
-        //return call_user_func_array($method, $args);
-        if (isset($this->$method)) {
-            $func = $this->$method;
-            return call_user_func_array($func, $args);
-        }
-    }
-
-    function __get($name)
-    {
-        if (array_key_exists($name, $this->data)) {
-            return $this->data[$name];
-        }
-    }
-
-    function __set($name, $value)
-    {
-        echo '<pre>',  var_dump($value) , '</pre>';
-        if(is_object($value)){
-            return $this->{$name} = $value;
-        }
-        return $this->data[$name] = $value;
-    }
-
-    public function getColumns()
-    {
+    public function getColumns(){
         return $this->data;
     }
-
     public function setDefault()
     {
         $this->select = '*';
@@ -125,7 +77,7 @@ class MarianaORM extends Database{
         $this->transaction = false;
         $this->asc = false;
         $this->desc = false;
-        $this->table = 'users';
+        $this->table = '';
         $this->join = false;
         $this->protected = array();
         $this->lastId = false;
@@ -135,21 +87,11 @@ class MarianaORM extends Database{
         $this->observe= array();
     }
 
-    /** METHOD BUILDING PARAMETERS */
-    private function attachMethod($name, $var ,$function){
-
-    }
-
-    private function attachObserver(){
-
-    }
-
     /** SAFETY FUNCTIONS  */
     private function escape($arg)
     {
         return $this->db->quote($arg);
     }
-
     private function escapeColumn($arg, $table = false)
     {
         ($table) ?
@@ -216,8 +158,7 @@ class MarianaORM extends Database{
         $this->orderBy = $this->escapeColumn($column);
         return $this;
     }   // Done and tested
-    public function join($otherTable, $otherTableKey, $selector = false, $currentTableKey = false, $innerOuterRightLeftFull = false)
-    {
+    public function join($otherTable, $otherTableKey, $selector = false, $currentTableKey = false, $inner_outer_left_right = false){
 
         # Escape the other table
         $otherTableKey = $this->escapeColumn($otherTableKey, $otherTable);
@@ -229,12 +170,12 @@ class MarianaORM extends Database{
             $currentTableKey = $this->escapeColumn($this->primary);
 
         # Define the type of join
-        ($innerOuterRightLeftFull) ?
-            (in_array(strtolower($innerOuterRightLeftFull), $this->allowed_join_values)) ?
-                $innerOuterRightLeftFull = strtoupper($innerOuterRightLeftFull) . ' JOIN ' :
-                $innerOuterRightLeftFull = ' JOIN '
+        ($inner_outer_left_right) ?
+            (in_array(strtolower($inner_outer_left_right), $this->allowed_join_values)) ?
+                $inner_outer_left_right = strtoupper($inner_outer_left_right) . ' JOIN ' :
+                $inner_outer_left_right = ' JOIN '
             :
-            $innerOuterRightLeftFull = " JOIN ";
+            $inner_outer_left_right = " JOIN ";
 
         # Define the type of selector
         if ($selector !== false) {
@@ -247,7 +188,7 @@ class MarianaORM extends Database{
 
 
         $this->join = array(
-            $innerOuterRightLeftFull,
+            $inner_outer_left_right,
             $otherTable,
             $currentTableKey,
             $selector,
@@ -255,8 +196,7 @@ class MarianaORM extends Database{
 
         return $this;
     }
-    public function saveGetId()
-    {
+    public function saveGetId(){
         $this->lastId = true;
         $this->save();
     }
@@ -337,10 +277,16 @@ class MarianaORM extends Database{
             }
 
             $stmt = $this->db->prepare($query);
+
+
             foreach ($this->data as $key => $pair) {
+                echo ":$key ,$pair </br>";
+                $stmt->bindparam(":$key",$pair);
+                /*
                 if(!is_object($pair)) {
                     $stmt->bindParam(":$key", $pair);
                 }
+                */
             }
             $stmt->execute();
 
@@ -376,54 +322,58 @@ class MarianaORM extends Database{
     public static function table(){
         return get_called_class();
     }
-    public static function find($primary_key_value){
+    public static function find($primary_key_value, $json_array_class_OR_object = false){
         // Gets Database item by primary
         $table = self::table();
         $object = new $table();
         // Override table name if set on model
         $table = $object->table;
+
+        if($json_array_class_OR_object){
+            $object->json_array_class_OR_object($json_array_class_OR_object);
+        }
 
         return $object::where($object->primary, $primary_key_value)
             ->get();
 
     }   //  Get database item by primary key Done and tested
-    public static function all(){
+    public static function all($json_array_class_OR_object = false){
 
-        $db = self::getConnection();
-        $query = " SELECT * FROM ".self::table();
-        $stmt = $db->prepare($query);
-        $stmt->execute();
-
-        $class = get_called_class();
-        $obj = [];
-
-        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){;
-            // Criar novo objecto
-            $object = new $class($row);
-            $object->unsetFromObject();
-            foreach ($row as $key => $value){
-                $object->{$key} = $value;
-            }
-            $obj[] = $object;
+        $table = self::table();
+        $object = new $table();
+        // Override table name if set on model
+        $table = $object->table;
+        if($json_array_class_OR_object){
+            $object->json_array_class_OR_object($json_array_class_OR_object);
         }
-        return $obj;
+        return $object->get();
+
     }
-    public static function first(){
+    public static function first($json_array_class_OR_object = false){
         // Gets Database item by primary
         $table = self::table();
         $object = new $table();
         // Override table name if set on model
         $table = $object->table;
+
+        # Set how to display results
+        if($json_array_class_OR_object){
+            $object->json_array_class_OR_object($json_array_class_OR_object);
+        }
 
         return $object->get(1);
     }   // Done and tested
-    public static function last($column = false){
+    public static function last($column = false, $json_array_class_OR_object = false){
 
         // Gets Database item by primary
         $table = self::table();
         $object = new $table();
         // Override table name if set on model
         $table = $object->table;
+
+        if($json_array_class_OR_object){
+            $object->json_array_class_OR_object($json_array_class_OR_object);
+        }
 
         $object->desc($column);
         return $object->get(1);
@@ -436,7 +386,7 @@ class MarianaORM extends Database{
         return $object;
     }   // Done and tested
 
-    /** BBUILDER METHODS **/
+    /** BUILDER METHODS **/
     public function also($column,$valueOrSelector, $valueIfSelector = false){
         $this->pushWhere($column,$valueOrSelector, $valueIfSelector);
         return $this;
@@ -474,18 +424,16 @@ class MarianaORM extends Database{
             }
         }
 
-
         # Set Group By
         if($this->orderBy){
             $query .= " ORDER BY $this->orderBy ";
         }
 
-
         # Set Direction
         if($this->orderBy) {
             ($this->desc) ?
-                $query .= " DESC " :
-                $query .= "";
+                $query .= ' DESC ' :
+                $query .= '';
         }
 
         # Set Limit
@@ -515,13 +463,55 @@ class MarianaORM extends Database{
         # Reset defaults
         $this->setDefault();
 
-        # Return
-        //return $query;
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        # Cache:
+
+        # Set how to display data
+        if ($this->results_as_array) {
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } elseif ($this->results_as_class) {
+            $results = $stmt->fetchAll(\PDO::FETCH_CLASS);
+        } else {
+            $results = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        }
+        if ($this->results_as_json) {
+            $results = json_encode($results);
+        }
+        return $results;
 
     }   // Done and tested
+    public function as_array(){
+        $this->results_as_array = true;
+        return $this;
+    }
+    public function as_class(){
+        $this->results_as_class = true;
+        return $this;
+    }
+    public function as_json(){
+        $this->results_as_json = true;
+        return $this;
+    }
+    private function json_array_class_OR_object($type){
+        $type = trim($type);
 
+        switch ($type) {
+            case 'json':
+            $this->results_as_json = true;
+            return $this;
+        break;
+            case 'array':
+            $this->results_as_array = true;
+            return $this;
+        break;
+            case 'class':
+            $this->results_as_class = true;
+            return $this;
+        break;
+            default:
+            return $this;
+        }
 
+    }
 
     /** VARS  **
 
@@ -910,5 +900,5 @@ class MarianaORM extends Database{
     public function transaction(){
         $this->setTransaction = true;
     }
-     * */
+     **/
 }

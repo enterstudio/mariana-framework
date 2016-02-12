@@ -92,6 +92,7 @@ return array(
     'Mariana\\Framework\\Middleware' => $baseDir . '/app/framework/middleware.php',
     'Mariana\\Framework\\Model' => $baseDir . '/app/framework/orm/model.php',
     'Mariana\\Framework\\ORM\\MarianaORM' => $baseDir . '/app/framework/orm/marianaORM.php',
+    'Mariana\\Framework\\Orm' => $baseDir . '/app/framework/orm/orm2.php',
     'Mariana\\Framework\\Profile' => $baseDir . '/app/framework/profiler.php',
     'Mariana\\Framework\\Router' => $baseDir . '/app/framework/router.php',
     'Mariana\\Framework\\Security\\Criptography' => $baseDir . '/app/framework/security/criptography.php',

@@ -13,6 +13,18 @@ class View {
     private $data = array();
     private $scope = array();
 
+    protected $variable = array('{{','}}');
+    protected $block = array('<' , '/>');
+    protected $blockLast;
+    protected $blockOptions = array(
+        '<if=',
+        '<else=',
+        '<elseif=',
+        '<while',
+        '<for=',
+        '<foreach=',
+    );
+
     public function __construct($template)
     {
             $file = VIEW_PATH .DS. strtolower($template) . '.php';
@@ -29,6 +41,9 @@ class View {
         $variable = compact($variable);
         $this->data = $variable;
         $this->scope = json_encode($variable);
+
+    }
+    public function template(){
 
     }
 

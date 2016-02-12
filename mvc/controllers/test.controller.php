@@ -9,11 +9,36 @@ class TestController extends Controller{
 
     public function index(){
 
-        echo '<pre>' , var_dump(Users::where('name','=','0')->get(1)), '</pre>';
-        echo '<pre>' ;
-            foreach((array)\Mariana\Framework\Session\Flash::showMessages() as $m){ echo $m; };
+        $u = Users::all();
+        foreach($u as $delete){
+            Users::where('id',$delete->id)->delete($delete->id);
+        }
+        $u = new Users();
+        $u->name = md5(rand(1,10));
+        $u->password = md5(rand(1,10));
+        $u->save('array');
+
+
+        $u = new Users(37);
+        $u->password = 'pihh';
+        $u->save('array');
+
+        var_dump($u);
+
+        $u = Users::all();
+
+        echo '<pre>' , var_dump(Users::where('name','=','0')->as_array()->get(1)), '</pre>';
+        echo '<pre>' , var_dump(Users::all('array')), '</pre>';
+        echo '<pre>';
+            foreach($u as $single){
+                echo $single->id;
+            }
         echo '</pre>';
-        echo '<pre>'; if(isset($_FILES)){print_r($_FILES); }; '</pre>';
+        echo '<pre>' ;
+        foreach ((array)\Mariana\Framework\Session\Flash::showMessages() as $m) {
+            echo $m;
+        };
+        echo '</pre>';
         $v = new View('upload');
 
 

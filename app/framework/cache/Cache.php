@@ -29,7 +29,6 @@ class Cache implements iFile
         ($ext = false)?
             $this->ext = 'txt' :
             $this->ext = $ext;
-
     }
 
     public function getPathFileName($key){
