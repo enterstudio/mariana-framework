@@ -730,3 +730,32 @@ Stack trace:
 #4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
 #5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
 #6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
+[12-Feb-2016 18:24:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find('0')
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete('0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
+[12-Feb-2016 18:25:52 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find('0')
+#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete('0')
+#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
+[12-Feb-2016 18:33:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected ':' in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[12-Feb-2016 18:36:44 Europe/Berlin] PHP Catchable fatal error:  Object of class Users could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
+[12-Feb-2016 19:17:00 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.columns' doesn't exist' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
+#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461

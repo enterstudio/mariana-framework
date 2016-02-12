@@ -9,9 +9,12 @@ class TestController extends Controller{
 
     public function index(){
 
+        $u = Users::where('id','1')->join('columns','user_id')->get();
+        echo $u;
+        /*
         $u = Users::all();
         foreach($u as $delete){
-            Users::where('id',$delete->id)->delete($delete->id);
+
         }
         $u = new Users();
         $u->name = md5(rand(1,10));

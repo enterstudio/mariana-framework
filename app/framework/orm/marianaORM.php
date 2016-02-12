@@ -221,7 +221,7 @@ class MarianaORM extends Database{
         $column = $this->escapeColumn($column);
         array_push($this->where, array($column, $selector, $doubleDotColumn, $value));
     }
-    public function save()
+    public function save($json_array_class_OR_object = false)
     {
         /**
          * @desc as in this function we are using __get and __set, and for th
@@ -304,7 +304,7 @@ class MarianaORM extends Database{
             if ($this->lastId !== false) {
                 return $lastid;
             } else {
-                return $this->find($lastid);
+                return $this->find($lastid,$json_array_class_OR_object);
             }
 
 
@@ -451,6 +451,7 @@ class MarianaORM extends Database{
             $query = " GROUP BY $this->groupBy ";
         }
 
+        return $query;
         # Run the query
         $stmt = $this->db->prepare($query);
         if(is_array($this->where)){
