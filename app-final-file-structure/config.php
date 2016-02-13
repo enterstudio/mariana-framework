@@ -1,9 +1,12 @@
 <?php
+/**
+ * @Desc: Configuration file for setup stuff used through all the framework
+ * @By: Filipe Mota de Sá AKA pihh - pihh.rocks@gmail.com
+ */
+
 use Mariana\Framework\Config;
 
 # Base Settings
-# Base route -> cleans everything before this on our routing system
-# Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ini_set('display_errors', 0);
 error_reporting(0);
@@ -37,7 +40,6 @@ if(Config::get('mode') == 'dev'){
 
 # Database Connection Settings.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Config::set('database-driver', 'mysql'); // mysql or SQLite3
 Config::set('database', array(
     'host' => $_ENV['DB_HOST'],
     'database' => $_ENV['DB_DATABASE'],
@@ -46,7 +48,6 @@ Config::set('database', array(
     'password' => $_ENV['DB_PASSWORD'],
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'engine'    =>  'InnoDB',
     'prefix' => ''
 ));
 

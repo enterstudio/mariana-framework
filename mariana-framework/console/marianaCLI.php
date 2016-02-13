@@ -1,62 +1,7 @@
 <?php
 // CLI Script
 
-/**
- * TODO:
- *  Database Controll
- *  Composer dump-autoload DunnoWhy but it's failing
- *  Run DB Manager when create table and seed
- *  On create Database, Create Seed for database version control
- */
-# SETUP
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-# REMOVE ERROR DISPLAY
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-# DEFINE SOME VARIABLES
-define('ROOT', realpath(dirname(__FILE__)));
-define('DS', DIRECTORY_SEPARATOR);
-
-# GET AUTOLOAD
-require_once(ROOT.DS."vendor".DS."autoload.php");
-require_once(ROOT.DS."app".DS."functions.php");
-
-# DEFINE USAGES
-use Mariana\Framework\Config;
-use Mariana\Framework\Security\Environment;
-use Mariana\Framework\Database;
-use Mariana\Framework\DatabaseManager\DatabaseManager;
-
-# BOOT AND VALIDATE THE COMMAND LINE INTERFACE
-Environment::setup();
-
-require_once(ROOT . DS . "app" . DS . "config.php");
-
-if(Config::get("mode")!== "dev"){
-    echo "Console only available on dev mode, please configure your application";
-    exit();
-}
-
-# SET OPTIONS
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//(Config::get("mode")== "dev")?: exit() ;
-
-$options = array();
-$options[] = "help";
-$options[] = "server";
-$options[] = "create";
-$options[] = "update";
-
-# SET COMMANDS
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-array_shift($argv);
-$commands = $argv;
-
-
-# CLI CLASS
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class CLI{
 
     private $cli_args = array();
@@ -203,6 +148,41 @@ class $name extends Middleware{
 
 }
 ?>";
+    }
+
+    private function template_database_version_controll_seed(){
+        return
+            "<?php
+/**
+ * Created with love using Mariana Framework
+ * pihh.rocks@gmail.com
+ */
+
+# Table Name
+\$table = \"mariana_framework_database_version_control\";
+
+# Table Fields
+\$fields = array(
+    \"id\"            =>  \"INTEGER PRIMARY KEY\",
+    \"table_name\"    =>  \"VARCHAR (255)\",
+    \"schema_json\"   =>  \"BLOB UNIQUE\",
+    \"seeds_json\"    =>  \"BLOB NULL\",
+    \"description\"   =>  \"TEXT\",
+    \"timestamp\"     =>  \"TIMESTAMP\"
+);
+
+# Specific for this example.
+\$schema_json = json_encode(\$fields);
+
+# Table Seeds
+\$seeds = array(
+    array(1, \"mariana_database_version_control\" , \$schema_json , json_encode(array()), \"Table created to keep up with the database updates.\", time())
+);
+
+return array(
+    \"fields\" => \$fields,
+    \"seeds\"  => \$seeds
+)";
     }
 
 
@@ -406,30 +386,23 @@ class $name extends Middleware{
             return $this->composer();
         }
 
+
+        /*
         # CREATE DATABASE
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if($what == "database"){
-            /**
-             * @Should Do:
-             *  1- Create database
-             *  2- Create file at app/files/database/databases/$name/$name
-             */
-            $name = strtolower($this->parseName($name));
-
-            DatabaseManager::createDatabase($name);
-            echo "Created database: $name. The export database file is at: app/files/database/databases/$name";
-            // Confirmations:
-
-            return true;
-        }   # Done and tested
-
+            $name = strtolower($name);
+            $path = ROOT."/app/files/database/databases/";
+            return "Created database: $name";
+        }
+        */
 
 
         # CREATE TABLE
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        if($what == "table"){
-            /*
+        if($what == "table" || $what == "seed"){
+
             # Settings to create a seed file
             $file_name = strtolower($name);
             $path_table = ROOT.DS."app".DS."files".DS."database".DS."seeds".DS.$file_name.".php";
@@ -447,11 +420,8 @@ class $name extends Middleware{
 
             $this->makeFile($path_table , $contents_table);
             $this->makeFile($path_model , $contents_model);
-            */
 
-            DatabaseManager::createTable($name);
-
-            //echo "\nCreated database seed file: $name at $path_table \n\nCreated model file: $name_model ad $path_model";
+            echo "\nCreated database seed file: $name at $path_table \n\nCreated model file: $name_model ad $path_model";
             return true;
         }
 

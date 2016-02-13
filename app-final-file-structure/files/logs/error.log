@@ -730,7 +730,6 @@ Stack trace:
 #4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
 #5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
 #6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
-<<<<<<< HEAD
 [25-Oct-2015 08:25:16 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'mariana'' in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php:30
 Stack trace:
 #0 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
@@ -740,78 +739,3 @@ Stack trace:
 #4 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\router.php(117): TestController->index()
 #5 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
 #6 C:\Users\pihh\Desktop\development\mariana-framework in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php on line 30
-[12-Feb-2016 23:53:00 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'mariana'' in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php:30
-Stack trace:
-#0 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
-#1 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\model.php(10): Mariana\Framework\Database::getConnection()
-#2 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\marianaORM.php(343): Mariana\Framework\Model->__construct()
-#3 C:\Users\pihh\Desktop\development\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::all()
-#4 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\router.php(117): TestController->index()
-#5 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
-#6 C:\Users\pihh\Desktop\development\mariana-framework in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php on line 30
-[13-Feb-2016 00:16:09 Europe/Berlin] PHP Fatal error:  Call to undefined function help() in C:\Users\pihh\Desktop\development\mariana-framework\mariana on line 492
-[13-Feb-2016 00:17:10 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'mariana'' in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php:30
-Stack trace:
-#0 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
-#1 C:\Users\pihh\Desktop\development\mariana-framework\mariana(460): Mariana\Framework\Database::getConnection()
-#2 C:\Users\pihh\Desktop\development\mariana-framework\mariana(331): CLI->create('database', Array)
-#3 C:\Users\pihh\Desktop\development\mariana-framework\mariana(72): CLI->checkForValidCommand()
-#4 C:\Users\pihh\Desktop\development\mariana-framework\mariana(520): CLI->__construct(Array)
-#5 {main}
-  thrown in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php on line 30
-[13-Feb-2016 00:23:47 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'mariana'' in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php:30
-Stack trace:
-#0 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
-#1 C:\Users\pihh\Desktop\development\mariana-framework\mariana(460): Mariana\Framework\Database::getConnection()
-#2 C:\Users\pihh\Desktop\development\mariana-framework\mariana(331): CLI->create('database', Array)
-#3 C:\Users\pihh\Desktop\development\mariana-framework\mariana(72): CLI->checkForValidCommand()
-#4 C:\Users\pihh\Desktop\development\mariana-framework\mariana(520): CLI->__construct(Array)
-#5 {main}
-  thrown in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\database.php on line 30
-[13-Feb-2016 00:25:51 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\mariana-framework\app\files\database\databases\mariana\mariana_1455319551.sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\mariana-framework\mariana on line 276
-[13-Feb-2016 00:31:06 Europe/Berlin] PHP Catchable fatal error:  Object of class PDO could not be converted to string in C:\Users\pihh\Desktop\development\mariana-framework\mariana on line 477
-[13-Feb-2016 00:35:18 Europe/Berlin] PHP Catchable fatal error:  Object of class PDO could not be converted to string in C:\Users\pihh\Desktop\development\mariana-framework\mariana on line 477
-[13-Feb-2016 00:59:19 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.users' doesn't exist' in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\marianaORM.php:461
-Stack trace:
-#0 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
-#1 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\marianaORM.php(349): Mariana\Framework\ORM\MarianaORM->get()
-#2 C:\Users\pihh\Desktop\development\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM::all()
-#3 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\router.php(117): TestController->index()
-#4 C:\Users\pihh\Desktop\development\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
-#5 C:\Users\pihh\Desktop\development\mariana-framework\index.php(21): Mariana\Framework\App::run()
-#6 {main}
-  thrown in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\orm\marianaORM.php on line 461
-[13-Feb-2016 01:42:07 Europe/Berlin] PHP Warning:  mkdir(): File exists in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\database_manager.php on line 140
-[13-Feb-2016 01:42:07 Europe/Berlin] PHP Notice:  Use of undefined constant users - assumed 'users' in C:\Users\pihh\Desktop\development\mariana-framework\app\files\database\tables\mariana\users.php on line 8
-[13-Feb-2016 01:42:07 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\mariana-framework\app\files\database\tables\mariana\users\users_1455324127..sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\mariana-framework\app\framework\database_manager.php on line 48
-=======
-[12-Feb-2016 18:24:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
-Stack trace:
-#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
-#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
-#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find('0')
-#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete('0')
-#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
-#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
-#6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
-[12-Feb-2016 18:25:52 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
-Stack trace:
-#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
-#1 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(337): Mariana\Framework\ORM\MarianaORM->get()
-#2 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(109): Mariana\Framework\ORM\MarianaORM::find('0')
-#3 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->delete('0')
-#4 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
-#5 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
-#6 C:\xampp\htdocs\mariana-framewo in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
-[12-Feb-2016 18:33:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected ':' in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
-[12-Feb-2016 18:36:44 Europe/Berlin] PHP Catchable fatal error:  Object of class Users could not be converted to string in C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php on line 12
-[12-Feb-2016 19:17:00 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.columns' doesn't exist' in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php:461
-Stack trace:
-#0 C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php(461): PDOStatement->execute()
-#1 C:\xampp\htdocs\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get()
-#2 C:\xampp\htdocs\mariana-framework\app\framework\router.php(117): TestController->index()
-#3 C:\xampp\htdocs\mariana-framework\app\framework\app.php(33): Mariana\Framework\Router::route()
-#4 C:\xampp\htdocs\mariana-framework\index.php(21): Mariana\Framework\App::run()
-#5 {main}
-  thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
->>>>>>> 654eb0f694ddb2fbf191a8730223b51d05220766
