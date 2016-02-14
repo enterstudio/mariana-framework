@@ -65,7 +65,9 @@ class CLI{
         "server",
         "server:",
         "create:",
-        "update:"
+        "update:",
+        "migrate",
+        "seed"
     );
     public function __construct(Array $params= array()){
 
@@ -429,29 +431,8 @@ class $name extends Middleware{
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if($what == "table"){
-            /*
-            # Settings to create a seed file
-            $file_name = strtolower($name);
-            $path_table = ROOT.DS."app".DS."files".DS."database".DS."seeds".DS.$file_name.".php";
-
-            # Settings to create a model file
-            $path_model = ROOT.DS."mvc".DS."models".DS.$file_name.".model.php";
-            $name_model = $this->parseName($name);
-
-            $this->checkIfFileExists($path_table);
-            $this->checkIfFileExists($path_model);
-
-            $contents_model = $this->template_model($name_model, $file_name);
-            $contents_table = $this->template_table($name);
-
-
-            $this->makeFile($path_table , $contents_table);
-            $this->makeFile($path_model , $contents_model);
-            */
 
             DatabaseManager::createTable($name);
-
-            //echo "\nCreated database seed file: $name at $path_table \n\nCreated model file: $name_model ad $path_model";
             return true;
         }
 
@@ -459,15 +440,33 @@ class $name extends Middleware{
         return help();
     }
 
-    public function update($table){
 
+    public function update($what, Array $args = array()){
+
+        if(empty($args)){
+            echo "\nWARNING: Cannot update table whitout proper naming it. More info: php mariana help\n";
+            return true;
+        }else{
+            $name = $args[0];
+        }
+        DatabaseManager::updateTable($name);
+        return true;
+    }
+
+    public function migrate($database){
+
+        DatabaseManager::migrate($database);
+    }
+
+    public function seed($table){
+        DatabaseManager::seedTable($table);
     }
 
     private function composer(){
         /**
          * @desc runs composer dump-autoload
          */
-        return exec("composer dump-autoload");
+        return exec("composer.phar dump-autoload");
     }
 
 }

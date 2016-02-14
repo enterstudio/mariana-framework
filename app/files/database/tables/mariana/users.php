@@ -5,17 +5,23 @@
   */
 
   # Table Name
-  $table = users;
+  $table = 'users';
 
   # Table Fields
   $fields = array(
-        'id'              =>  'INTEGER PRIMARY KEY',
-        'date_created'    =>  'TIMESTAMP',
-        'last_updated'     =>  'TIMESTAMP',
+        'id'              =>  'INTEGER PRIMARY KEY AUTO_INCREMENT',
+        'date_created'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+        'last_updated'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+        'name'            =>  'VARCHAR(255)',
   );
 
   # Table Seeds
-  $seeds = array();
+  $seeds = array(
+      array('name' => 'pihh'),
+      array('name' => 'mia'),
+      array('name' => 'carv'),
+      array('name' => 'minga'),
+  );
 
   return array(
         'fields' => $fields,

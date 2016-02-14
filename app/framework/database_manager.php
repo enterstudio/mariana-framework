@@ -45,7 +45,7 @@ class DatabaseManager{
          */
 
         $my_file = $path;
-        $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$path);
+        $handle = fopen($my_file, 'w'); // or die('Cannot open file:  '.$path);
         $data = $contents;
         fwrite($handle, $data);
         fclose($handle);
@@ -56,7 +56,7 @@ class DatabaseManager{
 
         self::setup();
 
-        $template = 'CREATE DATABASE '.$name.'
+        $template = 'CREATE DATABASE IF NOT EXISTS '.$name.'
 CHARACTER SET '.Config::get('database')['charset'].'
 COLLATE '.Config::get('database')['collation'].'
 ';
@@ -108,13 +108,13 @@ COLLATE '.Config::get('database')['collation'].'
   */
 
   # Table Name
-  \$table = ".$name.";
+  \$table = '$name';
 
   # Table Fields
   \$fields = array(
         'id'              =>  'INTEGER PRIMARY KEY',
-        'date_created'    =>  'TIMESTAMP',
-        'last_updated'     =>  'TIMESTAMP',
+        'date_created'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+        'last_updated'     =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
   );
 
   # Table Seeds
@@ -137,43 +137,155 @@ COLLATE '.Config::get('database')['collation'].'
         $dir_name2 = ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name;
 
         if(!is_dir($dir_name2)){
-            mkdir($dir_name, 0700);
+            mkdir($dir_name2, 0700);
         }
 
         //STEP 2 - Create The Files
         //The php file
         $path = $dir_name.DS.$name.'.php';
+
         self::makeFile($path,$templatePHP);
 
         //The sql File
         $templateSQL = self::createSQL($name);
-        $path = $dir_name2.DS.$name.'_'.time().'.'.self::$extension;
+        $name_time = $name.'_'.time();
+        $path = $dir_name2.DS.$name_time.self::$extension;
         self::makeFile($path,$templateSQL);
         //Second dir é a pasta de ficheiros para cada tabela
 
+        // Run PDO to create the table
+        $stmt = Database::getConnection()->prepare($templateSQL);
+        if($stmt->execute()){
+            echo "SUCCESS: Table $name successfully created!".PHP_EOL.PHP_EOL;
+            echo "SUCCESS: Main for database management: $name.php successfully created and stored at $dir_name !".PHP_EOL.PHP_EOL;
+            echo "SUCCESS: Database version control file: $name_time.sql successfully created and stored at $dir_name2 !".PHP_EOL.PHP_EOL;
+            return true;
+        }
+
+        echo 'This process was not finnished. Please try again or send email to pihh.rocks@gmail.com';
+        return false;
 
     }
 
     public static function updateTable($name){
+        self::setup();
+        # names:
+        $ext = self::$extension;
+        $sql_name = $name.'_'.time().$ext;
+        $dir_name = ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name;
+        $dir_name_php = "$dir_name.php";
+        $dir_name_sql = $dir_name.DS.$sql_name;
 
+        # Drop the table to create a new one
+        $sql = "DROP TABLE `$name`";
+        echo $sql;
+        $stmt = Database::getConnection()->prepare($sql);
+        if($stmt->execute()){
+            echo "SUCCESS: Deleted table $name !".PHP_EOL.PHP_EOL;
+        }
+
+        # Generate the sql file out of the php file
+        $sql = self::createSQL($name);
+        self::makeFile($dir_name_sql,$sql);
+
+        $stmt = Database::getConnection()->prepare($sql);
+        if($stmt->execute()){
+            echo "SUCCESS: Database migration file: $dir_name_sql !".PHP_EOL.PHP_EOL;
+        }else{
+            self::deleteSQL($dir_name_sql);
+            echo "FAIL: Database migration file failed to create".PHP_EOL.PHP_EOL;
+        }
+
+        self::seedTable($name);
     }
 
     public static function seedTable($name){
+        $seeds = array();
+        $path_php = ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name.'.php';
+        
+        include($path_php);
 
+        if(sizeof($seeds)> 0){
+            $before = '';
+            $after = '';
+            $i = 0;
+            foreach($seeds as $seed){
+                $before = '';
+                $after = '';
+                foreach($seed as $key => $pair) {
+                    $before .= "`$key` ,";
+                    $after .= ":$key ,";
+                }
+
+                $before = '('.trim($before,',').')';
+                $after = '('.trim($after,',').')';
+
+                $sql = "INSERT INTO $name $before VALUES $after";
+
+                $stmt = Database::getConnection()->prepare($sql);
+                foreach($seeds as $seed) {
+                    foreach ($seed as $key => $pair) {
+                        $stmt->bindParam(":$key", $pair);
+                    }
+                }
+
+                if($stmt->execute()){
+                    $i++;
+                }
+            }
+
+            if($i > 0){
+                echo "SUCCESS: Database table $name successfully seeded! ";
+            }else {
+                echo 'FAIL: Unable to seed the table...';
+            }
+            return true;
+        }
+        echo "Array \$seeds not set or empty in $path_php";
+        return false;
     }
 
     public static function createSQL($name){
         $fields = array();
-        include_once(ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name.'.php');
+        include(ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name.'.php');
         $config = Config::get('database');
-        $sql = "CREATE TABLE `".$config['database']."`.`$name` ( ";
-
+        $sql = "-- table created at ".date('Y-m-d')." \n CREATE TABLE IF NOT EXISTS `".$config['database']."`.`$name` ( ";
         foreach($fields as $key => $pair){
-            $sql .= "`$key` $pair ,";
+            $sql .= "\n`$key` $pair ,";
         }
         $sql = trim($sql,',');
-        $sql .= ' ) ENGINE = '.$config['engine'];
+        $sql .= " )\n ENGINE = ".$config['engine'];
 
         return $sql;
+    }
+
+    public static function deleteSQL($path){
+        if(is_file($path)){
+            unlink($path);
+        }
+    }
+
+    public static function migrate(){
+        $database = Config::get('database')['database'];
+
+        $dir_tables = ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.$database.DS;
+
+        $php = glob($dir_tables . "*.php");
+
+        //print each file name
+        foreach($php as $p)
+        {
+            $file = str_replace('.php','',str_replace($dir_tables,'',$p));
+
+            if(!is_dir($dir_tables.$file)){
+                mkdir($dir_tables.$file, 0700);
+            }
+
+            $sql = "CREATE TABLE IF NOT EXISTS $file ( `id` INT NOT NULL ) ENGINE = InnoDB; ";
+
+            Database::getConnection()->prepare($sql)->execute();
+
+            self::updateTable($file);
+        }
     }
 }

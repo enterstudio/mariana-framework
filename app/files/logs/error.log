@@ -815,3 +815,181 @@ Stack trace:
 #5 {main}
   thrown in C:\xampp\htdocs\mariana-framework\app\framework\orm\marianaORM.php on line 461
 >>>>>>> 654eb0f694ddb2fbf191a8730223b51d05220766
+[13-Feb-2016 23:03:55 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 265
+[13-Feb-2016 23:04:04 Europe/Berlin] PHP Notice:  Use of undefined constant users - assumed 'users' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\users.php on line 8
+[13-Feb-2016 23:05:29 Europe/Berlin] PHP Notice:  Use of undefined constant users - assumed 'users' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\users.php on line 8
+[13-Feb-2016 23:29:31 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'users' already exists' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:157
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(157): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(452): Mariana\Framework\DatabaseManager\DatabaseManager::createTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(289): CLI->create('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(73): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(480): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 157
+[14-Feb-2016 00:53:58 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:181
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(181): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(442): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('table')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(289): CLI->update('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(73): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(460): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 181
+[14-Feb-2016 00:55:31 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'mariana.table'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:181
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(181): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(442): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('table')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(289): CLI->update('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(73): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(460): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 181
+[14-Feb-2016 00:56:27 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'mariana.table'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:182
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(182): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(442): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('table')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(289): CLI->update('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(73): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(460): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 182
+[14-Feb-2016 00:59:26 Europe/Berlin] PHP Catchable fatal error:  Argument 1 passed to CLI::update() must be of the type array, string given, called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 289 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 442
+[14-Feb-2016 01:00:57 Europe/Berlin] PHP Catchable fatal error:  Argument 1 passed to CLI::update() must be of the type array, string given, called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 289 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 442
+[14-Feb-2016 01:22:28 Europe/Berlin] PHP Warning:  Missing argument 1 for CLI::migrate(), called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 275 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 456
+[14-Feb-2016 01:22:28 Europe/Berlin] PHP Notice:  Undefined variable: database in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 457
+[14-Feb-2016 01:34:30 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+ ENGINE = InnoDB' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:191
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(191): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(263): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('comments')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\ in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 191
+[14-Feb-2016 01:37:07 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+ ENGINE = InnoDB' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:191
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(191): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(263): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('comments')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\ in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 191
+[14-Feb-2016 01:37:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')
+ ENGINE = InnoDB' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:191
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(191): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(263): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('comments')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\ in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 191
+[14-Feb-2016 01:39:21 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'mariana.comments'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:186
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(186): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(266): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('comments')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#5 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 186
+[14-Feb-2016 01:43:43 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'mariana.comments'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:185
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(185): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(265): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('comments')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#5 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 185
+[14-Feb-2016 01:45:40 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1113 A table must have at least 1 column' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:49:59 Europe/Berlin] PHP Notice:  Undefined variable: table in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 263
+[14-Feb-2016 01:49:59 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS  ( `id`, INTEGER )' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {m in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:50:52 Europe/Berlin] PHP Notice:  Undefined variable: table in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 263
+[14-Feb-2016 01:50:52 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS  ( `id` INTEGER )' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {ma in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:51:39 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS comments ( `id` INTEGER )' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:52:03 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS comments ( `id` int(11) )' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:53:02 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IF NOT EXISTS comments ( `id` INT NOT NULL ) ENGINE = InnoDB' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:264
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(264): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(458): Mariana\Framework\DatabaseManager\DatabaseManager::migrate('mariana')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->migrate('mariana', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): C in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 264
+[14-Feb-2016 01:53:31 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\comments\comments_1455411211.sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 48
+[14-Feb-2016 01:54:16 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\comments\comments_1455411256.sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 48
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\comments\comments_1455411317.sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 48
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fwrite() expects parameter 1 to be resource, boolean given in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 50
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 51
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fopen(C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\files\database\tables\mariana\users\users_1455411317.sql): failed to open stream: No such file or directory in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 48
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fwrite() expects parameter 1 to be resource, boolean given in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 50
+[14-Feb-2016 01:55:17 Europe/Berlin] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 51
+[14-Feb-2016 01:57:42 Europe/Berlin] PHP Warning:  Missing argument 1 for CLI::migrate(), called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 275 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 456
+[14-Feb-2016 01:57:42 Europe/Berlin] PHP Notice:  Undefined variable: database in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 458
+[14-Feb-2016 02:04:56 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`('minga':name:name:name)`' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:227
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(227): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(462): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->seed('users', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {main}
+  thro in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 227
+[14-Feb-2016 02:05:59 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1110 Column 'name' specified twice' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:227
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(227): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(462): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->seed('users', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 227
+[14-Feb-2016 02:06:43 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1110 Column 'name' specified twice' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:227
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(227): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(462): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->seed('users', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Array)
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 227
+[14-Feb-2016 02:09:42 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(`name` )`name` ) VALUES (('minga' )'minga' )' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php:227
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php(227): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(462): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(291): CLI->seed('users', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(75): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(479): CLI->__construct(Arra in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 227
+[14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant Y - assumed 'Y' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
+[14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant m - assumed 'm' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
+[14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant d - assumed 'd' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
