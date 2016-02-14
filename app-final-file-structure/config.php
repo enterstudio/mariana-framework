@@ -1,6 +1,6 @@
 <?php
 /**
- * @Desc: Configuration file for setup stuff used through all the framework
+ * @Desc: Configuration file for setup stuff used through all the frameworkz
  * @By: Filipe Mota de Sá AKA pihh - pihh.rocks@gmail.com
  */
 

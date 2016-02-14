@@ -9,8 +9,9 @@ class TestController extends Controller{
 
     public function index(){
 
-        $u = Users::where('id','1')->join('columns','user_id')->get();
-        echo $u;
+        var_dump(Users::all());
+        //$u = Users::where('id','1')->join('comments','user_id')->get();
+        //echo $u;
         /*
         $u = Users::all();
         foreach($u as $delete){
@@ -72,7 +73,7 @@ class TestController extends Controller{
                 $u = Users::find(1);
                 print_r($u);
 
-                $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/framework/email/templates/bluechimp/base_boxed_2column_query.html");
+                $content = file_get_contents($_SERVER['DOCUMENT_ROOT']."/app/frameworkz/email/templates/bluechimp/base_boxed_2column_query.html");
                 echo $content;
 
 

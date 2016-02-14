@@ -993,3 +993,22 @@ Stack trace:
 [14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant Y - assumed 'Y' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
 [14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant m - assumed 'm' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
 [14-Feb-2016 02:12:55 Europe/Berlin] PHP Notice:  Use of undefined constant d - assumed 'd' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\app\framework\database_manager.php on line 251
+[14-Feb-2016 14:59:02 Europe/Berlin] PHP Fatal error:  Class 'Config' not found in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\marianaCLI.php on line 402
+[14-Feb-2016 15:06:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.columns' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 461
+[14-Feb-2016 15:18:47 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Users.' in 'on clause'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:461
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(461): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(12): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 461

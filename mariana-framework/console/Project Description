@@ -1,1 +1,17 @@
 Mariana Framework Command Line Interface
+
+FUNCTION HELP:
+    Displays all the functions and how to use them
+
+FUNCTION SERVER:
+    Starts localhost server - port 314 by default but you can allways change it
+
+FUNCTION CREATE:
+    CREATE:DATABASE $name
+    Desc: creates a database named $name with coallition as in Config::coalittion
+
+    CREATE DATABASE database_name
+    CHARACTER SET character_set_name
+    COLLATE collation_name
+
+

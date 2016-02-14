@@ -17,7 +17,7 @@ use SplObjectStorage;
 /**
  * Exporting utility.
  *
- * This class is derived from the PHPUnit testing framework.
+ * This class is derived from the PHPUnit testing frameworkz.
  *
  * @author  Sebastiaan Stok <s.stok@rollerscapes.net
  * @author  Sebastian Bergmann <sebastian@phpunit.de>

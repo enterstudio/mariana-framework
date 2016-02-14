@@ -9,7 +9,7 @@ class App{
     /**
      * Class App
      * @package Mariana\Framework
-     * @desc Bootstrap for the framework
+     * @desc Bootstrap for the frameworkz
      */
     
     public static function run(){

@@ -25,7 +25,7 @@
 error_reporting(E_ALL);
 
 /*
- * Determine the root, library, and tests directories of the framework
+ * Determine the root, library, and tests directories of the frameworkz
  * distribution.
  */
 $root    = realpath(dirname(dirname(__FILE__)));

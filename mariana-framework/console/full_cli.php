@@ -1,12 +1,17 @@
 <?php
+// CLI Script
+define('ROOT', realpath(dirname(__FILE__)));
+define('DS', DIRECTORY_SEPARATOR);
 
+include_once (ROOT.DS.'mariana-frameworkz'.DS.'console'.DS.'marianaCLISetup.php');
+include_once (ROOT.DS.'mariana-frameworkz'.DS.'console'.DS.'marianaCLI.php');
 /**
  * TODO:
  *  Database Controll
  *  Composer dump-autoload DunnoWhy but it's failing
  *  Run DB Manager when create table and seed
  *  On create Database, Create Seed for database version control
- */
+ *
 # SETUP
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -102,13 +107,13 @@ private function template_table($name){
 /**
  * @param string $name
  * @desc creates a database seed
- */
+ *
 return
     "<?php
 /**
   * Created with love using Mariana Framework
   * Need help? Ask Pihh The Creator pihh.rocks@gmail.com
-  */
+  *
 
   # Table Name
   \$table = ".$name.";
@@ -137,13 +142,13 @@ private function template_controller($name){
     /**
      * @param string $name
      * @desc creates a database seed
-     */
+     *
     return
         "<?php
 /**
   * Created with love using Mariana Framework
   * Need help? Ask Pihh The Creator pihh.rocks@gmail.com
-  */
+  *
 
 use Mariana\\Framework;
 use Mariana\\Framework\\Controller;
@@ -166,13 +171,13 @@ private function template_model($name, $table){
     /**
      * @param string $name
      * @desc creates a database seed
-     */
+     *
     return
         "<?php
 /**
   * Created with love using Mariana Framework
   * Need help? Ask Pihh The Creator pihh.rocks@gmail.com
-  */
+  *
 
 use \\Mariana\\Framework\\Model;
 
@@ -189,13 +194,13 @@ private function template_middleware($name){
     /**
      * @param string $name
      * @desc creates a database seed
-     */
+     *
     return
         "<?php
 /**
   * Created with love using Mariana Framework
   * Need help? Ask Pihh The Creator pihh.rocks@gmail.com
-  */
+  *
 
 use Mariana\\Framework\\Middleware;
 
@@ -215,7 +220,7 @@ private function checkIfFileExists($path){
     /**
      * @param $path
      * @return bool
-     */
+     *
 
     if(file_exists($path)) {
         echo "\nFile allready exists in $path. Please delete it or rename your new file.\n";
@@ -229,7 +234,7 @@ private function makeFile($path, $contents){
      * @param $path
      * @param $contents
      * @desc if file doesn't exist, creates a file and writes it's contents
-    */
+
 
     $my_file = $path;
     $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$path);
@@ -245,7 +250,7 @@ private function parseName($name){
      * @param bool|false $parsingType
      * @desc: parses the name as the convention says
      * @return string $name
-     */
+     *
 
     $name = str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
     $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
@@ -260,7 +265,7 @@ private function checkForValidCommand(){
      * @param $options
      * @desc checks if command is valid, if not, returns help.
      * @return command() | help()
-     */
+     *
 
     # Command String threatment
     $command = strtolower(trim($this->cli_args[0]));
@@ -308,7 +313,7 @@ private function server($port = false){
      * @return string
      * @default port 314 (port called because of my name - pi 3.14)
      * @desc starts php server on this folder and opens browser
-     */
+     *
     ($port == false)?
         $port = 314:
         $port = $port;
@@ -327,7 +332,7 @@ public function create($what, Array $args = array()){
      * @param array $args
      * @return bool|void
      * @desc creates files and runs composer dump-autoload function
-     */
+     *
 
     $what = strtolower(trim($what));
 
@@ -414,7 +419,7 @@ public function create($what, Array $args = array()){
          * @Should Do:
          *  1- Create database
          *  2- Create file at app/files/database/databases/$name/$name
-         */
+         *
         $name = strtolower($this->parseName($name));
 
         DatabaseManager::createDatabase($name);
@@ -466,7 +471,7 @@ public function seed($table){
 private function composer(){
     /**
      * @desc runs composer dump-autoload
-     */
+     *
     return exec("composer.phar dump-autoload");
 }
 
@@ -481,3 +486,4 @@ $cli = new CLI($commands);
 
 
  exit();
+*/

@@ -24,6 +24,7 @@ require_once(ROOT.DS."app".DS."functions.php");
 # DEFINE USAGES
 use Mariana\Framework\Config;
 use Mariana\Framework\Security\Environment;
+use Mariana\Framework\Database;
 
 # BOOT AND VALIDATE THE COMMAND LINE INTERFACE
 Environment::setup();

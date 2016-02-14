@@ -1,10 +1,10 @@
 {
     "autoload": {
         "psr-4":{
-            "app\\": "app"
+            "app\\": "mariana-framework"
         },
         "classmap":
-        ["app","mvc"]
+        ["mariana-framework","mvc"]
     },
     "require": {
         "phpunit/phpunit": "^5.1",

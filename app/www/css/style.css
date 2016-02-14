@@ -1,0 +1,28 @@
+html {
+  background: url("../img/background.jpg") no-repeat fixed center center/cover; }
+
+body, html {
+  font-size: small;
+  font-family: "Quattrocento Sans", sans-serif;
+  color: #FFF;
+  text-shadow: 0 0 2px #000;
+  min-height: 100vh;
+  margin: 0px; }
+
+h1, h2, h3, h4, h5, h6, .heading {
+  font-size: xx-large;
+  font-family: "Playfair Display", serif; }
+
+.heading {
+  font-size: small; }
+
+.vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100vh;
+  padding: 0 10%; }
+
+a, .red-text {
+  color: #e60000; }
+
+/*# sourceMappingURL=style.css.map */

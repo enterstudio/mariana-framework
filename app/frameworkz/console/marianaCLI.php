@@ -397,7 +397,10 @@ class $name extends Middleware{
         return true;
     }
 
-    public function migrate($database){
+    public function migrate($database= false){
+        if($database == false){
+            $database = Config::get('database');
+        }
         DatabaseManager::migrate($database);
     }
 

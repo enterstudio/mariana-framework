@@ -13,7 +13,7 @@ define('VIEW_PATH', ROOT.DS.'mvc'.DS.'views');
 define('FILE_PATH', ROOT.DS.'app'.DS.'files');
 
 
-# including the required filesystem and booting the framework
+# including the required filesystem and booting the frameworkz
 require_once(ROOT.DS.'vendor'.DS.'autoload.php');
 require_once(ROOT.DS.'app'.DS.'functions.php');
 

@@ -1,6 +1,7 @@
 <?php
 // CLI Script
-
+include_once ('marianaCLISetup.php');
+use Mariana\Framework\DatabaseManager\DatabaseManager;
 
 class CLI{
 
@@ -10,7 +11,9 @@ class CLI{
         "server",
         "server:",
         "create:",
-        "update:"
+        "update:",
+        "migrate",
+        "seed"
     );
     public function __construct(Array $params= array()){
 
@@ -148,41 +151,6 @@ class $name extends Middleware{
 
 }
 ?>";
-    }
-
-    private function template_database_version_controll_seed(){
-        return
-            "<?php
-/**
- * Created with love using Mariana Framework
- * pihh.rocks@gmail.com
- */
-
-# Table Name
-\$table = \"mariana_framework_database_version_control\";
-
-# Table Fields
-\$fields = array(
-    \"id\"            =>  \"INTEGER PRIMARY KEY\",
-    \"table_name\"    =>  \"VARCHAR (255)\",
-    \"schema_json\"   =>  \"BLOB UNIQUE\",
-    \"seeds_json\"    =>  \"BLOB NULL\",
-    \"description\"   =>  \"TEXT\",
-    \"timestamp\"     =>  \"TIMESTAMP\"
-);
-
-# Specific for this example.
-\$schema_json = json_encode(\$fields);
-
-# Table Seeds
-\$seeds = array(
-    array(1, \"mariana_database_version_control\" , \$schema_json , json_encode(array()), \"Table created to keep up with the database updates.\", time())
-);
-
-return array(
-    \"fields\" => \$fields,
-    \"seeds\"  => \$seeds
-)";
     }
 
 
@@ -386,42 +354,30 @@ return array(
             return $this->composer();
         }
 
-
-        /*
         # CREATE DATABASE
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if($what == "database"){
-            $name = strtolower($name);
-            $path = ROOT."/app/files/database/databases/";
-            return "Created database: $name";
-        }
-        */
+            /**
+             * @Should Do:
+             *  1- Create database
+             *  2- Create file at app/files/database/databases/$name/$name
+             */
+            $name = strtolower($this->parseName($name));
+
+            DatabaseManager::createDatabase($name);
+            echo "Created database: $name. The export database file is at: app/files/database/databases/$name";
+            // Confirmations:
+
+            return true;
+        }   # Done and tested
+
 
 
         # CREATE TABLE
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        if($what == "table" || $what == "seed"){
-
-            # Settings to create a seed file
-            $file_name = strtolower($name);
-            $path_table = ROOT.DS."app".DS."files".DS."database".DS."seeds".DS.$file_name.".php";
-
-            # Settings to create a model file
-            $path_model = ROOT.DS."mvc".DS."models".DS.$file_name.".model.php";
-            $name_model = $this->parseName($name);
-
-            $this->checkIfFileExists($path_table);
-            $this->checkIfFileExists($path_model);
-
-            $contents_model = $this->template_model($name_model, $file_name);
-            $contents_table = $this->template_table($name);
-
-
-            $this->makeFile($path_table , $contents_table);
-            $this->makeFile($path_model , $contents_model);
-
-            echo "\nCreated database seed file: $name at $path_table \n\nCreated model file: $name_model ad $path_model";
+        if($what == "table"){
+            DatabaseManager::createTable($name);
             return true;
         }
 
@@ -429,8 +385,27 @@ return array(
         return help();
     }
 
-    public function update($table){
+    public function update($what, Array $args = array()){
 
+        if(empty($args)){
+            echo "\nWARNING: Cannot update table whitout proper naming it. More info: php mariana help\n";
+            return true;
+        }else{
+            $name = $args[0];
+        }
+        DatabaseManager::updateTable($name);
+        return true;
+    }
+
+    public function migrate($database= false){
+        if($database == false){
+            $database = Config::get('database');
+        }
+        DatabaseManager::migrate($database);
+    }
+
+    public function seed($table){
+        DatabaseManager::seedTable($table);
     }
 
     private function composer(){
@@ -441,8 +416,6 @@ return array(
     }
 
 }
-
-
 
 
 # STARTUP

@@ -16,8 +16,7 @@ abstract class Model extends MarianaORM{
         }
     }
 
-<<<<<<< HEAD
-=======
+/*
     protected function has($table, $identifier, $one_or_many = false){
         // The query :
         // SELECT * FROM (SELECT * FROM `users` WHERE `id` = 1) AS `u`, (SELECT GROUP_CONCAT(`mobile_numbers`.`phone_number`, '') AS 'contacts' FROM `mobile_numbers` WHERE `user_id` = 1 ) AS `m` 
@@ -30,7 +29,7 @@ abstract class Model extends MarianaORM{
         return call_user_func_array($method, $args);
     }
     */
->>>>>>> 654eb0f694ddb2fbf191a8730223b51d05220766
+
     function __call($method, $args)
     {
         //return call_user_func_array($method, $args);
