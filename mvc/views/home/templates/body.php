@@ -1,4 +1,4 @@
-<template id="body">
+<template id="body" style="display: none">
     <div class="vertical-center">
         <h1>"Mariana"</h1>
         <div>

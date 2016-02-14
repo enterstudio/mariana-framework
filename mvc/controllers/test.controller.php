@@ -9,6 +9,7 @@ class TestController extends Controller{
 
     public function index(){
 
+        $v = new View('layout');
         var_dump(Users::all());
         //$u = Users::where('id','1')->join('comments','user_id')->get();
         //echo $u;

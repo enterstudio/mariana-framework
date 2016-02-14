@@ -3,7 +3,6 @@ use Mariana\Framework\Config;
 
 # Base Settings
 # Base route -> cleans everything before this on our routing system
-# Production or development ( you can allways set a $_SESSION["dev"] variable and modify this as you want )
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ini_set('display_errors', 0);
 error_reporting(0);
@@ -34,14 +33,12 @@ if(Config::get('mode') == 'dev'){
     ini_set('error_log', ROOT.DS.'app'.DS.'files'.DS.'logs'.DS.'error.log');
 }
 
-
 # Database Connection Settings.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Config::set('database-driver', 'mysql'); // mysql or SQLite3
 Config::set('database', array(
     'host' => $_ENV['DB_HOST'],
     'database' => $_ENV['DB_DATABASE'],
-    'driver'   => 'mysql',
+    'driver'   => 'mysql',// mysql or SQLite3
     'username' => $_ENV['DB_USERNAME'],
     'password' => $_ENV['DB_PASSWORD'],
     'charset' => 'utf8',

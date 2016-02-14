@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /app/files/cache
+Disallow: /app/files/database
+Disallow: /app/files/logs
+Disallow: /app/www/css
+Disallow: /app/www/fonts
+Disallow: /app/www/js
+Disallow: /app/config.php
+Disallow: /app/functions.php
+Disallow: /app/routes.php
+Disallow: .env
+Disallow: mariana

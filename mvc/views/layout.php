@@ -5,9 +5,9 @@
     <title>Mariana - Framework</title>
     <base href="<?= FRAMEWORK_ROOT ?>">
     <!-- CSS FILES -->
-    <link rel="stylesheet" href="www/fonts/playfair-display/700i.css" >
-    <link rel="stylesheet" href="www/fonts/quattrocento-sans/400.css" >
-    <link rel="stylesheet" href="www/css/style.css" >
+    <link rel="stylesheet" href="app/www/fonts/playfair-display/700i.css" >
+    <link rel="stylesheet" href="app/www/fonts/quattrocento-sans/400.css" >
+    <link rel="stylesheet" href="app/www/css/style.css" >
 
 </head>
 <body>
@@ -21,7 +21,7 @@
     </div>
     <div id="mariana-scripts">
         <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
-        <script src="www/js/mariana-closet-template-engine.js"></script>
+        <script src="app/www/js/mariana-closet-template-engine.js"></script>
         <script src="mvc/views/home/js/main.js"></script>
     </div>
 </body>

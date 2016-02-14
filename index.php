@@ -11,13 +11,13 @@ define('ROOT', realpath(dirname(__FILE__)));
 define('FRAMEWORK_ROOT', $framework_root);
 define('VIEW_PATH', ROOT.DS.'mvc'.DS.'views');
 define('FILE_PATH', ROOT.DS.'app'.DS.'files');
-
+define('SCRIPT_PATH', ROOT.DS.'app'.DS.'www');
 
 # including the required filesystem and booting the frameworkz
 require_once(ROOT.DS.'vendor'.DS.'autoload.php');
 require_once(ROOT.DS.'app'.DS.'functions.php');
 
-# boot the application
+# bootstrap
 App::run();
 
 ?>

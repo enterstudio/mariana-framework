@@ -1,0 +1,2 @@
+#disallow requests on this folder
+deny from all
