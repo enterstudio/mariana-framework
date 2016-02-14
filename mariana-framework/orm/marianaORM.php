@@ -513,6 +513,10 @@ class MarianaORM extends Database{
 
     }
 
+    protected function has($table, $key, $extras = false){
+        array_push($this->has, array($table, $key, $extras));
+    }
+
     /** VARS  **
 
     public $data = array();  //  QUERY input data -> array["column"] = "value"

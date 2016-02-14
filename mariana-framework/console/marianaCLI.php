@@ -131,9 +131,9 @@ class $name extends Middleware{
 
         if(file_exists($path)) {
             echo "\nFile allready exists in $path. Please delete it or rename your new file.\n";
-            exit();
+            return false;
         }
-        return false;
+        return true;
     }
 
     private function makeFile($path, $contents){
@@ -273,7 +273,9 @@ class $name extends Middleware{
             $name = $this->parseName($name);
             $path = ROOT.DS."mvc".DS."controllers".DS.$file_name.".controller.php";
 
-            $this->checkIfFileExists($path);
+            if($this->checkIfFileExists($path)== false){
+                return false;
+            }
 
             $contents = $this->template_controller($name);
 
@@ -291,7 +293,9 @@ class $name extends Middleware{
             $name = $this->parseName($name);
             $path = ROOT.DS."mvc".DS."models".DS.$file_name.".model.php";
 
-            $this->checkIfFileExists($path);
+            if($this->checkIfFileExists($path)== false){
+                return false;
+            }
 
             $contents = $this->template_model($name,$file_name);
 
@@ -309,7 +313,9 @@ class $name extends Middleware{
             $name = $this->parseName($name);
             $path = ROOT.DS."mvc".DS."middlewate".DS.$file_name.".php";
 
-            $this->checkIfFileExists($path);
+            if($this->checkIfFileExists($path)== false){
+                return false;
+            }
 
             $contents = $this->template_middleware($name);
 

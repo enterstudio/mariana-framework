@@ -1048,3 +1048,17 @@ Stack trace:
 [14-Feb-2016 19:17:10 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 266
 [14-Feb-2016 19:18:09 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 266
 [14-Feb-2016 19:19:49 Europe/Berlin] PHP Catchable fatal error:  Argument 1 passed to CLI::__construct() must be of the type array, string given, called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 346 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 71
+[14-Feb-2016 20:29:51 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php:267
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(267): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(228): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(343): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('users')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(465): Mariana\Framework\DatabaseManager\DatabaseManager::migrate(Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\marian in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 267
+[14-Feb-2016 20:31:17 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php:267
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(267): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(228): Mariana\Framework\DatabaseManager\DatabaseManager::seedTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(343): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('users')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(465): Mariana\Framework\DatabaseManager\DatabaseManager::migrate(Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\marian in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 267

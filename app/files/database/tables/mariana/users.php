@@ -9,9 +9,10 @@
 
   # Table Fields
   $fields = array(
-        'id'              =>  'INTEGER PRIMARY KEY',
+        'id'              =>  'INTEGER PRIMARY KEY AUTO_INCREMENT',
         'date_created'    =>  'INTEGER (11)',
         'last_updated'    =>  'INTEGER (11)',
+        'name'            =>  'VARCHAR (255)'
   );
 
   # Table Seeds
@@ -24,7 +25,12 @@
    *    $i++;
    *  }
    */
-  $seeds = array();
+  $seeds = array(
+    array('name'  => 'pihh'),
+    array('name'  => 'mia'),
+    array('name'  => 'carv'),
+    array('name'  => 'pinga'),
+  );
 
   # Constraints
   # Put here the constraints

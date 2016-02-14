@@ -9,9 +9,9 @@
 
   # Table Fields
   $fields = array(
-        'id'              =>  'INTEGER PRIMARY KEY',
-        'date_created'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-        'last_updated'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+        'id'              =>  'INTEGER PRIMARY KEY AUTO_INCREMENT',
+        'date_created'    =>  'INTEGER (11)',
+        'last_updated'    =>  'INTEGER (11)',
         'user_id'         =>  'INTEGER',
         'content'         =>  'TEXT'
   );
@@ -26,7 +26,17 @@
    *    $i++;
    *  }
    */
-  $seeds = array();
+  $seeds = array(
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+      array('date_created' => time(), 'last_updated' => time(), 'user_id' => '1', 'content' => generate_random_string(rand(10,50))),
+  );
 
   # Constraints
   # Put here the constraints
