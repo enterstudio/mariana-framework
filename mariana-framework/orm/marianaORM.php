@@ -43,8 +43,7 @@ class MarianaORM extends Database{
     protected $db;                      //  DATABASE CONNECTION
     protected $table;                   //  TABLE NAME -> DEFAULT = get_called_class();
     protected $columnList = array();    //  All Columns of the table that can be used in a query;
-    protected $hasOne = array();
-    protected $hasMany= array();
+    protected $has = array();
     protected $observe= array();
 
 
@@ -82,8 +81,7 @@ class MarianaORM extends Database{
         $this->protected = array();
         $this->lastId = false;
         $this->delete = false;
-        $this->hasOne = array();
-        $this->hasMany= array();
+        $this->has = array();
         $this->observe= array();
     }
 
@@ -424,6 +422,24 @@ class MarianaORM extends Database{
             }
         }
 
+        # MANY Builder
+        if(sizeof($this->has)> 0){
+            $query = "SELECT * FROM (".$query.") AS `$this->table` , ";
+
+            foreach($this->has as $h){
+                $key = $h['key'];
+                $concat = $h['concat'];
+                $table= $h['table'];
+                ($h['many'] == false || $h['many']> 2) ?
+                    $query .= "( SELECT GROUP_CONCAT(`$concat` SEPARATOR ',' ) FROM `$table` WHERE `$key` = 1 ) AS `$table` ," :
+                    $query .= "( SELECT `$concat` FROM `$table` WHERE `$key` = 1 LIMIT ".$h['many'].") AS `$table` ,";
+
+            }
+
+            $query = trim($query,',');
+            echo $query;
+        }
+
         # Set Group By
         if($this->orderBy){
             $query .= " ORDER BY $this->orderBy ";
@@ -513,8 +529,9 @@ class MarianaORM extends Database{
 
     }
 
-    protected function has($table, $key, $extras = false){
-        array_push($this->has, array($table, $key, $extras));
+    protected function has($other_table, $concat, $other_key, $many = false){
+        array_push($this->has, array('table' => $other_table, 'key' => $other_key, 'concat' => $concat, 'many' => $many));
+        return $this;
     }
 
     /** VARS  **

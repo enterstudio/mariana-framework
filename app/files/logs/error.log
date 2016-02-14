@@ -1062,3 +1062,75 @@ Stack trace:
 #2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(343): Mariana\Framework\DatabaseManager\DatabaseManager::updateTable('users')
 #3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(465): Mariana\Framework\DatabaseManager\DatabaseManager::migrate(Array)
 #4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\marian in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 267
+[14-Feb-2016 21:11:46 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php on line 14
+[14-Feb-2016 21:12:03 Europe/Berlin] PHP Notice:  Undefined index: key in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 429
+[14-Feb-2016 21:12:03 Europe/Berlin] PHP Notice:  Undefined index: table in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 430
+[14-Feb-2016 21:12:03 Europe/Berlin] PHP Notice:  Undefined index: many in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 431
+[14-Feb-2016 21:12:04 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:476
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(476): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 476
+[14-Feb-2016 21:12:39 Europe/Berlin] PHP Notice:  Undefined index: key in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 430
+[14-Feb-2016 21:12:39 Europe/Berlin] PHP Notice:  Undefined index: table in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 431
+[14-Feb-2016 21:12:39 Europe/Berlin] PHP Notice:  Undefined index: many in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 432
+[14-Feb-2016 21:12:39 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:477
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(477): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 477
+[14-Feb-2016 21:13:30 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.contacts' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:477
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(477): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 477
+[14-Feb-2016 21:17:36 Europe/Berlin] PHP Notice:  Undefined index: concat in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 431
+[14-Feb-2016 21:17:36 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.contacts' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:478
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(478): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 478
+[14-Feb-2016 21:17:58 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.contacts' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:478
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(478): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 478
+[14-Feb-2016 21:21:57 Europe/Berlin] PHP Notice:  Undefined variable: extra in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 436
+[14-Feb-2016 21:21:57 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.contacts' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:477
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(477): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 477
+[14-Feb-2016 21:22:11 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mariana.contacts' doesn't exist' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:477
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(477): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 477
