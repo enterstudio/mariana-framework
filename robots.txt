@@ -10,3 +10,5 @@ Disallow: /app/functions.php
 Disallow: /app/routes.php
 Disallow: .env
 Disallow: mariana
+
+sitemap: sitemap.xml
