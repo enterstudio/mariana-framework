@@ -1012,3 +1012,39 @@ Stack trace:
 #4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
 #5 {main}
   thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 461
+[14-Feb-2016 18:28:43 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'UNIX_TIMESTAMP ,
+`last_updated` INTEGER DEFAULT UNIX_TIMESTAMP ON UPDATE UNIX_TI' at line 4' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php:161
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(161): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(434): Mariana\Framework\DatabaseManager\DatabaseManager::createTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(290): CLI->create('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(74): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\pro in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 161
+[14-Feb-2016 18:29:51 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'UNIX_TIMESTAMP() ,
+`last_updated` INTEGER DEFAULT UNIX_TIMESTAMP() ON UPDATE UNI' at line 4' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php:161
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(161): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(434): Mariana\Framework\DatabaseManager\DatabaseManager::createTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(290): CLI->create('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(74): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\pro in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 161
+[14-Feb-2016 18:30:23 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'UNIX_TIMESTAMP()  )
+ ENGINE = InnoDB' at line 5' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php:161
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(161): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(434): Mariana\Framework\DatabaseManager\DatabaseManager::createTable('users')
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(290): CLI->create('table', Array)
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(74): CLI->checkForValidCommand()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(480): CL in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 161
+[14-Feb-2016 18:34:39 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'mariana'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\database.php:30
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\database.php(30): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php(160): Mariana\Framework\Database::getConnection()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(434): Mariana\Framework\DatabaseManager\DatabaseManager::createTable('users')
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(290): CLI->create('table', Array)
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(74): CLI->checkForValidCommand()
+#5 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana(480): CLI->__construct(Array)
+#6  in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\database.php on line 30
+[14-Feb-2016 19:17:10 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 266
+[14-Feb-2016 19:18:09 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 266
+[14-Feb-2016 19:19:49 Europe/Berlin] PHP Catchable fatal error:  Argument 1 passed to CLI::__construct() must be of the type array, string given, called in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\console\database_manager.php on line 346 and defined in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana on line 71

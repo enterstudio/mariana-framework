@@ -1,0 +1,20 @@
+{
+  "command line":[
+    "create model on create table",
+    "translate"
+  ],
+  "orm":[
+    "has function",
+    "observer"
+  ],
+  "router":[
+    "register: put, head, delete, and all those methods"
+  ],
+  "snippets":[
+    "payments gateway"
+  ],
+  "features":[
+    "sitemap",
+    "sitemap generator (?)"
+  ]
+}

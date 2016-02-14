@@ -45,41 +45,6 @@ update: Updates database tables
 \n
 USAGE;
 
-    private function template_table($name){
-        /**
-         * @param string $name
-         * @desc creates a database seed
-         */
-        return
-            "<?php
-/**
-  * Created with love using Mariana Framework
-  * Need help? Ask Pihh The Creator pihh.rocks@gmail.com
-  */
-
-  # Table Name
-  \$table = ".$name.";
-
-  # Table Fields
-  \$fields = array(
-        'id'            =>  'INTEGER PRIMARY KEY',
-        'timestamp'     =>  'TIMESTAMP'
-  );
-
-
-  # Table Seeds
-  \$seeds = array(
-        array('1', 'CURRENT_TIMESTAMP'),
-  );
-
-  return array(
-        'fields' => \$fields,
-        'seeds'  => \$seeds
-  );
-
-?>";
-    }
-
     private function template_controller($name){
         /**
          * @param string $name

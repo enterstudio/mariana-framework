@@ -5,7 +5,7 @@
   */
 
   # Table Name
-  $table = 'users';
+  $table = 'teste';
 
   # Table Fields
   $fields = array(

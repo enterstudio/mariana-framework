@@ -116,12 +116,38 @@ class DatabaseManager{
   # Table Fields
   \$fields = array(
         'id'              =>  'INTEGER PRIMARY KEY',
-        'date_created'    =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-        'last_updated'     =>  'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+        'date_created'    =>  'INTEGER (11)',
+        'last_updated'    =>  'INTEGER (11)',
   );
 
   # Table Seeds
+  # Put here info on how you want to populate the database:
+  /*
+   * Example:
+   *  \$i = 0;
+   *  while(\$i < 50){
+   *    array_push(\$seeds,array('date_created'=> time(), 'last_updated' => time());
+   *    \$i++;
+   *  }
+   */
   \$seeds = array();
+
+  # Constraints
+  # Put here the constraints
+  # Example:
+  /*
+    \$constaints = array(
+        'primary_key' => 'id',
+        'unique'      => array('date_created','last_updated'),  //stupid example but serves as proof of concept
+        'foreign_key' => array(
+            'key'=> \$this_table_key,
+            'table'=>\$other_table_name,
+            'reference'=> \$other_table_key,
+            'options'  => 'Example: on update cascade text'
+            )
+    );
+  */
+  \$constaints = array();
 
   return array(
         'fields' => \$fields,
@@ -205,7 +231,7 @@ class DatabaseManager{
     public static function seedTable($name){
         $seeds = array();
         $path_php = ROOT.DS.'app'.DS.'files'.DS.'database'.DS.'tables'.DS.Config::get('database')['database'].DS.$name.'.php';
-        
+
         include($path_php);
 
         if(sizeof($seeds)> 0){
@@ -213,21 +239,29 @@ class DatabaseManager{
             $after = '';
             $i = 0;
             foreach($seeds as $seed){
+
                 $before = '';
                 $after = '';
+                $ii = 0;
+                $params = array();
                 foreach($seed as $key => $pair) {
                     $before .= "`$key` ,";
                     $after .= ":$key ,";
+                    array_push($params,array('key' => ":$key", 'pair' => $pair));
                 }
 
                 $before = '('.trim($before,',').')';
                 $after = '('.trim($after,',').')';
 
                 $sql = "INSERT INTO $name $before VALUES $after";
-
                 $stmt = Database::getConnection()->prepare($sql);
-                foreach ($seed as $key => $pair) {
-                        $stmt->bindParam(":$key", $pair);
+
+                # as it passes P by reference, we now have a problem that needs to be solved.
+                $params_size = sizeof($params);
+
+                while($ii < $params_size){
+                    $stmt->bindParam($params[$ii]['key'], $params[$ii]['pair']);
+                    $ii++;
                 }
 
                 if($stmt->execute()){
@@ -266,6 +300,27 @@ class DatabaseManager{
         }
     }
 
+    /**TODO: SET CONSTAINT **/
+    public static function setConstraint($name,$extras){
+        $name = str_to_lower($name);
+        $possible_extras = array(
+            'unique',
+            'foreign_key',
+            'primary_key'
+        );
+
+        if(!in_array(trim($name),$possible_extras)){
+            echo "Constraint not found in array of extras. Possible options ".implode(',',$possible_extras);
+            return false;
+        }
+
+        if($name == 'unique'){
+            return 'ALTER TABLE TABLE_NAME ADD CONSTRAINT constr_ID UNIQUE (user_id, game_id, date, time)';
+            return 'ADD CONSTRAINT `FK_myKey` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id)';
+            return 'ADD PRIMARY KEY (`id`);';
+        }
+    }
+
     public static function migrate(){
         self::setup();
         # Vars
@@ -286,6 +341,10 @@ class DatabaseManager{
             $sql = "CREATE TABLE IF NOT EXISTS $file ( `id` INT NOT NULL ) ENGINE = InnoDB; ";
             Database::getConnection()->prepare($sql)->execute();
             self::updateTable($file);
+
+            #quick Fix
+            $cli = new \CLI(array('create:model',$file));
+
         }
     }
 }
