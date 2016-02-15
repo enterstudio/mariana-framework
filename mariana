@@ -225,7 +225,20 @@ use Mariana\\Framework\\Middleware;
 
 class $name extends Middleware{
 
+    public function before(){
+        /**
+          * @desc: Runs before the request
+          * @example: Authorization Middleware should check if the email and password requests are set before running the script
+          */
 
+    }
+
+    public function after(){
+        /**
+         *  @desc: Runs after the request
+         *  @example: Authorization Middleware should check if after the user logs in, for example check if the session was set
+         */
+    }
 }
 ?>";
     }
@@ -423,7 +436,7 @@ class $name extends Middleware{
         if($what == "middleware") {
             $file_name = strtolower($name);
             $name = $this->parseName($name);
-            $path = ROOT.DS."mvc".DS."middlewate".DS.$file_name.".php";
+            $path = ROOT.DS."mvc".DS."middleware".DS.$file_name.".php";
 
             if($this->checkIfFileExists($path)== false){
                 return false;

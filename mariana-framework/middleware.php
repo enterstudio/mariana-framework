@@ -9,4 +9,12 @@ abstract class Middleware{
         self::$after = $after;
         self::$before= $before;
     }
+
+    public function before(){
+
+    }
+
+    public function after(){
+
+    }
 }

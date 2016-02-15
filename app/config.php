@@ -98,4 +98,11 @@ Config::set('cache-timeout', 60);
 Config::set('hash', getenv('key'));
 Config::set('security-report-email-address', getenv('SECURITY_REPORT_MAIL'));
 
+# Template Engine
+Config::set('template-engine', array(
+    'active'    => false,
+    'variable'  => array('{{','}}'),
+    'block'     => array('{#','#}')
+));
+
 

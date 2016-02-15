@@ -9,7 +9,28 @@ class TestController extends Controller{
 
     public function index(){
 
-        $v = new View('layout');
+        View::render('layout.php');
+
+
+        $_POST['username'] = 'pihh';
+        $_POST['password'] = 'pihh';
+
+        $inputs = array(
+            'username' => array(
+                'name' => 'nome de utilizador',
+                'required'  => true,
+                'alfanum'  => true
+            ),'password'    => array(
+                'name'      => 'palavra passe',
+                'matches'   => 'username',
+                'alfanum'   => true,
+                'min'       => 3,
+                'max'       => 32
+            )
+        );
+
+        \Mariana\Framework\Validation\Validation::check($inputs);
+        /*
         echo '<pre>';
         var_dump(Users::where('id',1)->contacts()->get());
         echo '</pre>';

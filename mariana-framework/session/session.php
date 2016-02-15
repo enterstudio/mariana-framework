@@ -52,6 +52,23 @@ class Session extends Singleton{
         return false;
     }
 
+    public static function check($key){
+        if(isset($_SESSION[$key])){
+            return $_SESSION[$key];
+        }
+        return false;
+    }
 
+    public static function set_csrf(){
+        self::set('mariana-csrf',generate_random_string(rand(15,30)));
+    }
+
+    public static function csrf($token){
+        if(self::check('mariana-csrf' && self::get('mariana-csrf') === $token)){
+            self::delete('mariana-csrf');
+            return true;
+        }
+        return false;
+    }
 
 }

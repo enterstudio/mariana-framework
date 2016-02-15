@@ -12,8 +12,9 @@
 
 use Mariana\Framework\Middleware;
 
-class Validation extends Middleware{
+class V extends Middleware{
 
+    /*
     public static $regexes = Array(
         'date' => "^[0-9]{4}[-/][0-9]{1,2}[-/][0-9]{1,2}\$",
         'amount' => "^[-]?[0-9]+\$",
@@ -32,7 +33,7 @@ class Validation extends Middleware{
     );
 
     private $validations, $sanatations, $mandatories, $equal, $errors, $corrects, $fields;
-
+    */
 
     public function __construct($validations=array(), $mandatories = array(), $sanatations = array(), $equal=array())
     {
@@ -172,7 +173,7 @@ class Validation extends Middleware{
      *
      * Sanatize a single var according to $type.
      * Allows for static calling to allow simple sanatization
-     */
+     *
     public static function sanatizeItem($var, $type)
     {
         $flags = NULL;
