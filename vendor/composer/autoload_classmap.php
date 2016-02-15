@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CLI' => $baseDir . '/mariana-framework/console/marianaCLI.php',
+    'CLI' => $baseDir . '/mariana-framework/console/full_cli.php',
+    'Comments' => $baseDir . '/mvc/models/comments.model.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -87,7 +88,7 @@ return array(
     'Mariana\\Framework\\Controller' => $baseDir . '/mariana-framework/controller.php',
     'Mariana\\Framework\\Database' => $baseDir . '/mariana-framework/orm/database.php',
     'Mariana\\Framework\\DatabaseManager\\DatabaseManager' => $baseDir . '/mariana-framework/console/database_manager.php',
-    'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/mariana-framework/Design-Patterns/singleton.php',
+    'Mariana\\Framework\\Design\\Singleton' => $baseDir . '/mariana-framework/design-patterns/singleton.php',
     'Mariana\\Framework\\Email\\Email' => $baseDir . '/mariana-framework/email/email.php',
     'Mariana\\Framework\\Language\\Lang' => $baseDir . '/mariana-framework/language.php',
     'Mariana\\Framework\\Middleware' => $baseDir . '/mariana-framework/middleware.php',
@@ -644,6 +645,7 @@ return array(
     'SebastianBergmann\\ResourceOperations\\ResourceOperations' => $vendorDir . '/sebastian/resource-operations/src/ResourceOperations.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestController' => $baseDir . '/mvc/controllers/test.controller.php',
+    'Teste' => $baseDir . '/mvc/models/teste.model.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'Users' => $baseDir . '/mvc/models/users.model.php',
     'Validation' => $baseDir . '/mvc/middleware/validation.php',

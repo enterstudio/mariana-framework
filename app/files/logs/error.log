@@ -1134,3 +1134,99 @@ Stack trace:
 #4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
 #5 {main}
   thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 477
+[14-Feb-2016 23:37:41 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`` =  `contacts`.`content` AND SELECT * FROM `Users`  WHERE `Users`.' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:500
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(500): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 500
+[14-Feb-2016 23:37:58 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`` =  `contacts`.`content` AND SELECT * FROM `Users`  WHERE `Users`.' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:501
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(501): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 501
+[14-Feb-2016 23:39:31 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`` =  `contacts`.`content` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:503
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(503): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 503
+[14-Feb-2016 23:42:15 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`` =  `contacts`.`content` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:508
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(508): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 508
+[14-Feb-2016 23:45:38 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`` =  `contacts`.`user_id` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:509
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(509): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 509
+[14-Feb-2016 23:46:39 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`id` =  `contacts`.`user_id` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:509
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(509): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\developme in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 509
+[14-Feb-2016 23:49:47 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`id` =  `comments`.`user_id` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:509
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(509): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\developme in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 509
+[14-Feb-2016 23:54:23 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND `Users`.`id` =  `comments`.`user_id` AND  WHERE `Users`.`id` = '1'' at line 1' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:509
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(509): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\developme in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 509
+[14-Feb-2016 23:55:01 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comments.user_id' in 'where clause'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:509
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(509): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 509
+[15-Feb-2016 00:08:12 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comments.user_id' in 'where clause'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:510
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(510): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 510
+[15-Feb-2016 00:15:53 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comments.user_id' in 'where clause'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:510
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(510): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 510
+[15-Feb-2016 00:21:43 Europe/Berlin] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'comments'' in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php:510
+Stack trace:
+#0 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php(510): PDOStatement->execute()
+#1 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php(14): Mariana\Framework\ORM\MarianaORM->get()
+#2 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\router.php(117): TestController->index()
+#3 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\app.php(33): Mariana\Framework\Router::route()
+#4 C:\Users\pihh\Desktop\development\projects\php\mariana-framework\index.php(21): Mariana\Framework\App::run()
+#5 {main}
+  thrown in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mariana-framework\orm\marianaORM.php on line 510
+[15-Feb-2016 00:26:44 Europe/Berlin] PHP Fatal error:  Call to a member function get() on null in C:\Users\pihh\Desktop\development\projects\php\mariana-framework\mvc\controllers\test.controller.php on line 14
+[15-Feb-2016 01:04:29 Europe/Berlin] PHP Notice:  Undefined property: CLI::$has in C:\Users\pihh\Desktop\Development\projects\php\mariana-framework\mariana on line 186
+[15-Feb-2016 01:04:29 Europe/Berlin] PHP Notice:  Undefined property: CLI::$has in C:\Users\pihh\Desktop\Development\projects\php\mariana-framework\mariana on line 194
+[15-Feb-2016 01:04:29 Europe/Berlin] PHP Notice:  Undefined property: CLI::$observe in C:\Users\pihh\Desktop\Development\projects\php\mariana-framework\mariana on line 207
