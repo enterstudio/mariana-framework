@@ -107,15 +107,33 @@ class Router{
         # Choose Controller, Action and Method
         $mvc = self::compareRequest();
         if(array_key_exists("middleware",$mvc)) {
-            echo "Middleware";
             // Middleware before
+            self::runMiddleware($mvc['middleware'],'before');
+            // Actual code
             $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
             $object_controller->$mvc["method"]();
             // Middleware after
+            self::runMiddleware($mvc['middleware'],'after');
         }else{
             $object_controller = new $mvc["controller"](self::$controllerConstructorParams);
             $object_controller->{$mvc["method"]}();
 
         }
+    }
+
+    private static function runMiddleware($middleware, $when= 'before'){
+        // Instanciates the middleware and runs before ( checks if exists in before and runs it )
+        foreach((array) $middleware as $m){
+            $middlewareObject = new $m[0];
+            $middlewareMethod = $m[1];
+            (isset($m[2])) ?
+                (is_array($m[2])?
+                    $middlewareArray = $m[2]:
+                    $middlewareArray = array($m[2])):
+                $middlewareArray = array();
+            $middlewareArray = array($middlewareMethod,$middlewareArray);
+            $middlewareObject->{$when}($middlewareArray);
+        }
+
     }
 }
