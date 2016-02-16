@@ -13,6 +13,12 @@ Router::get("/",array(
     "controller"    =>  "TestController",
     "method"        =>  "index"
 ));
+
+Router::post("/login",array(
+    "controller"    =>  "AuthController",
+    "method"        =>  "login"
+));
+
 Router::get("/home/",array(
     "controller"    =>  "TestController",
     "method"        =>  "index_2"

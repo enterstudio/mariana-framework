@@ -9,7 +9,7 @@ $framework_root = (trim(trim(str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__)
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', realpath(dirname(__FILE__)));
 define('FRAMEWORK_ROOT', $framework_root);
-define('VIEW_PATH', ROOT.DS.'mvc'.DS.'views');
+define('VIEW_PATH', ROOT.DS.'app'.DS.'mvc'.DS.'views');
 define('FILE_PATH', ROOT.DS.'app'.DS.'files');
 define('SCRIPT_PATH', ROOT.DS.'app'.DS.'www');
 

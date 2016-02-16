@@ -4,7 +4,7 @@
             "app\\": "mariana-framework"
         },
         "classmap":
-        ["mariana-framework","mvc"]
+        ["mariana-framework","app/mvc"]
     },
     "require": {
         "phpunit/phpunit": "^5.1",

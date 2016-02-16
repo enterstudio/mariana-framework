@@ -149,12 +149,28 @@ use Mariana\\Framework;
 use Mariana\\Framework\\Controller;
 use Mariana\\Framework\\Database;
 
-class $name extends Controller{
+class ".$name."Controller extends Controller{
 
     /**
      * Default method;
-     *
+     */
      public function index(){
+
+     }
+
+     public function create(){
+
+     }
+
+     public function read(){
+
+     }
+
+     public function update(){
+
+     }
+
+     public function delete(){
 
      }
 

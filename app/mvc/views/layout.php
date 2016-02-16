@@ -22,7 +22,7 @@
     <div id="mariana-scripts">
         <script src="https://code.jquery.com/jquery-1.12.0.js"></script>
         <script src="app/www/js/mariana-closet-template-engine.js"></script>
-        <script src="mvc/views/home/js/main.js"></script>
+        <script src="app/mvc/views/home/js/main.js"></script>
     </div>
 </body>
 </html>
