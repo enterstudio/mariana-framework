@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AuthController' => $baseDir . '/app/mvc/controllers/auth.controller.php',
+    'AuthMiddleware' => $baseDir . '/app/mvc/middleware/auth.php',
     'CLI' => $baseDir . '/mariana-framework/console/full_cli.php',
     'Comments' => $baseDir . '/app/mvc/models/comments.model.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

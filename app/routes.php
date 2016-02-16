@@ -11,7 +11,10 @@ use Mariana\Framework\Router;
 # VALID GET REQUESTS
 Router::get("/",array(
     "controller"    =>  "TestController",
-    "method"        =>  "index"
+    "method"        =>  "index",
+    'middleware'    =>  array(
+        array('AuthMiddleware','check_if_logged_in',array('a','b'))
+    )
 ));
 
 Router::post("/login",array(

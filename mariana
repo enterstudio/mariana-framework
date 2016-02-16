@@ -158,11 +158,7 @@ class ".$name."Controller extends Controller{
 
      }
 
-     public function create(){
-
-     }
-
-     public function read(){
+     public function insert(){
 
      }
 
@@ -239,22 +235,27 @@ public function observeSomething(\$class, \$method, \$params, \$array_of_observe
 
 use Mariana\\Framework\\Middleware;
 
-class $name extends Middleware{
+class ".$name."Middleware extends Middleware{
 
-    public function before(){
-        /**
-          * @desc: Runs before the request
-          * @example: Authorization Middleware should check if the email and password requests are set before running the script
-          */
+    // Register here all the methods this middleware makes before the request
+    protected \$before = array();
 
-    }
+    // Register here all the methods this middleware makes after the request
+    protected \$after = array();
 
-    public function after(){
-        /**
-         *  @desc: Runs after the request
-         *  @example: Authorization Middleware should check if after the user logs in, for example check if the session was set
-         */
-    }
+    // public methods here
+
+
+    /*@example:
+        protected \$before = array(
+            'check_if_logged_in'
+        );
+
+
+        public function check_if_logged_in(\$vars){
+            // Run the confirmations
+        }
+    */
 }
 ?>";
     }
@@ -412,7 +413,7 @@ class $name extends Middleware{
 
             $file_name = strtolower($name);
             $name = $this->parseName($name);
-            $path = ROOT.DS."mvc".DS."controllers".DS.$file_name.".controller.php";
+            $path = ROOT.DS."app".DS."mvc".DS."controllers".DS.$file_name.".controller.php";
 
             if($this->checkIfFileExists($path)== false){
                 return false;
@@ -432,7 +433,7 @@ class $name extends Middleware{
         if($what == "model") {
             $file_name = strtolower($name);
             $name = $this->parseName($name);
-            $path = ROOT.DS."mvc".DS."models".DS.$file_name.".model.php";
+            $path = ROOT.DS."app".DS."mvc".DS."models".DS.$file_name.".model.php";
 
             if($this->checkIfFileExists($path)== false){
                 return false;
@@ -452,7 +453,7 @@ class $name extends Middleware{
         if($what == "middleware") {
             $file_name = strtolower($name);
             $name = $this->parseName($name);
-            $path = ROOT.DS."mvc".DS."middleware".DS.$file_name.".php";
+            $path = ROOT.DS."app".DS."mvc".DS."middleware".DS.$file_name.".php";
 
             if($this->checkIfFileExists($path)== false){
                 return false;
